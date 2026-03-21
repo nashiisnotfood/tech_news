@@ -1,0 +1,42 @@
+name: Daily News Report
+
+on:
+  schedule:
+    # 毎日 JST 07:00 (UTC 22:00 前日) に実行
+    - cron: "0 22 * * *"
+  workflow_dispatch: # 手動実行ボタンも有効化
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch news and generate HTML
+        run: python fetch_news.py -o docs/index.html
+        env:
+          # OpenAI AI要約を使う場合はリポジトリの Secrets に OPENAI_API_KEY を設定
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - name: Commit and push report
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          # 変更がある場合のみコミット
+          git diff --cached --quiet || git commit -m "chore: update news report $(date +'%Y-%m-%d')"
+          git push
