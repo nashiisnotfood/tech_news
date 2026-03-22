@@ -596,6 +596,52 @@ JA_BLOCK_TEMPLATE = """\
     </div>
 """
 
+INDEX_TEMPLATE = """\
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>⚡ AI・テクノロジーニュース</title>
+  <style>
+    body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0f172a; color: #e2e8f0; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 0.75rem; padding: 2rem; }}
+    h1 {{ font-size: 1.4rem; font-weight: 700;
+      background: linear-gradient(135deg, #818cf8, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; }}
+    p {{ color: #94a3b8; font-size: 0.9rem; }}
+    a {{ color: #38bdf8; text-decoration: none; }}
+    a:hover {{ text-decoration: underline; }}
+    .history {{ margin-top: 1.5rem; text-align: center; }}
+    .history h2 {{ font-size: 0.8rem; color: #475569; margin-bottom: 0.5rem; letter-spacing: 0.05em; }}
+    ul {{ list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }}
+    li a {{ font-size: 0.85rem; color: #64748b; }}
+    li a:hover {{ color: #94a3b8; }}
+  </style>
+  <script>
+    // 最新レポートに即リダイレクト（キャッシュバスター付き）
+    location.replace('./{latest}?v={ver}');
+  </script>
+</head>
+<body>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p>最新レポートに移動中… <a href="./{latest}?v={ver}">こちら</a></p>
+  <div class="history">
+    <h2>PAST REPORTS</h2>
+    <ul>
+{links}
+    </ul>
+  </div>
+</body>
+</html>
+"""
+
 
 def build_html(articles: list, days: int, max_summary_len: int, has_ai: bool) -> str:
     """記事リストから HTML 文字列を構築する。"""
@@ -741,6 +787,30 @@ def build_html(articles: list, days: int, max_summary_len: int, has_ai: bool) ->
 # エントリポイント
 # ─────────────────────────────────────────────────────────────────────────────
 
+def generate_index(docs_dir: Path) -> None:
+    """日付別HTMLをスキャンしてindex.htmlを生成する。"""
+    dated = sorted(
+        [f for f in docs_dir.glob("????????.html")
+         if re.fullmatch(r"\d{8}\.html", f.name)],
+        reverse=True,
+    )
+    if not dated:
+        return
+    latest = dated[0].name
+    ver = latest.replace(".html", "")
+
+    def fmt(name: str) -> str:
+        d = name.replace(".html", "")
+        return f"{d[:4]}年{d[4:6]}月{d[6:8]}日"
+
+    links = "\n".join(
+        f'      <li><a href="./{f.name}">{fmt(f.name)}</a></li>'
+        for f in dated
+    )
+    content = INDEX_TEMPLATE.format(latest=latest, ver=ver, links=links)
+    (docs_dir / "index.html").write_text(content, encoding="utf-8")
+
+
 def load_config(config_path: Path) -> dict:
     with open(config_path, encoding="utf-8") as f:
         return json.load(f)
@@ -799,16 +869,17 @@ def main():
     days = args.days if args.days is not None else settings.get("days_filter", 3)
     max_summary_len = settings.get("max_summary_length", 400)
 
-    # 出力ファイル名（-o 未指定時は日付を自動付与）
+    # 出力先の決定
+    date_str = datetime.now().strftime("%Y%m%d")
     if args.output:
         output_file = Path(args.output)
+        if not output_file.is_absolute():
+            output_file = Path(__file__).parent / output_file
+        docs_dir = None  # -o 指定時はindex自動生成なし
     else:
-        base = Path(settings.get("output_file", "news_report.html"))
-        date_str = datetime.now().strftime("%Y%m%d")
-        output_file = base.with_name(f"{base.stem}_{date_str}{base.suffix}")
-
-    if not output_file.is_absolute():
-        output_file = Path(__file__).parent / output_file
+        docs_dir = Path(__file__).parent / "docs"
+        docs_dir.mkdir(exist_ok=True)
+        output_file = docs_dir / f"{date_str}.html"
 
     print("=" * 55)
     print("  AI・テクノロジーニュース フェッチャー")
@@ -853,6 +924,11 @@ def main():
     print("\n[4/4] HTML レポートを生成中...")
     html_content = build_html(articles, days, max_summary_len, has_ai)
     output_file.write_text(html_content, encoding="utf-8")
+
+    # index.htmlを再生成（docs/デフォルト出力時のみ）
+    if docs_dir:
+        generate_index(docs_dir)
+        print(f"   インデックス更新: {docs_dir / 'index.html'}")
 
     print(f"\n✅ 完了! レポートを保存しました: {output_file}")
     print(f"   記事数: {len(articles)} 件")
