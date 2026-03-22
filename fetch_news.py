@@ -116,7 +116,7 @@ def fetch_feed(feed_cfg: dict, max_items: int, cutoff: Optional[datetime]) -> li
                     "lang": feed_cfg.get("lang", "en"),
                     "pub_date": pub_date,
                     "pub_date_str": (
-                        pub_date.strftime("%Y-%m-%d %H:%M UTC")
+                        pub_date.astimezone(timezone(timedelta(hours=9))).strftime("%Y-%m-%d %H:%M JST")
                         if pub_date
                         else "日付不明"
                     ),
@@ -599,7 +599,7 @@ JA_BLOCK_TEMPLATE = """\
 
 def build_html(articles: list, days: int, max_summary_len: int, has_ai: bool) -> str:
     """記事リストから HTML 文字列を構築する。"""
-    generated_at = datetime.now(timezone.utc).strftime("%Y年%m月%d日 %H:%M UTC")
+    generated_at = datetime.now(timezone(timedelta(hours=9))).strftime("%Y年%m月%d日 %H:%M JST")
 
     # カテゴリ / ソースの集計
     categories: dict[str, int] = {}
@@ -632,7 +632,7 @@ def build_html(articles: list, days: int, max_summary_len: int, has_ai: bool) ->
     def section_key(a):
         if a.get("lang") == "ja":
             return 0
-        if a.get("category") in ("AI", "AI / Tech"):
+        if a.get("type", "popular") == "ai":
             return 1
         return 2
 
@@ -647,8 +647,8 @@ def build_html(articles: list, days: int, max_summary_len: int, has_ai: bool) ->
 
     SECTION_DEFS = [
         (0, "📰 日本語記事"),
-        (1, "🤖 AI・機械学習"),
-        (2, "💻 テクノロジー"),
+        (1, "🤖 AI記事"),
+        (2, "🔥 人気記事"),
     ]
 
     sections_html_parts = []
