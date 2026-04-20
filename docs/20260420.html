@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年04月21日 07:18 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年04月21日 07:18 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>32</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>3</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>3</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (3)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (3)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (3)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (3)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 16:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/hiroki_notes/items/3de8503e5f5f9e33e2d9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">React初心者がつまずきやすいJavaScript記法をわかりやすく整理してみた</a></div>
+    <div class="card-summary">React を触っていると、JavaScript のさまざまな書き方が自然と登場します。 しかし、JavaScript の記法をしっかり理解していないと、React のコードが「なんとなく」でしか読めなくなってしまいます。 この記事では、React で頻出する JavaSc...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/hiroki_notes/items/3de8503e5f5f9e33e2d9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 14:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/hitomin_poke/items/9d91ff5ad51001237a02?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">一人で悩み続けてしまう新人エンジニアへ。その時間、無駄かもしれません。</a></div>
+    <div class="card-summary">はじめまして。株式会社PRUMでエンジニアをしている人見です。 日々、プログラミング学習や実務の中で、つまずきやすいポイントや考え方を整理して発信しています。 PRUMについて気になった方は、コーポレートサイトもぜひご覧ください。 ▶コーポレートサイト 一人で悩み続けてし...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/hitomin_poke/items/9d91ff5ad51001237a02?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 13:40 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/TOMOSIA-HieuNT/items/c4553f452d8457f86060?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">[TypeScriptシリーズ - Part 1] Conditional Types &amp; infer</a></div>
+    <div class="card-summary">📝 注記 私は日本語に堪能ではありません。この記事はAIのサポートを受けて執筆・翻訳されています。ご了承ください。よろしくお願いいたします。 📖 目次 問題の提示 – どんな時にこのテクニックが必要か 悪い例 – まずはダメなコードを見せる 良い例 – TypeS...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/TOMOSIA-HieuNT/items/c4553f452d8457f86060?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 08:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/s-yoshina/items/321a031ece6bc9c3b460?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Claude Code × MagicPod MCPでテストケースメンテナンスレビューを自動化してみた</a></div>
+    <div class="card-summary">はじめに こんにちは、QAエンジニアのヨシナです。 弊社では Claude Code を部全体で積極的に活用しており、QAチームでもテストプロセスへの取り入れを進めています。その取り組みの一環として、現在はMagicPod 作業への活用を検討しています。 前回の記事では、...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/s-yoshina/items/321a031ece6bc9c3b460?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 08:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/aeyesec/articles/32fb05ddd1c3f7" target="_blank" rel="noopener">1日で作るサプライチェーン攻撃対策！運用死しないコスト「ほぼゼロ」の通信監視</a></div>
+    <div class="card-summary">1. はじめに こんにちは！はるぷです！サプライチェーン攻撃の対策してますか？？ 最近、サプライチェーン攻撃の話題が出るたび、「うちのサービスは本当に大丈夫だろうか」と社内がざわつくことはありませんか。依存ライブラリの棚卸しやSBOM整備に取り組んでいても、入り口が多すぎて全体を把握するのは至難の業です。 加えて、社内外から「サプライチェーン攻撃対策大丈夫ですよね？」と聞かれたとき、担当者として胸がキューっとなる辛い状態になりがちです。何かしらビシッと説明できるシステム的な一手が欲しい…。 そこで今回は、 「万が一、侵入を許してしまった後の早期発見」 に特化した対策を紹介します。 ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/aeyesec/articles/32fb05ddd1c3f7" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-20 07:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/yuji-arakawa/items/da4d5eec968b92ebc26d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">記憶を持たないLLMの記憶 ― コンテキスト/メモリー/ハーネスエンジニアリング入門の前に</a></div>
+    <div class="card-summary">はじめに 記憶を持たないはずのAIが、私を覚えている LLM自体は記憶を持ちません。直前の会話で何を話したかを本当は「覚えていない」はずなのです。それなのに、ChatGPTのようなチャットアプリや最近のエージェントと会話すると、まるで相手が自分を覚えていてくれて、記憶...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/yuji-arakawa/items/da4d5eec968b92ebc26d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">26</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/20/google-rolls-out-gemini-in-chrome-in-seven-new-countries/" target="_blank" rel="noopener">Google rolls out Gemini in Chrome in seven new countries</a></div>
+    <div class="card-summary">Google is rolling out Gemini in Chrome in Australia, Indonesia, Japan, the Philippines, Singapore, South Korea, and Vietnam.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google、Chrome で Gemini を新たに 7 か国で展開</div>
+      <div class="ja-summary">Google は、オーストラリア、インドネシア、日本、フィリピン、シンガポール、韓国、ベトナムで Chrome で Gemini を展開しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/20/google-rolls-out-gemini-in-chrome-in-seven-new-countries/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 06:44 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/915272/apple-john-ternus-tim-cook" target="_blank" rel="noopener">John Ternus is taking over from Tim Cook as Apple’s CEO</a></div>
+    <div class="card-summary">The multitrillion-dollar home of the iPhone, Mac, and so many other tech gadgets is getting a new leader this fall, as Apple has announced that Tim Cook will be replaced as CEO on September 1st by current hardware boss John Ternus. How will we look back on Cook’s legacy, and what will Apple look like […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ジョン・ターナス氏がティム・クック氏からAppleのCEOを引き継ぐ</div>
+      <div class="ja-summary">Apple が 9 月 1 日付でティム・クック氏の後任として現在のハードウェア部門の責任者であるジョン・ターナス氏が CEO に就任すると発表したため、数兆ドル規模の iPhone、Mac、その他多くのハイテクガジェットの本拠地にこの秋新たなリーダーが誕生することになる。クック氏の功績をどう振り返るのか、そしてアップルはどうなるのか […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/915272/apple-john-ternus-tim-cook" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 06:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/915279/tim-cook-ceo-letter-apple-community" target="_blank" rel="noopener">Read Tim Cook’s letter to the Apple world as he departs as CEO</a></div>
+    <div class="card-summary">Apple CEO Tim Cook has written a letter to the community as he prepares to step down from his role in September. &quot;This is not goodbye. But at this moment of transition, I wanted to take the opportunity to say thank you,&quot; Cook writes. As part of the shift, John Ternus, Apple&#x27;s senior vice president […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">CEO として退任するティム・クック氏が Apple 世界に宛てた手紙を読む</div>
+      <div class="ja-summary">Apple CEOのティム・クック氏は、9月にその職を辞任する準備を整え、コミュニティに宛てた書簡を書いた。 「これは別れではない。しかし、この移行の瞬間に、この機会を利用して感謝の意を表したいと思った」とクック氏は書いている。この変化の一環として、Apple の上級副社長であるジョン・ターナス氏は […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/915279/tim-cook-ceo-letter-apple-community" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 06:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/home-composters-buying-guide/" target="_blank" rel="noopener">Best Kitchen Composters and Food Recyclers (2026)</a></div>
+    <div class="card-summary">Responsibly dispose of your food scraps with one of these indoor, (mostly) odor-free, WIRED-tested devices.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベストキッチンコンポスターおよび食品リサイクル業者 (2026)</div>
+      <div class="ja-summary">WIRED テスト済みの、（ほぼ）無臭の屋内用デバイスを使用して、責任を持って生ゴミを処分しましょう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/home-composters-buying-guide/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 06:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/915240/apple-johny-srouji-ternus-cook" target="_blank" rel="noopener">Apple names Johny Srouji as chief hardware officer</a></div>
+    <div class="card-summary">Apple has appointed Johny Srouji as its new chief hardware officer, &quot;effective immediately,&quot; according to an announcement on Monday. He is stepping into the shoes of current hardware engineering head John Ternus, who will replace Tim Cook as CEO in September, while Cook becomes the chairman of the board. Last December, Srouji reassured his team […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple、ジョニー・スロウジ氏を最高ハードウェア責任者に任命</div>
+      <div class="ja-summary">月曜日の発表によると、アップルはジョニー・スロウジ氏を新しい最高ハードウェア責任者に「即時発効」として任命した。同氏は、9月にティム・クック氏の後任としてCEOに就任する現ハードウェアエンジニアリング責任者のジョン・ターナス氏の後を継ぎ、クック氏は取締役会長に就任する。昨年 12 月、Srouji 氏はチームを安心させました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/915240/apple-johny-srouji-ternus-cook" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 06:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/tim-cook-stepping-down-ceo-apple-john-ternus/" target="_blank" rel="noopener">Apple CEO Tim Cook Is Stepping Down</a></div>
+    <div class="card-summary">John Ternus, the company’s senior vice president of hardware engineering, will replace Cook as CEO on September 1. Cook will stay on as executive chairman.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アップルCEOティム・クック氏が辞任</div>
+      <div class="ja-summary">同社のハードウェアエンジニアリング担当上級副社長のジョン・ターナス氏が9月1日付でクック氏の後任としてCEOに就任する。クック氏は執行会長に留まる。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/tim-cook-stepping-down-ceo-apple-john-ternus/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:52 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/wired-at-night-event-ben-mckenzie-reads-mean-tweets/" target="_blank" rel="noopener">Ben McKenzie Says Crypto Has a Secret Ingredient: Male Loneliness</a></div>
+    <div class="card-summary">The actor-director discussed his least favorite currency and read a series of mean tweets—about us!—at our inaugural WIRED@Night event.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベン・マッケンジー氏、暗号通貨には男性の孤独感が隠されていると語る</div>
+      <div class="ja-summary">俳優兼監督である彼は、第 1 回イベント「WIRED@Night」で、最も嫌いな通貨について話し合い、私たちについての一連の意地悪なツイートを読み上げました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/wired-at-night-event-ben-mckenzie-reads-mean-tweets/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/915213/tim-cook-apple-ceo-stepping-down-john-ternus" target="_blank" rel="noopener">Apple CEO Tim Cook is stepping down</a></div>
+    <div class="card-summary">Apple CEO Tim Cook is stepping down and will be succeeded by John Ternus, currently Apple&#x27;s senior vice president of hardware engineering. Ternus will take over as CEO and join Apple&#x27;s board of directors on September 1st, 2026. Cook, who joined Apple in 1998 and took over as CEO from Steve Jobs in 2011, will […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アップルCEOティム・クック氏が辞任</div>
+      <div class="ja-summary">Apple CEOのティム・クック氏が辞任し、後任には現在Appleのハードウェアエンジニアリング担当上級副社長であるジョン・ターナス氏が就任する。 Ternus 氏は CEO を引き継ぎ、2026 年 9 月 1 日に Apple の取締役会に加わります。1998 年に Apple に入社し、2011 年に Steve Jobs 氏から CEO を引き継いだクック氏は、[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/915213/tim-cook-apple-ceo-stepping-down-john-ternus" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/20/tim-cook-stepping-down-as-apple-ceo-john-ternus-taking-over/" target="_blank" rel="noopener">Tim Cook stepping down as Apple CEO, John Ternus taking over</a></div>
+    <div class="card-summary">The transition has been expected for some time and ends one of the longer and more impactful runs a CEO has had at any company. Cook had inherited a company that many industry watchers and enthusiasts struggled to separate from its famed founder. What he leaves behind is a $4 trillion business with annual revenue that has more than quadrupled on his watch.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ティム・クック氏がアップルCEOを辞任、ジョン・ターナス氏が後任に就任</div>
+      <div class="ja-summary">この移行は以前から予想されていたことであり、これまでのどの企業においてもCEOが行ってきたより長く、より影響力のある経営の1つに終止符が打たれることになる。クック氏は、多くの業界ウォッチャーや愛好家が有名な創業者から引き離すのに苦労した会社を引き継いだ。彼が残したものは、年間収益が 4 倍以上に増加した 4 兆ドルのビジネスです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/20/tim-cook-stepping-down-as-apple-ceo-john-ternus-taking-over/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/915209/amazon-price-fixing-california-lawsuit" target="_blank" rel="noopener">Here’s how Amazon’s price fixing allegedly drove up prices everywhere</a></div>
+    <div class="card-summary">On Monday, California Attorney General Rob Bonta revealed the evidence of alleged price-fixing by Amazon. The state filed a request to the Supreme Court in February for a preliminary injunction to stop Amazon&#x27;s behavior while the lawsuit it originally filed in 2022 proceeds, and is now making that 16-page document available, &quot;largely unredacted.&quot; It lays […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Amazonの価格操作がどのようにしてあらゆる場所の価格をつり上げたとされるのかは次のとおりです</div>
+      <div class="ja-summary">月曜日、カリフォルニア州司法長官ロブ・ボンタは、アマゾンによる価格操作疑惑の証拠を明らかにした。同州は2月、2022年に最初に起こした訴訟が進行する間、アマゾンの行為を差し止める仮差し止め命令を最高裁判所に申し立て、現在その16ページの文書を「ほとんど編集されていない」状態で公開している。それは横たわっています[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/915209/amazon-price-fixing-california-lawsuit" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/" target="_blank" rel="noopener">John Ternus to become Apple CEO</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ジョン・ターナス氏がアップルCEOに就任</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 05:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/20/google-photos-adds-new-touch-up-tools-for-quick-fixes/" target="_blank" rel="noopener">Google Photos adds new touch-up tools for ‘quick’ fixes</a></div>
+    <div class="card-summary">You can use the new tools to remove blemishes, refine skin texture, brighten eyes, or whiten teeth in photos.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google フォトに「迅速な」修正のための新しい修正ツールが追加</div>
+      <div class="ja-summary">新しいツールを使用すると、写真のシミを除去したり、肌の質感を整えたり、目を明るくしたり、歯を白くしたりすることができます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/20/google-photos-adds-new-touch-up-tools-for-quick-fixes/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 04:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/gizmo64k/soulplayer-c64" target="_blank" rel="noopener">Soul Player C64 – A real transformer running on a 1 MHz Commodore 64</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Soul Player C64 – 1 MHz Commodore 64 で動作する本物のトランスフォーマー</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/gizmo64k/soulplayer-c64" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 04:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/20/ai-writing-its-not-just-this-its-that-barrons/" target="_blank" rel="noopener">It’s not just one thing — it’s another thing</a></div>
+    <div class="card-summary">This sentence construction (&quot;It&#x27;s not just this — it&#x27;s that&quot;) has become so common in AI-generated writing that it&#x27;s no longer just a clue that a piece of writing may be synthetic — it&#x27;s almost a guarantee.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">それはただ一つのことではありません - それは別のことです</div>
+      <div class="ja-summary">この文章構造 (「これだけではありません — あれです」) は、AI が生成した文章で非常に一般的になっており、もはや文章が合成である可能性があることを示す単なる手がかりではなく、ほぼ保証されています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/20/ai-writing-its-not-just-this-its-that-barrons/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 03:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/a-brief-interview-with-the-owner-of-the-hot-air-balloon-that-landed-in-someones-backyard/" target="_blank" rel="noopener">A Hot-Air Balloon Landed in a California Backyard. The Owner Says It&#x27;s a &#x27;Very Rare&#x27; Event</a></div>
+    <div class="card-summary">The CEO of Magical Adventures Balloon Rides tells WIRED how the pilot made a safe landing after they got stranded over a neighborhood.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">カリフォルニアの裏庭に着陸した熱気球。オーナーは「非常に珍しい」イベントだと語る</div>
+      <div class="ja-summary">マジカル・アドベンチャー・バルーン・ライド社のCEOは、パイロットが近所で立ち往生した後、どのようにして安全に着陸したのかを『WIRED』に語った。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/a-brief-interview-with-the-owner-of-the-hot-air-balloon-that-landed-in-someones-backyard/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 03:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/Luce-Org/lucebox-hub" target="_blank" rel="noopener">We got 207 tok/s with Qwen3.5-27B on an RTX 3090</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">RTX 3090 上の Qwen3.5-27B で 207 トーク/秒を達成しました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/Luce-Org/lucebox-hub" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 03:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/war-memes-turn-conflict-into-content/" target="_blank" rel="noopener">War Memes Are Turning Conflict Into Content</a></div>
+    <div class="card-summary">The jokes were funny. The systems behind them—and the reasons we keep passing around war memes as entertainment—are more serious.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">戦争ミームが紛争をコンテンツに変える</div>
+      <div class="ja-summary">ジョークは面白かったです。それらの背後にあるシステム、そして私たちが戦争ミームをエンターテイメントとして流し続ける理由は、より深刻です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/war-memes-turn-conflict-into-content/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 03:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.kimi.com/blog/kimi-vendor-verifier" target="_blank" rel="noopener">Kimi vendor verifier – verify accuracy of inference providers</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">kimi ベンダー検証ツール – 推論プロバイダーの精度を検証します</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.kimi.com/blog/kimi-vendor-verifier" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-21 02:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/20/north-korea-hackers-blamed-for-290m-crypto-theft/" target="_blank" rel="noopener">North Korean hackers blamed for $290M crypto theft</a></div>
+    <div class="card-summary">The hack against Kelp DAO is the largest crypto heist of the year so far.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">北朝鮮のハッカー、2億9000万ドルの仮想通貨窃盗で非難される</div>
+      <div class="ja-summary">Kelp DAO に対するハッキングは、これまでのところ今年最大の暗号通貨強盗です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/20/north-korea-hackers-blamed-for-290m-crypto-theft/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-04-20 23:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qwen.ai/blog?id=qwen3.6-max-preview" target="_blank" rel="noopener">Qwen3.6-Max-Preview: Smarter, Sharper, Still Evolving</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Qwen3.6-Max-Preview: よりスマート、よりシャープ、さらに進化</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qwen.ai/blog?id=qwen3.6-max-preview" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-20 22:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/bobyard-2-0-offers-improved-takeoffs-and-unified-ai-for-estimators/" target="_blank" rel="noopener">Bobyard 2.0 offers improved takeoffs and unified AI for estimators</a></div>
+    <div class="card-summary">AI platform, Bobyard, has unveiled Bobyard 2.0, its latest platform update delivering accelerated takeoff workflows and a unified AI workbench, designed to keep pace with the estimators (those responsible for calculating project budgets) who use it every day throughout the construction and landscaping industry. By speeding up takeoff operations, a important part of estimating a […] The post…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Bobyard 2.0 は、改良された離陸と推定用の統合 AI を提供します</div>
+      <div class="ja-summary">AI プラットフォームである Bobyard は、Bobyard 2.0 を発表しました。これは、加速された離陸ワークフローと統合 AI ワークベンチを提供する最新のプラットフォーム アップデートであり、建設および造園業界全体で毎日使用する見積もり担当者 (プロジェクトの予算の計算を担当する担当者) と歩調を合わせるように設計されています。離陸操作をスピードアップすることによって、[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/bobyard-2-0-offers-improved-takeoffs-and-unified-ai-for-estimators/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-04-20 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/20/1136154/the-download-murderous-mirror-bacteria-chinese-workers-fight-ai-agents/" target="_blank" rel="noopener">The Download: murderous ‘mirror’ bacteria, and Chinese workers fighting AI doubles</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. No one’s sure if synthetic mirror life will kill us all In February 2019, a group of scientists proposed a high-risk, cutting-edge, irresistibly exciting idea that the National Science Foundation should…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: 凶悪な「ミラー」バクテリアとAI倍増と戦う中国人労働者</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。合成鏡の生命体が私たち全員を殺すかどうかは誰にも分かりません 2019 年 2 月、科学者のグループが、国立科学財団が行うべきであるというハイリスクで最先端の、たまらなく刺激的なアイデアを提案しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/20/1136154/the-download-murderous-mirror-bacteria-chinese-workers-fight-ai-agents/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-20 20:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/how-to-prepare-for-and-remediate-an-ai-system-incident/" target="_blank" rel="noopener">How to prepare for and remediate an AI system incident</a></div>
+    <div class="card-summary">For all the possibilities AI gives us, there is always a chance of the technology malfunctioning or becoming compromised. In the event of an AI system crisis, new research from ISACA has found that the majority of organisations surveyed couldn’t explain how quickly they could stop an AI system emergency, or even report on what […] The post How to prepare for and remediate an AI system incident…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AI システムインシデントに備えて修復する方法</div>
+      <div class="ja-summary">AI はあらゆる可能性を私たちに与えてくれますが、テクノロジーが誤動作したり侵害されたりする可能性は常にあります。 AI システムの危機が発生した場合、ISACA の新しい調査によると、調査対象となった組織の大多数は、AI システムの緊急事態をどの程度迅速に阻止できるか説明できず、さらには何について報告することさえできなかったことがわかりました。 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/how-to-prepare-for-and-remediate-an-ai-system-incident/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-04-20 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/20/1135222/red-wolves-colossal-biosciences-clones/" target="_blank" rel="noopener">Colossal Biosciences said it cloned red wolves. Is it for real?</a></div>
+    <div class="card-summary">If you want to capture something wolflike, it’s best to embark before dawn. So on a morning this January, with the eastern horizon still pink-hued, I drove with two young scientists into a blanket of fog. Forty miles to the west, the industrial sprawl of Houston spawned a golden glow. Tanner Broussard’s old Toyota Tacoma…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">コロッサル・バイオサイエンス社は、アカオオカミのクローンを作成したと発表した。それは本当ですか？</div>
+      <div class="ja-summary">オオカミのようなものを撮影したい場合は、夜明け前に出発するのが最善です。そこで、今年 1 月のある朝、東の地平線がまだピンク色に染まっていたとき、私は 2 人の若い科学者と一緒に、一面の霧の中を車でドライブしました。西に 40 マイル離れたヒューストンの工業地帯は黄金色の輝きを生み出しました。タナー・ブルサールの古いトヨタ・タコマ…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/20/1135222/red-wolves-colossal-biosciences-clones/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-04-20 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/20/1136149/chinese-tech-workers-ai-colleagues/" target="_blank" rel="noopener">Chinese tech workers are starting to train their AI doubles–and pushing back</a></div>
+    <div class="card-summary">Tech workers in China are being instructed by their bosses to train AI agents to replace them—and it’s prompting a wave of soul-searching among otherwise enthusiastic early adopters. Earlier this month a GitHub project called Colleague Skill, which claimed workers could use it to “distill” their colleagues’ skills and personality traits and replicate them with…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国のハイテク労働者は AI の倍増者を訓練し始めているが、反発している</div>
+      <div class="ja-summary">中国のハイテク労働者は上司から、彼らに代わるAIエージェントを訓練するよう指示されており、熱心な早期導入者の間で自己探求の波が起きている。今月初め、Colleague Skill と呼ばれる GitHub プロジェクトが、従業員が同僚のスキルや性格特性を「抽出」し、それらを複製するために使用できると主張しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/20/1136149/chinese-tech-workers-ai-colleagues/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-20 17:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/anthropic-mythos-ai-cybersecurity-white-house/" target="_blank" rel="noopener">Anthropic walks into the White House and Mythos is the reason Washington let it in</a></div>
+    <div class="card-summary">When we covered Project Glasswing earlier this month, the story was about a model too dangerous to release publicly and what Anthropic decided to do with it instead. That story has moved. On Friday, Anthropic CEO Dario Amodei walked into the West Wing for a meeting with White House Chief of Staff Susie Wiles. Treasury […] The post Anthropic walks into the White House and Mythos is the reason…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">人間がホワイトハウスに侵入、ワシントンがそれを許可したのはミトスのせいだ</div>
+      <div class="ja-summary">今月初めに私たちがプロジェクト グラスウィングを取り上げたとき、その話は、危険すぎて一般公開できないモデルと、その代わりに Anthropic がそれをどう扱うことにしたのかについてでした。その物語は動きました。金曜日、アンスロピックのダリオ・アモデイ最高経営責任者（CEO）はホワイトハウス首席補佐官スージー・ワイルズとの会談のため西棟に入った。財務省 […] ポスト・アンスロピックがホワイトハウスに侵入し、神話がワシの理由となる</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/anthropic-mythos-ai-cybersecurity-white-house/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
