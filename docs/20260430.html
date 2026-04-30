@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年05月01日 07:22 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年05月01日 07:22 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>35</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>4</strong></div> <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>3</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>2</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (4)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (3)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (7)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (4)</span> <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (3)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (2)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">7</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 18:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/wan-code/items/e4b45796c414e4b0054d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【n8n】YouTube新着動画を自動でDiscord通知する仕組みを作ってみた（重複通知防止付き）</a></div>
+    <div class="card-summary">YouTubeに新しい動画を投稿したら、Discordに自動通知される仕組みを n8n で作ってみました。 通知済み動画は二重通知しない ようにしています。 作ったフロー 1時間ごとに実行 ↓ YouTube RSS取得 ↓ 動画情報整形 ↓ 通知済み確認 ↓ 未通知だけ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/wan-code/items/e4b45796c414e4b0054d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 16:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/i-inose/items/51f96dbf92dfd5799992?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【新卒・英語苦手エンジニア必見】エンジニアなら知っておきたい現場で使われる重要英単語18選 - 徹底解説</a></div>
+    <div class="card-summary">1章 はじめに 開発していて、英語のエラーメッセージをとりあえず AI に貼り付けて「解決！動いたからよし！」で済ませていませんか？気付いたら、いつまでも英語に苦手意識を持ったまま…という方も多いはず。 PR のコメントに「LGTM」って書いてあっても「なんか承認されてる...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/i-inose/items/51f96dbf92dfd5799992?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 16:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/aeyesec/articles/7e4a1e3c83e81b" target="_blank" rel="noopener">Linuxカーネルの脆弱性「CopyFail (CVE-2026-31431)」をEC2のUbuntu 22.04で実証してみた</a></div>
+    <div class="card-summary">こんにちは！株式会社エーアイセキュリティラボのはるぷと申します。 一般ユーザーがコマンド一発でrootを取れてしまうLinuxカーネルの脆弱性、CopyFail (CVE-2026-31431) が話題になっています。AIによって発見された論理バグで、汚しても問題ないEC2環境を作って実際に検証してみました。 この脆弱性は、 一般ユーザーがroot権限に昇格できる というものです。実行条件がとても簡単なので話題になりました。ざっくり仕組みを言うと、algif_aead・authencesn・splice() システムコールの組み合わせによって、メモリ上のページキャッシュを直接書き換えられ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/aeyesec/articles/7e4a1e3c83e81b" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 12:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Rabbit_booK/items/e3b7ac45d5cc7699940f?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">新卒をメンタリングするつもりが、逆にメンタルケアされていた2年目エンジニアの話</a></div>
+    <div class="card-summary">はじめに 未経験からエンジニアになり、現在はSREチームに所属している入社2年目の者です。 最近、新卒研修の開発課題期間中のメンター／サポート役として、新卒社員のみなさんと1on1する機会を多くいただいています。最初は自分の話が役に立つのか心配でしたが、いろんな新卒社員と...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Rabbit_booK/items/e3b7ac45d5cc7699940f?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 11:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/TooMe/items/c9e42de497a9eff2b680?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">SKILL.mdを使っている人は全員&quot;gh skill&quot;も知っておいてください</a></div>
+    <div class="card-summary">はじめに 本記事は以下の記事等で「Agent Skills (SKILL.md)」について知っている前提で書いています。まだ読んでいない方は先にこちらをどうぞ！ 【最新版】GitHub Copilotを使っている人は全員&quot;SKILL.md&quot;も導入してください ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/TooMe/items/c9e42de497a9eff2b680?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 11:17 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/masa20057/items/b1a956add6ec342f31b5?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【初学者向け】「なんとなくコード書く」を卒業するためのアルゴリズム入門</a></div>
+    <div class="card-summary">株式会社 PRUMのmasaです。 今日は「アルゴリズムの基本概念」という内容について、プログラミング初学者向けに記事を書きました。 この記事を読むことで、難しく感じがちなアルゴリズムを身近なものとして理解し、論理的にコードを組み立てるきっかけを得られると思います。 興味が...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/masa20057/items/b1a956add6ec342f31b5?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-04-30 10:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/canary_techblog/articles/429cae3aaf06c7" target="_blank" rel="noopener">Vimの知見共有もできて盛り上がる「Vimペアプロ」を社内勉強会でやってみた</a></div>
+    <div class="card-summary">はじめに こんにちは。CANARY Cloud CRMでTechnical Lead Engineer(Backend)をしている久嶋です。 この記事では「Vimの知見共有をしたいとき」や「Vimmer同士でワイワイ遊びたいとき」にオススメな Vimペアプロ というアクティビティを紹介します。 実際に社内Vim勉強会でVimペアプロをやってみた際の様子についても紹介しますので興味がある方はぜひ読んでみてください。 tl;dr 先に結論です。 Vimの知見共有をしたいときやVimmer同士でワイワイ遊びたいときにはVimペアプロがオススメ Vimペアプロとは: ナビゲーター +...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/canary_techblog/articles/429cae3aaf06c7" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">28</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 07:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener">Apple was surprised by AI-driven demand for Macs</a></div>
+    <div class="card-summary">Apple said it will be supply-constrained on Mac Mini, Studio, and Neo in the next quarter, too.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple は AI 主導の Mac 需要に驚いた</div>
+      <div class="ja-summary">Appleは、次の四半期にもMac Mini、Studio、Neoの供給が制限されるだろうと述べた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/30/apple-was-surprised-by-ai-driven-demand-for-macs/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 06:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/921694/roblox-q1-2026-132-million-dau" target="_blank" rel="noopener">Roblox’s daily users continue to drop as age-checks slow growth</a></div>
+    <div class="card-summary">Roblox&#x27;s daily active users continued to slip last quarter due in part to its rollout of age checks on its platform. According to its latest earnings report, Roblox currently has 132 million daily active users globally, down from 144 million at the end of last year, which was a drop from 152 million in Q3 […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">年齢確認による成長の鈍化により、Roblox の毎日のユーザー数は減少し続けている</div>
+      <div class="ja-summary">Roblox のデイリーアクティブユーザー数は、プラットフォーム上で年齢チェックを展開したこともあり、前四半期から引き続き減少しました。最新の収益報告書によると、Roblox のデイリーアクティブユーザー数は現在、全世界で 1 億 3,200 万人で、昨年末の 1 億 4,400 万人から減少しており、第 3 四半期の 1 億 5,200 万人から減少しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/921694/roblox-q1-2026-132-million-dau" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/921652/congress-fisa-section-702-45-day-extension" target="_blank" rel="noopener">Congress keeps kicking surveillance reform down the road</a></div>
+    <div class="card-summary">Congress has reauthorized Section 702 of the Foreign Intelligence Surveillance Act - but only for another 45 days. The extension is meant to give legislators more time to negotiate reforms to the controversial wiretapping bill. If the past few weeks are any indication of how future debates will go, however, we&#x27;re in for a bumpy […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">議会は監視改革を推進し続けている</div>
+      <div class="ja-summary">議会は外国情報監視法第 702 条を再承認したが、期限はあと 45 日間のみである。この延長は、議員らに物議を醸している盗聴法案の改革を交渉するためのより多くの時間を与えることを目的としている。しかし、過去数週間が今後の議論の行方を示唆しているとすれば、我々は波乱万丈な状況に直面することになるだろう[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/921652/congress-fisa-section-702-45-day-extension" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/921527/apple-iphone-revenue-q2-2026-earnings" target="_blank" rel="noopener">Apple’s iPhone revenue jumps to $57 billion despite chip shortages</a></div>
+    <div class="card-summary">Apple&#x27;s iPhone revenue jumped 22 percent to $57 billion over the past few months, despite supply chain issues impacting the device&#x27;s processor. In an interview with Reuters, Apple CEO Tim Cook said iPhone &quot;demand was off the charts,&quot; but there&#x27;s &quot;a little less flexibility at the moment for getting more parts.&quot; Cook added during an […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">チップ不足にもかかわらず、AppleのiPhone売上高は570億ドルに急増</div>
+      <div class="ja-summary">サプライチェーンの問題がデバイスのプロセッサに影響を与えているにもかかわらず、AppleのiPhoneの売上高は過去数カ月で22％増の570億ドルとなった。アップルのティム・クック最高経営責任者（ＣＥＯ）はロイターとのインタビューで、ｉＰｈｏｎｅの「需要はチャートを外れていた」が、「現時点ではより多くの部品を入手する柔軟性が少し低い」と述べた。クックは […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/921527/apple-iphone-revenue-q2-2026-earnings" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.apple.com/newsroom/2026/04/apple-reports-second-quarter-results/" target="_blank" rel="noopener">Apple reports second quarter results</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Appleが第2四半期決算を報告</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.apple.com/newsroom/2026/04/apple-reports-second-quarter-results/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://rivian.com/support/article/can-i-disable-all-data-collection-from-my-vehicle" target="_blank" rel="noopener">Rivian allows you to disable all internet connectivity</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Rivian を使用すると、すべてのインターネット接続を無効にすることができます</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://rivian.com/support/article/can-i-disable-all-data-collection-from-my-vehicle" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener">The most severe Linux threat to surface in years catches the world flat-footed</a></div>
+    <div class="card-summary">CopyFail threatens multi-tenant servers, CI/CD work flows, Kubernetes containers, and more.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ここ数年で最も深刻な Linux の脅威が表面化し、世界は総崩れに陥る</div>
+      <div class="ja-summary">CopyFail は、マルチテナント サーバー、CI/CD ワークフロー、Kubernetes コンテナなどを脅かします。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/04/as-the-most-severe-linux-threat-in-years-surfaces-the-world-scrambles/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener">Legal AI startup Legora hits $5.6B valuation and its battle with Harvey just got hotter</a></div>
+    <div class="card-summary">The two wildly fast-growing rivals have raised massive sums, pushed into each other&#x27;s home turf, and now have dueling ad campaigns.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">法律 AI スタートアップ Legora の評価額が 56 億ドルに達し、Harvey との争いがさらに激化</div>
+      <div class="ja-summary">急速に成長を遂げているこの 2 つのライバルは巨額の資金を調達し、お互いの本拠地に押し入り、広告キャンペーンで対決を繰り広げています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/30/legal-ai-startup-legora-hits-5-6-valuation-and-its-battle-with-harvey-just-got-hotter/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/transportation/921295/rivian-q1-2026-earnings-revenue-profit-r2" target="_blank" rel="noopener">Rivian’s revenue is up as R2 production kicks into gear</a></div>
+    <div class="card-summary">Rivian reported its first quarter earnings of 2026, providing us a closer look at the company&#x27;s financial health as it kicks off production for the crucial R2 electric vehicle. We&#x27;ve already got Rivian&#x27;s production and delivery statement from the first three months of the year. The company sold 10,365 vehicles in Q1, representing 20 percent […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">R2 の生産が本格化するにつれ、Rivian の収益は増加</div>
+      <div class="ja-summary">Rivian は 2026 年の第 1 四半期の収益を報告し、重要な R2 電気自動車の生産を開始する同社の財務健全性を詳しく見ることができました。今年の最初の 3 か月の Rivian の生産および納品明細書をすでに入手しています。同社は第 1 四半期に 20 パーセントに相当する 10,365 台の車両を販売しました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/transportation/921295/rivian-q1-2026-earnings-revenue-profit-r2" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/transportation/921585/rivian-georgia-factory-capacity-doe-loan" target="_blank" rel="noopener">Rivian downsizes new EV factory after Trump’s DOE slashes loan agreement</a></div>
+    <div class="card-summary">Rivian announced some changes today with regard to the factory its building in the state of Georgia. The company was planning to build the facility in two phases, each resulting in 200,000 vehicles of annual production capacity, for a total of 400,000 units. Rivian held a ground breaking ceremony late last year. Now the company […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">トランプ大統領のDOEが融資契約を削減した後、リビアンは新しいEV工場を縮小する</div>
+      <div class="ja-summary">リビアンは本日、ジョージア州にある工場の建物に関していくつかの変更を発表した。同社はこの施設を 2 段階で建設し、それぞれの年間生産能力が 20 万台、合計 40 万台になることを計画していました。リビアンは昨年末に起工式を行った。今では会社 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/transportation/921585/rivian-georgia-factory-capacity-doe-loan" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 05:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/30/rivian-downsizes-doe-loan-to-4-5b-while-boosting-capacity-of-georgia-factory/" target="_blank" rel="noopener">Rivian downsizes DOE loan to $4.5B, while boosting capacity of Georgia factory</a></div>
+    <div class="card-summary">Rivian has reworked its loan deal with the Department of Energy and now expects to borrow $4.5 billion to build its new factory in Georgia, down from the original amount of $6.6 billion.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">リビアン、ジョージア州工場の生産能力を増強しながらDOE融資を45億ドルに縮小</div>
+      <div class="ja-summary">リビアンはエネルギー省との融資契約を見直し、ジョージア州に新工場を建設するために当初の66億ドルから45億ドルの借入を予定している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/30/rivian-downsizes-doe-loan-to-4-5b-while-boosting-capacity-of-georgia-factory/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 04:40 JST</span>
+    </div>
+    <div class="card-title"><a href="https://404privacy.com/blog/linkedin-is-scanning-your-browser-extensions-this-is-how-they-use-the-data/" target="_blank" rel="noopener">LinkedIn scans for 6,278 extensions and encrypts the results into every request</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">LinkedIn は 6,278 個の拡張子をスキャンし、結果をすべてのリクエストに暗号化します</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://404privacy.com/blog/linkedin-is-scanning-your-browser-extensions-this-is-how-they-use-the-data/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 04:36 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/30/hackers-are-actively-exploiting-a-bug-in-cpanel-used-by-millions-of-websites/" target="_blank" rel="noopener">Hackers are actively exploiting a bug in cPanel, used by millions of websites</a></div>
+    <div class="card-summary">Web hosts are scrambling to fix the bug under active attack by hackers. One company said hackers have been abusing the bug for months.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ハッカーは、数百万の Web サイトで使用されている cPanel のバグを積極的に悪用しています。</div>
+      <div class="ja-summary">ハッカーによる活発な攻撃を受けて、Web ホストはバグの修正に奔走しています。ある企業は、ハッカーが数カ月にわたってこのバグを悪用していると述べた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/30/hackers-are-actively-exploiting-a-bug-in-cpanel-used-by-millions-of-websites/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 04:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener">After dissing Anthropic for limiting Mythos, OpenAI restricts access to Cyber, too</a></div>
+    <div class="card-summary">OpenAI will begin rolling out its cybersecurity testing tool, GPT-5.5 Cyber only &quot;to critical cyber defenders&quot; at first.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Mythosを制限するためにAnthropicを非難した後、OpenAIはCyber​​へのアクセスも制限します</div>
+      <div class="ja-summary">OpenAIは、サイバーセキュリティテストツール「GPT-5.5 Cyber​​」の展開を、最初は「重要なサイバー防御者にのみ」開始する。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/04/30/after-dissing-anthropic-for-limiting-mythos-openai-restricts-access-to-cyber-too/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 03:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/uncanny-valley-podcast-musk-v-altman-doj-guts-voting-rights-unit-is-ai-job-apocalypse-overhyped/" target="_blank" rel="noopener">Musk v. Altman Kicks Off, DOJ Guts Voting Rights Unit, and Is the AI Job Apocalypse Overhyped?</a></div>
+    <div class="card-summary">In this episode of Uncanny Valley, we get into how the Elon Musk-Sam Altman trial goes way beyond their rivalry and could have major implications both for OpenAI and also the AI industry at large.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マスク対アルトマンの裁判が始まり、司法省は投票権部門をガッツにする、そしてAIジョブの黙示録は誇張されすぎているのか？</div>
+      <div class="ja-summary">Uncanny Valley のこのエピソードでは、イーロン・マスク対サム・アルトマンの裁判がいかに両者の対立を超えて、OpenAI と AI 業界全体の両方に大きな影響を与える可能性があるかについて説明します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/uncanny-valley-podcast-musk-v-altman-doj-guts-voting-rights-unit-is-ai-job-apocalypse-overhyped/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-05-01 03:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/30/1136684/exclusive-ebook-inside-the-stealthy-startup-that-pitched-brainless-human-clones/" target="_blank" rel="noopener">Exclusive eBook: Inside the stealthy startup that pitched brainless human clones</a></div>
+    <div class="card-summary">The ultimate plan to live forever is a brand new body. This subscriber-only eBook explores R3 Bio, a small startup that has pitched a startling and ethically charged vision for “brainless clones” to serve the role of backup human bodies. by Antonio Regalado March 20, 2026 Related Stories: Access all subscriber-only eBooks:</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">独占電子書籍: 脳のない人間のクローンを売り込んだステルス スタートアップの内部</div>
+      <div class="ja-summary">永遠に生きるための究極の計画は、真新しい体を手に入れることです。この購読者限定の電子書籍では、人間の身体をバックアップする役割を果たす「脳のないクローン」に関する驚くべき倫理的ビジョンを提唱した小規模な新興企業 R3 Bio について詳しく説明します。 Antonio Regalado 著 2026 年 3 月 20 日 関連記事: すべての購読者限定電子書籍にアクセス:</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/30/1136684/exclusive-ebook-inside-the-stealthy-startup-that-pitched-brainless-human-clones/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 03:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/maga-is-confused-about-animal-farm/" target="_blank" rel="noopener">MAGA Is Confused About ‘Animal Farm’</a></div>
+    <div class="card-summary">The new film is the latest adaptation of George Orwell’s novel. Based on the critiques coming from right-wing influencers, it seems few of them fully grasp the book’s message.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">MAGAは「動物農場」について混乱している</div>
+      <div class="ja-summary">新しい映画はジョージ・オーウェルの小説の最新の映画化です。右翼の影響力のある人たちからの批評を見ると、この本のメッセージを完全に理解している人はほとんどいないようです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/maga-is-confused-about-animal-farm/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 02:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/adjustable-mattress-vs-adjustable-frame-vs-smart-bed/" target="_blank" rel="noopener">Don’t Let Industry Jargon Cost You When Shopping for a Smart Bed</a></div>
+    <div class="card-summary">Why the terms “smart bed,” &quot;adjustable mattress,&quot; and “adjustable frame” are not interchangeable, and how to avoid an expensive mistake.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">スマートベッドを購入する際に業界用語に惑わされないようにしましょう</div>
+      <div class="ja-summary">「スマート ベッド」、「調整可能なマットレス」、「調整可能なフレーム」という用語が同じ意味ではない理由と、高くつく間違いを避ける方法。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/adjustable-mattress-vs-adjustable-frame-vs-smart-bed/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 02:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/elon-musk-distill-openai-models-partly-xai/" target="_blank" rel="noopener">Elon Musk Seemingly Admits xAI Has Used OpenAI’s Models to Train Its Own</a></div>
+    <div class="card-summary">While answering questions under oath, Musk argued it’s standard practice for AI labs to use their competitors’ models.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">イーロン・マスク氏、xAIがOpenAIのモデルを使って自身のモデルをトレーニングしたことを認めたようだ</div>
+      <div class="ja-summary">マスク氏は宣誓の下で質問に答えながら、AI研究所が競合他社のモデルを使用するのが標準的な慣行だと主張した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/elon-musk-distill-openai-models-partly-xai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 02:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/openai-chatgpt-codex-advanced-account-security/" target="_blank" rel="noopener">OpenAI Rolls Out ‘Advanced’ Security Mode for At-Risk Accounts</a></div>
+    <div class="card-summary">OpenAI is rolling out Advanced Account Security for people concerned that their ChatGPT or Codex accounts could be potential targets of phishing attacks.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI、リスクのあるアカウント向けに「高度な」セキュリティ モードを展開</div>
+      <div class="ja-summary">OpenAI は、ChatGPT または Codex アカウントがフィッシング攻撃の潜在的なターゲットになる可能性を懸念している人々のために、Advanced Account Security を展開しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/openai-chatgpt-codex-advanced-account-security/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 01:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://thereader.mitpress.mit.edu/the-whistleblower-who-uncovered-the-nsas-big-brother-machine/" target="_blank" rel="noopener">How Mark Klein told the EFF about Room 641A [book excerpt]</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マーク・クラインが641A号室についてEFFに語った経緯 [本の抜粋]</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://thereader.mitpress.mit.edu/the-whistleblower-who-uncovered-the-nsas-big-brother-machine/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-01 01:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://semgrep.dev/blog/2026/malicious-dependency-in-pytorch-lightning-used-for-ai-training/" target="_blank" rel="noopener">Shai-Hulud Themed Malware Found in the PyTorch Lightning AI Training Library</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Shai-Hulud をテーマにしたマルウェアが PyTorch Lightning AI トレーニング ライブラリで発見</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://semgrep.dev/blog/2026/malicious-dependency-in-pytorch-lightning-used-for-ai-training/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-05-01 00:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/what-lg-and-nvidia-talks-reveal-future-of-physical-ai/" target="_blank" rel="noopener">What LG and NVIDIA’s talks reveal about the future of physical AI</a></div>
+    <div class="card-summary">LG is currently engaged in exploratory discussions with NVIDIA concerning physical AI, data centres, and mobility. Following a meeting in Seoul between LG CEO Ryu Jae-cheol and Madison Huang, Senior Director of Product Marketing for Omniverse and Robotics at NVIDIA, the core operational dependencies required to run complex automated systems are becoming apparent. While the […] The post What LG…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">LG と NVIDIA の会談で明らかになった物理 AI の未来</div>
+      <div class="ja-summary">LG は現在、物理 AI、データセンター、モビリティに関して NVIDIA と予備的な協議を行っています。 LG CEO の Ryu Jae-cheol 氏と、NVIDIA のオムニバースおよびロボティクス部門製品マーケティング担当シニア ディレクターである Madison Huang 氏とのソウルでの会談後、複雑な自動化システムを実行するために必要な核となる運用上の依存関係が明らかになりました。一方 […] The post What LG and</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/what-lg-and-nvidia-talks-reveal-future-of-physical-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-05-01 00:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/" target="_blank" rel="noopener">This startup’s new mechanistic interpretability tool lets you debug LLMs</a></div>
+    <div class="card-summary">The San Francisco–based startup Goodfire just released a new tool, called Silico, that lets researchers and engineers peer inside an AI model and adjust its parameters—the settings that determine a model’s behavior—during training. This could give model makers more fine-grained control over how this technology is built than was once thought possible. Goodfire claims Silico…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">このスタートアップの新しい機構解釈ツールを使用すると、LLM をデバッグできます</div>
+      <div class="ja-summary">サンフランシスコを拠点とする新興企業 Goodfire は、Silico と呼ばれる新しいツールをリリースしたばかりです。このツールを使用すると、研究者やエンジニアは AI モデルの内部を観察し、トレーニング中にそのパラメーター (モデルの動作を決定する設定) を調整できます。これにより、模型メーカーは、このテクノロジーの構築方法をこれまで可能だと考えられていたよりもさらに細かく制御できるようになる可能性があります。グッドファイアはシリコンを主張…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/30/1136721/this-startups-new-mechanistic-interpretability-tool-lets-you-debug-llms/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-04-30 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/04/30/1136713/the-download-north-pole-future-humanoid-data/" target="_blank" rel="noopener">The Download: the North Pole’s future and humanoid data</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Digging for clues about the North Pole’s past In the past, getting to the North Pole involved a treacherous trip through ice many meters thick. But last year, a research vessel…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: 北極の未来と人型データ</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。北極の過去についての手がかりを探す かつて、北極に到達するには、厚さ数メートルの氷の中を通る危険な旅が必要でした。しかし昨年、調査船が…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/04/30/1136713/the-download-north-pole-future-humanoid-data/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-30 20:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/a-guide-to-apis-and-mcps-and-mcp-gateways/" target="_blank" rel="noopener">A guide to APIs, MCPs, and MCP Gateways</a></div>
+    <div class="card-summary">APIs and MCPs are often mentioned in the same breath as ways that systems can exchange information, but they are designed differently and have different purposes. This article hopes to explain the differences and how software developers and users should approach interaction with each. An API is mainly found in software applications, while an MCP […] The post A guide to APIs, MCPs, and MCP…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">API、MCP、MCP ゲートウェイのガイド</div>
+      <div class="ja-summary">API と MCP は、システムが情報を交換できる方法として同列に語られることがよくありますが、設計も目的も異なります。この記事では、その違いと、ソフトウェア開発者とユーザーがそれぞれの相互作用にどのようにアプローチすべきかを説明したいと考えています。 API は主にソフトウェア アプリケーションで使用されますが、MCP […] The post API、MCP、および MCP ゲートウェイのガイド</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/a-guide-to-apis-and-mcps-and-mcp-gateways/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-30 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/ai-agent-governance-control-gaps/" target="_blank" rel="noopener">AI agent governance takes focus as regulators flag control gaps</a></div>
+    <div class="card-summary">Australia’s financial regulator has warned financial firms that AI agent governance and assurance practices are poorly governed. The warning comes as banks and superannuation trustees expand AI in internal and customer-facing operations. The Australian Prudential Regulation Authority said it conducted a targeted review of selected large regulated entities in late 2025 to assess AI adoption […]…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">規制当局が管理ギャップに警告を発する中、AI エージェントのガバナンスが注目される</div>
+      <div class="ja-summary">オーストラリアの金融規制当局は、AIエージェントのガバナンスと保証慣行が十分に管理されていないと金融会社に警告した。この警告は、銀行や退職年金受託者が社内業務や顧客対応業務に AI を拡張する中で発せられる。オーストラリア健全性規制当局は、AIの導入を評価するために、2025年後半に選ばれた大規模な規制対象企業を対象とした見直しを実施したと発表した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/ai-agent-governance-control-gaps/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-04-30 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/big-tech-ai-infrastructure-spending-q1-2026-results/" target="_blank" rel="noopener">Big Tech just proved AI infrastructure spending works. Then it raised the bill anyway</a></div>
+    <div class="card-summary">Every cloud beat. Every capex forecast rose. That is the two-sentence summary of the biggest earnings day of 2026, and it tells you almost everything you need to know about where Big Tech’s AI infrastructure spending actually stands right now. Microsoft, Alphabet, Meta, and Amazon collectively committed somewhere between US$630 billion and US$650 billion in […] The post Big Tech just proved AI…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">大手テック企業は、AI インフラストラクチャへの投資が機能することを証明したばかりです。それからとにかく請求額を上げました</div>
+      <div class="ja-summary">すべての雲が鼓動します。すべての設備投資予測は上昇しました。これは 2026 年の最大決算日を 2 文で要約したもので、ビッグテックの AI インフラストラクチャへの支出が現在どのような状況にあるのかについて知っておくべきほぼすべてのことがわかります。 Microsoft、Alphabet、Meta、Amazon は、合計で 6,300 億米ドルから 6,500 億米ドルの間の資金を投入しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/big-tech-ai-infrastructure-spending-q1-2026-results/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
