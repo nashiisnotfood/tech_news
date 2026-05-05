@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年05月06日 07:23 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年05月06日 07:23 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>31</strong> 件</div>
+  <div class="stat-pill">Ars Technica: <strong>2</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>2</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>2</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (2)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (22)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (7)</span>
+  <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (2)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (2)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (2)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">7</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-06 00:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/maskot1977/items/f693fc76db8406b5ac6b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">人口減少と &quot;置き換え&quot; をどう防ぐか―所得・子育て・移民政策の構造を読み解く : Pythonで学ぶ マクロ経済学入門 (78)</a></div>
+    <div class="card-summary">user: 「Pythonで学ぶマクロ経済学入門」、第78回を始めましょう。まず 「人口政策と少子化・貧困・年金・医療をつなぐ経済構造 : Pythonで学ぶ マクロ経済学入門 (77)」 https://qiita.com/maskot1977/items/b805a...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/maskot1977/items/f693fc76db8406b5ac6b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tuanphan/items/5a8343dba7aa604f0a5b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">[Frontend Performance - Part 11] State設計最適化：無駄な再レンダリングを防ぐアーキテクチャ</a></div>
+    <div class="card-summary">📝 注意 本記事はAIの補助を受けて編集しています。 内容は大規模Webアプリケーションの実務経験に基づいています。 📚 目次 1. 問題提起：なぜコードはきれいなのにUIが遅いのか？ 2. 「State Boundaries」 – stateの影響範囲を意識...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tuanphan/items/5a8343dba7aa604f0a5b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 15:06 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/TOMOSIA-LinhND/items/8ff4b27c4d9097380c18?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Docling vs MarkItDown: GenAI向けのドキュメント処理における最適なツールはどっち？</a></div>
+    <div class="card-summary">はじめに GenAI（生成AI）プロジェクトやRAG（検索拡張生成）システムを構築する際、データのクレンジングと準備はとても重要なステップですよね。でも実際には、企業の内部ドキュメントがきれいなテキスト形式になっていることはほとんどありません。 複数列のPDF、複雑な表が...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/TOMOSIA-LinhND/items/8ff4b27c4d9097380c18?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 12:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/KanNishida/items/74103e76c26b55596f7a?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIがコードを書く時代に、なぜRの可読性が重要になるのか</a></div>
+    <div class="card-summary">AIによって、データ分析のコードを書くハードルは大きく下がりました。 自然言語でやりたいことを説明すれば、RでもPythonでもSQLでも、かなり実用的なコードが生成されます。 これは、データ分析の世界にとって大きな変化です。 これまでデータ分析を学ぶには、Explora...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/KanNishida/items/74103e76c26b55596f7a?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 12:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tuanphan/items/f335d42c78ce7723af11?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">[Frontend Performance - Part 10] memo / useMemo / useCallback の正しい使い方：React再レンダリング最適化</a></div>
+    <div class="card-summary">📝 注意 本記事はAIの補助を受けて編集しています。 内容は大規模Webアプリケーションの実務経験に基づいています。 📚 目次 1. 問題提起：「useMemoを貼りまくったのに、なぜアプリは遅いままなのか？」 2. React.memo – 親の再レンダリング...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tuanphan/items/f335d42c78ce7723af11?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 12:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/watab2000/articles/ff5e07b13bc93b" target="_blank" rel="noopener">例のサイゼイヤをIPAに通報した</a></div>
+    <div class="card-summary">まず、サイゼリヤの「安さを徹底追求する」企業努力にはとても感謝しています。 https://diamond.jp/articles/-/300135 だからこそ、この高校生（自称）の行為は、醤油ぺろぺろテロ行為と何ら変わりがないことを言いたいです。 https://ioai-japan.org/2025/08/10/845/ https://x.com/nakasyou0/status/2050816958950703130 彼がやったことは「やりすぎ」「法に触れる可能性」 彼がもし、本当にエンジニアとしてデベロッパーとしてクリエイターとして、将来を担っていきたいのであれば、サイゼリ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/watab2000/articles/ff5e07b13bc93b" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-05 10:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/myshmeh/articles/dbt-fusion-ga-essence" target="_blank" rel="noopener">dbt Fusionの本質・注目ポイント・導入方法を一挙におさらい！</a></div>
+    <div class="card-summary">こんにちは！データエンジニアの myshmeh です。 遂にdbt Fusionが dbt platform 上で、 Snowflake 向けに GA になりましたね！ 出典: https://docs.getdbt.com/docs/dbt-versions/dbt-cloud-release-notes?version=1.12#may-2026 これを機に、 Fusion への興味が強まった方もいらっしゃるのではないでしょうか？中でも、 Fusion に対する理解を、何となく「次世代 dbt エンジン」から、より本質的なものへと昇華させたい方はコミュニティ活動を通じて少なくないと...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/myshmeh/articles/dbt-fusion-ga-essence" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">24</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 06:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/924755/google-home-gemini-3-1-upgrade" target="_blank" rel="noopener">Google Home’s Gemini AI can handle more complicated requests</a></div>
+    <div class="card-summary">Google Home users can now ask Gemini to complete more complex, multi-step tasks and combine multiple tasks in a single command. Google has updated Gemini for Home to Gemini 3.1, which it says will improve the smart home assistant&#x27;s ability to interpret and act on requests. The upgrade will also make Gemini for Home better […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google Home の Gemini AI はより複雑なリクエストを処理できる</div>
+      <div class="ja-summary">Google Home ユーザーは、Gemini に、より複雑な複数ステップのタスクを実行したり、複数のタスクを 1 つのコマンドで組み合わせたりするよう依頼できるようになりました。 GoogleはGemini for HomeをGemini 3.1にアップデートし、スマートホームアシスタントのリクエストを解釈して対応する能力が向上するとしている。このアップグレードにより、Gemini for Home もさらに改良されます […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/924755/google-home-gemini-3-1-upgrade" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 06:26 JST</span>
+    </div>
+    <div class="card-title"><a href="https://nonogra.ph/write-some-software-give-it-away-for-free-05-05-2026" target="_blank" rel="noopener">Write some software, give it away for free</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ソフトウェアを作成して無料で配布する</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://nonogra.ph/write-some-software-give-it-away-for-free-05-05-2026" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 06:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/924706/apple-iphone-siri-intelligence-class-action-lawsuit-settlement" target="_blank" rel="noopener">Apple agrees to pay iPhone owners $250 million for not delivering AI Siri</a></div>
+    <div class="card-summary">Apple has agreed to pay $250 million to settle a class action lawsuit that accused it of misleading customers about the availability of its Apple Intelligence features. The proposed settlement would apply to people in the US who purchased all models of the iPhone 16 and the iPhone 15 Pro between June 10th, 2024 and […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple、AI Siriを提供しなかったことに対してiPhone所有者に2億5000万ドルを支払うことに同意</div>
+      <div class="ja-summary">Appleは、Apple Intelligence機能の利用可能性について顧客に誤解を与えたとして告発された集団訴訟の解決に2億5000万ドルを支払うことに同意した。この和解案は、2024年6月10日からiPhone 15 Proの全モデルを購入した米国内の人々に適用される。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/924706/apple-iphone-siri-intelligence-class-action-lawsuit-settlement" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 06:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/05/as-crypto-cools-a16zcrypto-raises-a-2-2b-fund/" target="_blank" rel="noopener">As crypto cools, a16z crypto raises a $2.2B fund</a></div>
+    <div class="card-summary">As some of the biggest VCs in crypto start to consider funding AI startups, a16z crypto&#x27;s new fund will stay the course.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">暗号通貨が冷え込む中、a16z暗号通貨が22億ドルの資金を調達</div>
+      <div class="ja-summary">仮想通貨業界の大手VCの一部がAIスタートアップへの資金提供を検討し始めている中、a16z仮想通貨の新ファンドは今後も継続するだろう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/05/as-crypto-cools-a16zcrypto-raises-a-2-2b-fund/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 06:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/telehealth-abortion-is-still-possible-without-mifepristone/" target="_blank" rel="noopener">Telehealth Abortion Is Still Possible Without Mifepristone</a></div>
+    <div class="card-summary">Courts may restrict access to the popular abortion medication mifepristone in the United States. Telehealth providers have backup plans in place.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">遠隔医療による中絶はミフェプリストンなしでも可能</div>
+      <div class="ja-summary">裁判所は、米国で人気のある中絶薬ミフェプリストンへのアクセスを制限する可能性があります。遠隔医療プロバイダーはバックアップ計画を用意しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/telehealth-abortion-is-still-possible-without-mifepristone/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 05:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/05/apple-plans-to-make-ios-27-a-choose-your-own-adventure-of-ai-models/" target="_blank" rel="noopener">Apple plans to make iOS 27 a Choose Your Own Adventure of AI models</a></div>
+    <div class="card-summary">With Apple&#x27;s latest operating system updates, users will reportedly have their pick of which third-party AI models they want to use for a host of tasks.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AppleはiOS 27をAIモデルのChoose Your Own Adventureにすることを計画している</div>
+      <div class="ja-summary">Apple の最新のオペレーティング システムのアップデートにより、ユーザーはさまざまなタスクに使用するサードパーティの AI モデルを自由に選択できるようになると言われています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/05/apple-plans-to-make-ios-27-a-choose-your-own-adventure-of-ai-models/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 05:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://dnssec-analyzer.verisignlabs.com/nic.de" target="_blank" rel="noopener">.de TLD offline due to DNSSEC?</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">DNSSEC が原因で .de TLD がオフラインですか?</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://dnssec-analyzer.verisignlabs.com/nic.de" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 05:06 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/05/asml-ceo-christophe-fouquet-no-one-is-coming-for-us/" target="_blank" rel="noopener">ASML CEO Christophe Fouquet on his company’s monopoly: no one is coming for us</a></div>
+    <div class="card-summary">Christophe Fouquet, who became ASML&#x27;s CEO in 2024 after more than a decade at the company, sat down with this editor on the rooftop deck of his Beverly Hills hotel Tuesday morning ahead of his appearance at the Milken Institute Global Conference. Dressed in a blue suit and white shirt, he was relaxed — even when the conversation turned to the rivals.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ASML CEO クリストフ・フーケ、自社の独占について語る：誰も我々に来ない</div>
+      <div class="ja-summary">ASMLで10年以上勤務した後、2024年にASMLのCEOに就任したクリストフ・フーケ氏は、ミルケン研究所グローバルカンファレンスへの出席を前に、火曜日の朝、ビバリーヒルズのホテルの屋上デッキでこの編集者と座った。青いスーツと白いシャツを着た彼は、たとえ会話がライバルのことになったとしても、リラックスしていた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/05/asml-ceo-christophe-fouquet-no-one-is-coming-for-us/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 04:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/05/volkswagen-becomes-rivians-top-shareholder-displacing-amazon/" target="_blank" rel="noopener">Volkswagen becomes Rivian’s top shareholder, displacing Amazon</a></div>
+    <div class="card-summary">VW Group&#x27;s stake will continue to grow under the $5.8 billion joint venture with Rivian.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">フォルクスワーゲンがアマゾンに代わってリビアンの筆頭株主となる</div>
+      <div class="ja-summary">VWグループの株式はリビアンとの58億ドルの合弁事業の下で増加し続けるだろう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/05/volkswagen-becomes-rivians-top-shareholder-displacing-amazon/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 04:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/924551/microsoft-xbox-ceo-copilot-ai-asha-sharma" target="_blank" rel="noopener">Microsoft gives up on Xbox Copilot AI</a></div>
+    <div class="card-summary">Xbox is &quot;winding down Copilot on mobile&quot; and &quot;will stop development of Copilot on console,&quot; new Xbox CEO Asha Sharma announced on Tuesday. The move follows Sharma&#x27;s reorganization of the Xbox platform team earlier on Tuesday, which added executives from Microsoft&#x27;s CoreAI team - where Sharma worked before taking over Xbox - to the Xbox […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マイクロソフトはXbox Copilot AIを放棄</div>
+      <div class="ja-summary">Xboxは「モバイル版のCopilotを終了」し、「コンソール版のCopilotの開発を中止する」とXboxの新CEOアシャ・シャルマ氏が火曜日に発表した。この動きは、火曜日初めにシャルマ氏がXboxプラットフォームチームを再編したことに続くもので、シャルマ氏がXboxを引き継ぐ前に働いていたマイクロソフトのCoreAIチームの幹部がXboxに加わった […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/924551/microsoft-xbox-ceo-copilot-ai-asha-sharma" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 04:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/05/widely-used-daemon-tools-disk-app-backdoored-in-monthlong-supply-chain-attack/" target="_blank" rel="noopener">Widely used Daemon Tools disk app backdoored in monthlong supply-chain attack</a></div>
+    <div class="card-summary">Daemon Tools users: It&#x27;s time to check your machines for stealthy infections, stat.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">広く使用されている Daemon Tools ディスク アプリが 1 か月にわたるサプライ チェーン攻撃でバックドア化</div>
+      <div class="ja-summary">デーモン ツール ユーザー: マシンにステルス感染がないかチェックする時期が来ました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/05/widely-used-daemon-tools-disk-app-backdoored-in-monthlong-supply-chain-attack/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 04:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/924515/apple-intelligence-third-party-chatbot-extensions-ios-27" target="_blank" rel="noopener">Apple could let you pick a favorite AI model in iOS 27</a></div>
+    <div class="card-summary">The next update to Apple&#x27;s operating systems could allow users to choose their preferred AI model for running Apple Intelligence. According to Bloomberg&#x27;s Mark Gurman, Apple is planning to allow third-party chatbots to power its AI features system-wide in iOS 27, iPadOS 27, and macOS 27, all expected for this fall. In addition to running […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple、iOS 27でお気に入りのAIモデルを選択できるようになる可能性</div>
+      <div class="ja-summary">Apple のオペレーティング システムの次のアップデートでは、ユーザーが Apple Intelligence を実行するために好みの AI モデルを選択できるようになる可能性があります。ブルームバーグのマーク・ガーマン氏によると、アップルは今秋に予定されているiOS 27、iPadOS 27、macOS 27で、サードパーティのチャットボットによるシステム全体のAI機能の強化を許可する予定だという。ランニング以外にも […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/924515/apple-intelligence-third-party-chatbot-extensions-ios-27" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 03:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/05/threads-finally-brings-messaging-to-the-web/" target="_blank" rel="noopener">Threads finally brings messaging to the web</a></div>
+    <div class="card-summary">By bringing messaging to the web, Threads is aligning its desktop experience more closely with competitors like X and Bluesky.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Threads がついに Web にメッセージングをもたらす</div>
+      <div class="ja-summary">Threads はメッセージングを Web に導入することで、デスクトップ エクスペリエンスを X や Bluesky などの競合他社とより緊密に連携させています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/05/threads-finally-brings-messaging-to-the-web/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 03:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/924436/meta-threads-web-dms-direct-messages" target="_blank" rel="noopener">Threads is finally getting DMs on the web</a></div>
+    <div class="card-summary">Nearly a year after rolling out Threads direct messaging to everyone on mobile, Meta is finally bringing the feature to the web. Meta says it&#x27;s &quot;testing&quot; DMs on the web now, but plans to make the feature &quot;available to more people soon.&quot; In your DM page on the web, you can see your inbox and […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Threads がついにウェブ上で DM を受信できるようになりました</div>
+      <div class="ja-summary">Threads のダイレクト メッセージングをモバイル上のすべての人に展開してからほぼ 1 年が経ち、Meta はついにこの機能を Web に導入しました。 Metaは、現在ウェブ上でDMを「テスト」しているが、この機能を「すぐにさらに多くの人が利用できるようにする」予定だとしている。ウェブ上の DM ページでは、受信箱と […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/924436/meta-threads-web-dms-direct-messages" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 01:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/" target="_blank" rel="noopener">Computer Use is 45x more expensive than structured APIs</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">コンピューターの使用は構造化 API よりも 45 倍高価です</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://reflex.dev/blog/computer-use-is-45x-more-expensive-than-structured-apis/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 01:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/" target="_blank" rel="noopener">Accelerating Gemma 4: faster inference with multi-token prediction drafters</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Gemma 4 の高速化: マルチトークン予測ドラフト機能による推論の高速化</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 00:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/the-italian-dubbing-of-the-devil-wears-prada-2-has-stirred-up-a-surprising-controversy/" target="_blank" rel="noopener">The Italian Dubbing of ‘The Devil Wears Prada 2’ Has Stirred Up a Surprising Controversy</a></div>
+    <div class="card-summary">The voice actors from the original film have returned for the sequel—and not everyone is happy about it.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">『プラダを着た悪魔2』のイタリア語吹き替えが驚くべき論争を巻き起こした</div>
+      <div class="ja-summary">オリジナル映画の声優が続編に戻ってきましたが、誰もがそれを喜んでいるわけではありません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/the-italian-dubbing-of-the-devil-wears-prada-2-has-stirred-up-a-surprising-controversy/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 00:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://susam.net/inverse-laws-of-robotics.html" target="_blank" rel="noopener">Three Inverse Laws of AI</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AI の逆三法則</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://susam.net/inverse-laws-of-robotics.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-06 00:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/pornhub-restores-access-for-uk-adults-who-use-apples-age-verification/" target="_blank" rel="noopener">Pornhub Restores Access for UK Adults Who Use Apple’s Age Verification</a></div>
+    <div class="card-summary">The porn giant blocked its content from new UK users in February but says device-based age verification is more secure than third-party sites.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Pornhub、Appleの年齢認証を使用する英国成人のアクセスを回復</div>
+      <div class="ja-summary">ポルノ大手は2月に英国の新規ユーザーからのコンテンツをブロックしたが、デバイスベースの年齢認証はサードパーティのサイトよりも安全だと述べている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/pornhub-restores-access-for-uk-adults-who-use-apples-age-verification/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-05-05 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/05/05/1136848/the-download-musk-openai-altman-trial-ai-democracy/" target="_blank" rel="noopener">The Download: inside the Musk v. Altman trial, and AI for democracy</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Week one of the Musk v. Altman trial: what it was like in the room Two of the most powerful figures in AI—Sam Altman and Elon Musk—are in the middle of…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: マスク対アルトマン裁判の内部と民主主義のための AI</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。マスク対アルトマン裁判の第 1 週: 部屋の中の様子 AI で最も強力な人物の 2 人、サム アルトマンとイーロン マスクが裁判の真っ只中にいます…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/05/05/1136848/the-download-musk-openai-altman-trial-ai-democracy/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-05 21:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/bose-brings-back-its-lifestyle-branding-with-new-speakers-for-the-home/" target="_blank" rel="noopener">Bose Brings Back Its ‘Lifestyle’ Branding With New Speakers for the Home</a></div>
+    <div class="card-summary">The new Lifestyle Ultra Speaker, Ultra Soundbar, and Ultra Subwoofer introduce a cozier look.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ボーズ、家庭用の新しいスピーカーで「ライフスタイル」ブランディングを復活</div>
+      <div class="ja-summary">新しいライフスタイル ウルトラ スピーカー、ウルトラ サウンドバー、ウルトラ サブウーファーは、より居心地の良い外観をもたらします。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/bose-brings-back-its-lifestyle-branding-with-new-speakers-for-the-home/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-05 20:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/google-deepmind-workers-vote-to-unionize-over-military-ai-deals/" target="_blank" rel="noopener">Google DeepMind Workers Vote to Unionize Over Military AI Deals</a></div>
+    <div class="card-summary">UK staff of Google’s AI research lab hope to block the use of the company’s artificial intelligence models in military settings.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google DeepMind 従業員が軍事 AI 取引に関する労働組合結成に投票</div>
+      <div class="ja-summary">グーグルのAI研究所の英国スタッフは、同社の人工知能モデルが軍事現場で使用されることを阻止したいと考えている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/google-deepmind-workers-vote-to-unionize-over-military-ai-deals/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-05 20:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/information-technology/2026/05/why-reddit-blocked-my-daily-visit-to-its-mobile-website/" target="_blank" rel="noopener">Why Reddit blocked my daily visit to its mobile website</a></div>
+    <div class="card-summary">Reddit REALLY wants you to use its app.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Reddit がモバイル Web サイトへの毎日のアクセスをブロックした理由</div>
+      <div class="ja-summary">Reddit は、皆さんにそのアプリを使ってもらいたいと強く思っています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/information-technology/2026/05/why-reddit-blocked-my-daily-visit-to-its-mobile-website/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-05-05 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/05/05/1136843/ai-democracy-blueprint/" target="_blank" rel="noopener">A blueprint for using AI to strengthen democracy</a></div>
+    <div class="card-summary">Every few centuries, changes in how information moves reshape how societies govern themselves. The printing press spread vernacular literacy, helping give rise to the Reformation and, eventually, representative government. The telegraph made it possible to administer vast nations like the US, accelerating the growth of the modern bureaucratic state. Broadcast media created shared national…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AI を活用して民主主義を強化するための青写真</div>
+      <div class="ja-summary">数世紀ごとに、情報の移動方法が変化し、社会が自らを統治する方法が再構築されます。印刷機は現地語の読み書き能力を広め、宗教改革、そして最終的には代表政府の誕生に貢献しました。電信により米国のような広大な国家を統治することが可能になり、近代官僚国家の成長が加速した。放送メディアは全国共通の視聴者を生み出した</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/05/05/1136843/ai-democracy-blueprint/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
