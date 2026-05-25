@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年05月26日 07:26 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年05月26日 07:26 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>28</strong> 件</div>
+  <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>2</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (7)</span>
+  <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (2)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">7</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 13:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/prum_hitomi/items/9eafa7854f27055a7a07?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">ITって結局なんのためにあるの？</a></div>
+    <div class="card-summary">はじめまして。株式会社PRUMでエンジニアをしているひとみです。 日々、プログラミング学習や実務の中で、つまずきやすいポイントや、 仕事で起きやすい“ズレ”について整理して発信しています。 誰かの助けになれば幸いです。 ITって結局なんのためにあるの？ はじめに IT...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/prum_hitomi/items/9eafa7854f27055a7a07?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 11:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/peoplex_blog/articles/f2cfcd8b625202" target="_blank" rel="noopener">AI時代の競争優位は「統合」にしかない —— エンジニアと組織が、今投資すべきもの</a></div>
+    <div class="card-summary">ウォークマンが世に出なかった可能性 ソニーが1979年に発売したウォークマンは、AI時代の判断について考えるための示唆深い事例です。 きっかけは創業者の井深大が、長時間の出張中に高音質で音楽を聴きたいと考え、社内向けに作らせた携帯録音機「プレスマン」の改造品でした。これに目をつけた当時の会長・盛田昭夫が、録音機能を外し、軽量ヘッドホンとセットにした再生専用機を若年層向けに製品化することを決断します。社内のエンジニアと役員の多くは「録音できないカセット機が売れるはずがない」と懐疑的で、当時のオーディオ機器の常識でもそうでした。盛田は社内の慎重論に対し、自ら週末に若者を集めて簡易な反応調...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/peoplex_blog/articles/f2cfcd8b625202" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 09:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/sakui2i/items/e7939e9f2a8b3e8177f8?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">[初心者]Linuxと仲良くなれるコマンド3選</a></div>
+    <div class="card-summary">はじめに こんにちは文系卒の全くITの技術に触れたことのないピカピカ新卒1年目です！ 知識がなかったこともあり、研修についていくので精一杯だった私でも楽しいと感じたLinuxの新卒研修の重要コマンドについて、記事を書こうと思います。 ディレクトリとコマンド Linuxで...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/sakui2i/items/e7939e9f2a8b3e8177f8?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 09:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/yukidaruma110/items/a3e11fa3d865748a5610?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">ビジネスマナーは“形”だけじゃない——新卒研修で学んだことと考えたこと</a></div>
+    <div class="card-summary">目次 はじめに マナー 挨拶 コミュニケーション おわりに 参考文献 1. はじめに 新卒研修で学んだビジネスマナー。 「正しい敬語を使う」 「挨拶が大事」 「名刺交換がある」 今までの学生生活ではあまり意識していなかったことでも、社会人になってからは大切になる場面...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/yukidaruma110/items/a3e11fa3d865748a5610?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 09:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/yomch703/items/f493dac42a3efaf4ec42?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Cisco IOSモードの超ザックリとした覚え方</a></div>
+    <div class="card-summary">目次 ・まえがき ・そもそもIOSモードとは ・各モードに対する解釈 １．＞ユーザーEXECモード ２．＃特権EXECモード ３．(config)＃グローバルコンフィグレーションモード ４-１．(config-if)＃インターフェースコンフィグレーションモ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/yomch703/items/f493dac42a3efaf4ec42?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 09:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/penta2525/items/46fd3c7066b0f3c1b13e?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">報連相の重要性</a></div>
+    <div class="card-summary">1. はじめに 初めまして！エンジニアとして入社して1か月が過ぎた新入社員です。現在は2か月間の研修期間中で、ちょうど折り返し地点を迎えました。そこで今回は、この1か月の研修の中でも特に印象に残った 「報連相」 の研修について、まとめたいと思います！ 2. 報連相とは ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/penta2525/items/46fd3c7066b0f3c1b13e?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-25 08:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/nstock/articles/ui-change-notifier" target="_blank" rel="noopener">AIで加速するプロダクトの変化を、開発チームの外に届ける仕組みづくり</a></div>
+    <div class="card-summary">こんにちは。Nstock のKawamataです。 Claude Code GitHub Actions（以下 Claude Code Actions）を使って、プロダクトの変更を開発チームの外へ共有する仕組みを作ってみたので紹介します。 何が課題だったのか？ Nstockでは開発チーム内でCoding Agentの利用が標準となっています。そして最近では、デザイナーなどエンジニア以外のメンバーも、Coding Agentを使いプルリクエストを作るようになりました。 その影響でプロダクトの開発速度は確実に上がっています。 株式報酬の開発チームでは、PRの月平均マージ数が2025年6月...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/nstock/articles/ui-change-notifier" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">21</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/936127/sennheiser-momentum-5-wireless-headphones-anc-lossless-bluetooth" target="_blank" rel="noopener">Sennheiser’s new Momentum 5 headphones have upgraded ANC and a replaceable battery</a></div>
+    <div class="card-summary">Nearly four years after the last version of Sennheiser&#x27;s Momentum headphones debuted with a redesign that traded a retro aesthetic for a more contemporary and comfortable design, the company has announced its Momentum 5 Wireless headphones. They look very similar to their predecessors, the Momentum 4, with large ear cups and a design that doesn&#x27;t […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ゼンハイザーの新しい Momentum 5 ヘッドフォンは、アップグレードされた ANC と交換可能なバッテリーを備えています</div>
+      <div class="ja-summary">ゼンハイザーの Momentum ヘッドフォンの最終バージョンが、レトロな美学をより現代的で快適なデザインに置き換えた再設計でデビューしてからほぼ 4 年後、同社は Momentum 5 Wireless ヘッドフォンを発表しました。見た目は前モデルの Momentum 4 に非常に似ており、大きなイヤーカップとデザインが異なります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/936127/sennheiser-momentum-5-wireless-headphones-anc-lossless-bluetooth" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 06:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.promptarmor.com/resources/microsoft-copilot-cowork-exfiltrates-files" target="_blank" rel="noopener">Microsoft Copilot Cowork Exfiltrates Files</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Microsoft Copilot Cowork がファイルを流出</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.promptarmor.com/resources/microsoft-copilot-cowork-exfiltrates-files" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 06:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/transportation/937066/ferrari-luce-ev-jony-ive-marc-newson-lovefrom" target="_blank" rel="noopener">Ferrari reveals its first EV, with design help from Jony Ive</a></div>
+    <div class="card-summary">After months of teasers, Ferrari is offering the first full view of its Luce electric vehicle. The Luce is notable not just for being Ferrari&#x27;s first EV, but for being designed in collaboration with Jony Ive and Mark Newson at their collective LoveFrom. It&#x27;s also going to be Ferrari&#x27;s second four-door car and its first […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">フェラーリ、ジョニー・アイブの設計協力を得て初のEVを発表</div>
+      <div class="ja-summary">数か月にわたるティーザーを経て、フェラーリはルーチェ電気自動車の全貌を初めて公開した。ルーチェは、フェラーリ初のEVであるだけでなく、ジョニー・アイブとマーク・ニューソンの集団LoveFromで共同設計されたことでも注目に値する。これはフェラーリにとって2台目の4ドア車であり、フェラーリにとっては初の4ドア車となる[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/transportation/937066/ferrari-luce-ev-jony-ive-marc-newson-lovefrom" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 06:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/ferrari-luce-ev-is-finally-here/" target="_blank" rel="noopener">The Electric Ferrari Luce Is Finally Here</a></div>
+    <div class="card-summary">The covers have come off the Ferrari Luce, the most anticipated EV ever. It completely breaks the Italian car maker&#x27;s aesthetic archetype.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">電動フェラーリ・ルーチェがついに登場</div>
+      <div class="ja-summary">史上最も期待されていたEV、フェラーリ・ルーチェのカバーが外されました。イタリアの自動車メーカーの美的原型を完全に打ち破るものだ。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/ferrari-luce-ev-is-finally-here/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 04:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.blocksandfiles.com/flash/2026/05/22/norways-2-petabytes-of-huawei-flash-storage-and-llm-training/5244910" target="_blank" rel="noopener">Norway&#x27;s 2 petabytes of Huawei flash storage and LLM training</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ノルウェーの2ペタバイトのHuaweiフラッシュストレージとLLMトレーニング</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.blocksandfiles.com/flash/2026/05/22/norways-2-petabytes-of-huawei-flash-storage-and-llm-training/5244910" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 03:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/937027/cox-media-marketing-ai-powered-phone-spying-ads-ftc-fine" target="_blank" rel="noopener">Cox Media fined after bragging it spied on users through their phones</a></div>
+    <div class="card-summary">An exceptionally weird controversy has come back to haunt Cox Media and a pair of marketing firms, which claimed they were secretly listening to users via phones and smart devices - despite little evidence they actually could. On Thursday the Federal Trade Commission announced that Cox, MindSift, and 1010 Digital Works would pay a total […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">携帯電話を通じてユーザーをスパイしたと自慢したコックスメディアに罰金</div>
+      <div class="ja-summary">コックス・メディアとマーケティング会社2社を悩ませる極めて奇妙な論争が再び巻き起こった。彼らは、実際にできる証拠はほとんどなかったにもかかわらず、携帯電話やスマートデバイスを介して密かにユーザーの声を聞いていたと主張した。木曜日、連邦取引委員会は、Cox、MindSift、および 1010 Digital Works が総額を支払うことになると発表しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/937027/cox-media-marketing-ai-powered-phone-spying-ads-ftc-fine" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 03:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.tomshardware.com/software/linux/california-moves-to-exempt-linux-from-its-upcoming-age-verification-law-after-backlash-over-forcing-operating-systems-to-collect-users-ages-amendment-proposed-by-the-same-lawmaker-who-wrote-the-original-law" target="_blank" rel="noopener">California moves to exempt Linux from its age-verification law after backlash</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">カリフォルニア州、反発を受けてLinuxを年齢認証法の対象から除外する方向へ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.tomshardware.com/software/linux/california-moves-to-exempt-linux-from-its-upcoming-age-verification-law-after-backlash-over-forcing-operating-systems-to-collect-users-ages-amendment-proposed-by-the-same-lawmaker-who-wrote-the-original-law" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 02:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://mullvad.net/en/help/exit-ip-vpn-servers-mitigation-rollout" target="_blank" rel="noopener">Exit IP VPN servers mitigation rollout</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">IP VPN サーバー軽減策のロールアウトを終了する</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://mullvad.net/en/help/exit-ip-vpn-servers-mitigation-rollout" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 02:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/a-swimmer-broke-a-world-record-at-the-enhanced-games/" target="_blank" rel="noopener">A Swimmer Broke a World Record at the Enhanced Games</a></div>
+    <div class="card-summary">Dozens of juiced athletes competed at the Enhanced Games in Las Vegas. Most won’t admit what drugs they used.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">強化競技大会で水泳選手が世界記録を樹立</div>
+      <div class="ja-summary">ラスベガスで開催されたエンハンスド ゲームには、数十人のアスリートが参加しました。ほとんどの人は自分が使用した薬物を認めようとしません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/a-swimmer-broke-a-world-record-at-the-enhanced-games/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 02:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/memorial-day-tech-deals-2026-2/" target="_blank" rel="noopener">Memorial Day Tech Deals: Sony, Apple, Anker, and More</a></div>
+    <div class="card-summary">Lots of our most-recommended headphones, power banks, and other gadgets are on sale for Memorial Day.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">メモリアルデーのテクノロジーセール: ソニー、アップル、アンカーなど</div>
+      <div class="ja-summary">戦没将兵追悼記念日には、最もお勧めのヘッドフォン、モバイルバッテリー、その他のガジェットが多数セール中です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/memorial-day-tech-deals-2026-2/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 02:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/memorial-day-mattress-deals-2026-2/" target="_blank" rel="noopener">Best Memorial Day Mattress Deals: Helix, Saatva (2026)</a></div>
+    <div class="card-summary">It’s one of the best times of the year to buy a mattress, and deals on our favorite models end tonight.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">記念日マットレスのベストセール: Helix、Saatva (2026)</div>
+      <div class="ja-summary">マットレスを購入するのに一年で最高の時期の 1 つであり、お気に入りのモデルのセールは今夜で終了します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/memorial-day-mattress-deals-2026-2/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 01:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/" target="_blank" rel="noopener">What ClickUp’s mass layoff tells us about the future of work</a></div>
+    <div class="card-summary">The nine-year-old startup is replacing hundreds of employees with thousands of AI agents.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ClickUp の大量解雇が仕事の未来について語ること</div>
+      <div class="ja-summary">創業9年目のこのスタートアップは、数百人の従業員を数千人のAIエージェントに置き換えている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/25/what-clickups-mass-layoff-tells-us-about-the-future-of-work/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 00:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/936196/best-memorial-day-sales-tech-deals-2026" target="_blank" rel="noopener">The best Memorial Day sales you can shop this weekend</a></div>
+    <div class="card-summary">Memorial Day is here, meaning the seasonal sales are in full swing. If your plans over the long weekend involve pool parties or barbecues, now is a great time to pick up a portable speaker or set of solar lights, as many of our favorite models are currently on sale. You can also find deals […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">今週末は最高の戦没将兵追悼記念日セールが開催されます</div>
+      <div class="ja-summary">戦没将兵追悼記念日が到来し、季節セールが本格化します。長い週末の予定にプール パーティーやバーベキューが含まれている場合は、人気のモデルの多くが現在セール中であるため、ポータブル スピーカーやソーラー ライトのセットを購入するのに最適な時期です。お得な情報も見つかります […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/936196/best-memorial-day-sales-tech-deals-2026" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 00:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/25/the-popes-ai-encyclical-isnt-really-about-ai/" target="_blank" rel="noopener">The pope’s AI encyclical isn’t really about AI</a></div>
+    <div class="card-summary">Pope Leo XIV&#x27;s first encyclical uses AI as a lens to diagnose older problems: concentrated power, eroding democracy, and a tech elite that shapes the world to its own advantage.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ローマ法王のAI回勅は実際にはAIに関するものではない</div>
+      <div class="ja-summary">教皇レオ14世の最初の回勅は、権力の集中、民主主義の浸食、世界を自分たちに有利になるように形作るテクノロジーエリートといった古い問題を診断するレンズとしてAIを使用している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/25/the-popes-ai-encyclical-isnt-really-about-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 00:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare" target="_blank" rel="noopener">Pope Leo calls for being ‘profoundly human’ in the age of AI</a></div>
+    <div class="card-summary">Pope Leo XIV warned of the risks of AI and unconstrained technological power in his first major papal document released on Monday. Magnifica Humanitas is the pope&#x27;s manifesto on &quot;safeguarding the human person in the time of artificial intelligence,&quot; in which he discusses the dangers of AI-powered warfare, the effects of AI on labor, and […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ローマ法王レオ、AI時代に「深く人間的」であることを呼びかけ</div>
+      <div class="ja-summary">教皇レオ14世は、月曜日に発表された最初の主要な教皇文書の中で、AIと制約のない技術力のリスクについて警告した。マグニフィカ・フマニタスは「人工知能の時代における人間の保護」に関する教皇のマニフェストであり、その中で教皇はAIを活用した戦争の危険性、AIが労働に及ぼす影響、そして[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/news/936945/pope-leo-letter-encyclical-ai-anthropic-labor-warfare" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-26 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/25/the-pitch-trick-that-helped-an-esports-startup-raise-20m-when-vcs-only-wanted-ai/" target="_blank" rel="noopener">The pitch trick that helped an eSports startup raise $20M when VCs only wanted AI</a></div>
+    <div class="card-summary">Earlier this year, Lucra Sports founder and CEO Dylan Robbins did something that no one else has ever done. And he shared several secrets on how he did it.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">VC が AI だけを望んでいたときに eSports スタートアップが 2,000 万ドルを調達するのに役立ったピッチ トリック</div>
+      <div class="ja-summary">今年初め、Lucra Sports の創設者兼 CEO のディラン・ロビンスは、これまで誰もやったことのないことを行いました。そして彼はそれをどのようにして実現したかについていくつかの秘密を共有しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/25/the-pitch-trick-that-helped-an-esports-startup-raise-20m-when-vcs-only-wanted-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-25 23:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/25/startup-battlefield-200-applications-close-in-days-apply-before-may-27/" target="_blank" rel="noopener">Startup Battlefield 200 applications close in days: Apply before May 27</a></div>
+    <div class="card-summary">The deadline to apply or nominate for Startup Battlefield 200 is May 27. This is your shot at VC access, global visibility, TechCrunch coverage, and $100,000. Apply now.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Startup Battlefield 200 の申し込みは数日で締め切られます: 5 月 27 日までにお申し込みください</div>
+      <div class="ja-summary">Startup Battlefield 200 への応募または推薦の締め切りは 5 月 27 日です。これは、VC へのアクセス、世界的な知名度、TechCrunch の報道、そして 10 万ドルを獲得するチャンスです。今すぐお申し込みください。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/25/startup-battlefield-200-applications-close-in-days-apply-before-may-27/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-25 23:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/25/5-days-left-save-up-to-410-on-techcrunch-disrupt-2026-passes-before-prices-increase/" target="_blank" rel="noopener">5 days left: Save up to $410 on TechCrunch Disrupt 2026 passes before prices increase</a></div>
+    <div class="card-summary">Early Bird savings for TechCrunch Disrupt 2026 in San Francisco end May 29 at 11:59 p.m. PT. Register now to save up to $410 before prices increase.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">残り 5 日: 価格が値上げされる前に、TechCrunch Disrupt 2026 パスで最大 410 ドル割引</div>
+      <div class="ja-summary">サンフランシスコで開催される TechCrunch Disrupt 2026 の早期割引セールは 5 月 29 日午後 11 時 59 分に終了します。 PT.今すぐ登録すると、価格が上がる前に最大 410 ドル節約できます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/25/5-days-left-save-up-to-410-on-techcrunch-disrupt-2026-passes-before-prices-increase/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-25 22:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-memorial-day-deals-2026-2/" target="_blank" rel="noopener">Best Memorial Day Deals: Garmin, Birdfy, Branch (2026)</a></div>
+    <div class="card-summary">Memorial Day isn’t until Monday, but sales on our favorite gear are going on all weekend.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">メモリアルデーのベストセール: Garmin、Birdfy、Branch (2026)</div>
+      <div class="ja-summary">戦没将兵追悼記念日は月曜日までありませんが、お気に入りのギアのセールは週末を通して開催されます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-memorial-day-deals-2026-2/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-25 21:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/tech-policy/2026/05/uss-big-bet-on-quantum-computing-may-not-be-entirely-legal/" target="_blank" rel="noopener">US&#x27;s big bet on quantum computing may not be entirely legal</a></div>
+    <div class="card-summary">Deal also launched the first quantum foundry company, but is there a need for it?</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">米国の量子コンピューティングへの大きな賭けは完全に合法ではない可能性がある</div>
+      <div class="ja-summary">Deal は初の量子ファウンドリ会社も立ち上げましたが、そのニーズはあるのでしょうか?</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/tech-policy/2026/05/uss-big-bet-on-quantum-computing-may-not-be-entirely-legal/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-25 19:11 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html" target="_blank" rel="noopener">Magnifica Humanitas</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マグニフィカ ヒューマニタス</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.vatican.va/content/leo-xiv/en/encyclicals/documents/20260515-magnifica-humanitas.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
