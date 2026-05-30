@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年05月31日 07:23 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年05月31日 07:23 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>26</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 18:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/hirota_kodai/items/e1bed8b95626b94fa968?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">2025 Japan AWS Jr. Champions 任期を振り返って</a></div>
+    <div class="card-summary">はじめに こんにちは！廣田です。 2025 Japan AWS Jr. Champions（以下、JC）としての1年間の任期が、もうすぐ終わろうとしています。早いですね〜... 正直に言うと、入社当初の自分は、かなり内向的なタイプだったと思います。未経験でITの世界に飛...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/hirota_kodai/items/e1bed8b95626b94fa968?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 15:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/s-furuya-nri/items/4385ac59ebefb923cf0d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">これを読めば分かるClaude Code 完全攻略ガイド</a></div>
+    <div class="card-summary">これを読めば分かるClaude Code 完全攻略ガイド 対象読者: Claude Code をこれから使い始めたい人、すでに使っているがもっと活用したい人 前提知識: ターミナル操作の基本、Git の基本操作 この記事で学べること: インストールから CLAUDE.m...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/s-furuya-nri/items/4385ac59ebefb923cf0d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 12:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/noppe/articles/2113952a4bf0cc" target="_blank" rel="noopener">AIを使った効率的な体験改善のための開発フロー</a></div>
+    <div class="card-summary">OpenAIのハーネスエンジニアリング：エージェントファーストの世界における Codex の活用において、次のような一節があります。 コードのスループットが増加するにつれて、ボトルネックは人間の QA 能力となりました。固定された制約が人間の時間と注意力であったため、アプリケーション UI やログ、アプリのメトリクスを Codex が直接読み取れるようにすることで、エージェントの機能強化に取り組んできました。 エージェントファーストの開発フローでは、このように開発プロセスから人間に依存する部分を減らすことが、重要なテーマになります。 このアプローチはTUIアプリケーションやスタティッ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/noppe/articles/2113952a4bf0cc" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 11:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/k_adachi_01/items/138f5b385f6ae1fc2e31?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">2025 Japan AWS Jr. Championsとしての活動を振り返る [ポエム]</a></div>
+    <div class="card-summary">はじめに こんにちは。あだちです。 2025 Japan AWS Jr. Championsとしての1年間が終わろうとしています。 他のJr. Championsの方も、すでに何人か振り返り記事を書いていて、活動実績を数字でまとめていたり、Community Bui...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/k_adachi_01/items/138f5b385f6ae1fc2e31?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 11:01 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/rex0220/items/dd9e17c908971a0050a4?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Google Antigravity 2.0で専門技術記事はどこまで作れるか：宇宙電子機器編</a></div>
+    <div class="card-summary">Google Antigravity 2.0 を利用して、技術記事の作成を試してみました。 テーマや章立てをプロンプトで与え、生成された初稿がどこまで体系的な解説に仕上がるのかを検証しています。 今回は、興味のあるテーマについて読み物としてまとめてもらい、その内容をレビュー...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/rex0220/items/dd9e17c908971a0050a4?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-05-30 08:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tanimoto-hikari/items/678bef59f3ce91a100c9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Hydration って結局なに？味噌汁の比喩で理解する ServerComponent と Client Component</a></div>
+    <div class="card-summary">React/Next.js 学習を進めていると Server Component と Client Component をケースに応じて使い分けることかと思います。 そんな時に下記のようなエラーに出会った経験がある方も多いのではないかと思います。 Error: Hydrat...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tanimoto-hikari/items/678bef59f3ce91a100c9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">20</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 06:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/" target="_blank" rel="noopener">SoftBank says it will invest up to €75 billion to build French data centers</a></div>
+    <div class="card-summary">The goal, the firm said, is to develop and operate up to 5 gigawatts of additional data center capacity.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ソフトバンクはフランスのデータセンター建設に最大750億ユーロを投資すると発表</div>
+      <div class="ja-summary">同社によると、目標は最大5ギガワットの追加データセンター容量を開発、運用することだという。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 06:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/30/this-weekends-two-biggest-movies-were-both-directed-by-youtubers/" target="_blank" rel="noopener">This weekend’s two biggest movies were both directed by YouTubers</a></div>
+    <div class="card-summary">The YouTube-to-prestige-horror pipeline is looking very strong.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">今週末の 2 本の大作映画は両方とも YouTuber によって監督されました</div>
+      <div class="ja-summary">YouTube から高級ホラーへのパイプラインは非常に強力に見えます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/30/this-weekends-two-biggest-movies-were-both-directed-by-youtubers/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 05:40 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/" target="_blank" rel="noopener">Domain expertise has always been the real moat</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ドメインの専門知識は常に本当の堀でした</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.brethorsting.com/blog/2026/05/domain-expertise-has-always-been-the-real-moat/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 04:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://lowendmac.com/2013/jef-raskin-the-visionary-behind-the-mac/" target="_blank" rel="noopener">Jef Raskin, the Visionary Behind the Mac (2013)</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ジェフ・ラスキン、Mac の先見者 (2013)</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://lowendmac.com/2013/jef-raskin-the-visionary-behind-the-mac/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 02:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://ziglang.org/devlog/2026/#2026-05-30" target="_blank" rel="noopener">Zig ELF Linker Improvements Devlog</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Zig ELF リンカーの改善開発ブログ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://ziglang.org/devlog/2026/#2026-05-30" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 02:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://openrouter.ai/announcements/series-b" target="_blank" rel="noopener">OpenRouter raises $113M Series B</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenRouter がシリーズ B で 1 億 1,300 万ドルを調達</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://openrouter.ai/announcements/series-b" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 02:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/30/snap-alums-unveil-ghost-angels-fund/" target="_blank" rel="noopener">Snap alums unveil Ghost Angels fund</a></div>
+    <div class="card-summary">A group of 20 Snap alumni has come together to launch a fund called Ghost Angels to back the next generation of social media.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">スナップ卒業生がゴーストエンジェル基金を発表</div>
+      <div class="ja-summary">Snap の卒業生 20 人からなるグループが集まり、次世代のソーシャル メディアを支援するために Ghost Angels と呼ばれる基金を立ち上げました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/30/snap-alums-unveil-ghost-angels-fund/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 01:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/940421/backrooms-blockbuster-38-million-opening" target="_blank" rel="noopener">Backrooms is a certified blockbuster with a $38 million opening day</a></div>
+    <div class="card-summary">The Kane Parsons&#x27; film Backrooms is expected to earn up to $90 million in its opening weekend after pulling down $38 million on Friday alone. That&#x27;s not only above expectations, but absolutely obliterates A24&#x27;s previous opening weekend record of $25.5 million for Alex Garland&#x27;s Civil War. It&#x27;s also a better opening day than The Mandalorian […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">『Backrooms』は初日興行収入 3,800 万ドルの大ヒット作として認定されています</div>
+      <div class="ja-summary">ケイン・パーソンズ監督の映画『バックルームズ』は、金曜だけで3,800万ドルの興収を記録した後、公開週末で最大9,000万ドルの興行収入が見込まれている。これは予想を上回っただけでなく、アレックス・ガーランド監督の『シビル・ウォー』の2550万ドルというA24の初週末記録を完全に消し去った。また、マンダロリアンよりも良い初日です […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/940421/backrooms-blockbuster-38-million-opening" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 01:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/30/what-a-joke-github-copilots-new-token-based-billing-spurs-consternation-among-devs/" target="_blank" rel="noopener">‘What a joke’: Github Copilot’s new token-based billing spurs consternation among devs</a></div>
+    <div class="card-summary">The golden age of Microsoft&#x27;s Github Copilot appears to be at an end.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">「なんて冗談だ」: Github Copilot の新しいトークンベースの課金が開発者の間で混乱を生む</div>
+      <div class="ja-summary">Microsoft の Github Copilot の黄金時代は終わりを迎えたようです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/30/what-a-joke-github-copilots-new-token-based-billing-spurs-consternation-among-devs/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 01:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://newsroom.accenture.com/news/2026/accenture-to-acquire-ookla-to-strengthen-network-intelligence-and-experience-with-data-and-ai-for-enterprises" target="_blank" rel="noopener">Accenture to acquire Ookla</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アクセンチュア、Ooklaを買収へ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://newsroom.accenture.com/news/2026/accenture-to-acquire-ookla-to-strengthen-network-intelligence-and-experience-with-data-and-ai-for-enterprises" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 01:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/939930/welcome-to-night-vale-host-cecil-baldwin-shares-his-tech-pet-peeves" target="_blank" rel="noopener">Welcome to Night Vale host Cecil Baldwin shares his tech pet peeves</a></div>
+    <div class="card-summary">Cecil Baldwin&#x27;s résumé includes appearances on Gravity Falls, narrating the documentary Scream, Queen! My Nightmare on Elm Street, and performing as part of the New York Neo-Futurists theater company. But he is best known as the host of the podcast Welcome to Night Vale, a long-running fiction show that blends macabre Lovecraftian horror with absurdist […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">『Night Vale へようこそ』の司会者セシル・ボールドウィンがテクノロジーに関する不満を語る</div>
+      <div class="ja-summary">セシル・ボールドウィンの履歴書には、『グラビティ・フォールズ』への出演、ドキュメンタリー『スクリーム、クイーン!』のナレーションが含まれています。 『エルム街の悪夢』、ニューヨークネオフューチャリスト劇団の一員として出演。しかし、彼はポッドキャスト「Welcome to Night Vale」の司会者として最もよく知られています。この番組は、不気味なラヴクラフトのホラーと不条理を融合させた長寿フィクション番組です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/939930/welcome-to-night-vale-host-cecil-baldwin-shares-his-tech-pet-peeves" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 00:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/05/30/meta-is-reportedly-developing-an-ai-pendant/" target="_blank" rel="noopener">Meta is reportedly developing an AI pendant</a></div>
+    <div class="card-summary">Meta seems to be making big bets on AI-powered hardware.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">メタはAIペンダントを開発していると報じられている</div>
+      <div class="ja-summary">Meta は AI を搭載したハードウェアに大きな賭けをしているようです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/05/30/meta-is-reportedly-developing-an-ai-pendant/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 00:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/940416/microsoft-nightmare-eclipse-zero-day-vulnerability" target="_blank" rel="noopener">Microsoft is threatening legal action for disclosing exploits</a></div>
+    <div class="card-summary">Microsoft is facing criticism for its handling of zero-day exploits. Someone going by the name Nightmare Eclipse has been publicly feuding with the company, posting proof-of-concept exploit code. Some of their posts suggest that they&#x27;re a disgruntled former employee. But what caught cyber security researcher Kevin Beaumont&#x27;s eye was how Microsoft has responded. Microsoft suggests […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Microsoftはエクスプロイトを公開したとして法的手段を取ると脅している</div>
+      <div class="ja-summary">Microsoftはゼロデイエクスプロイトへの対応で批判に直面している。 Nightmare Eclipse という名前を名乗る人物が、概念実証のエクスプロイト コードを投稿して公然と同社と対立しています。彼らの投稿の中には、不満を抱いている元従業員であることを示唆するものもあります。しかし、サイバーセキュリティ研究者のケビン・ボーモント氏の目に留まったのは、マイクロソフトの対応だった。マイクロソフトは提案しています […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/940416/microsoft-nightmare-eclipse-zero-day-vulnerability" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-31 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/940211/samsung-frame-hisense-canvastv-art-tv-sale-deal" target="_blank" rel="noopener">Two of our favorite art TVs are more than 40 percent off this weekend</a></div>
+    <div class="card-summary">Art TVs aren’t exactly known for being affordable, which is why Woot’s latest sale is notable. Now through June 26th, the retailer is discounting Samsung’s 2025 Frame TV and Hisense’s 2025 CanvasTV. The 65-inch CanvasTV is down to $779.99 ($520 off) — its best price of the year — while Samsung’s like-minded Frame TV is […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">今週末は、お気に入りのアート テレビ 2 台が 40% 以上オフになります</div>
+      <div class="ja-summary">アート TV は手頃な価格であることではあまり知られていないため、Woot の最新のセールが注目に値します。現在、6 月 26 日まで、この小売店は Samsung の 2025 Frame TV と Hisense の 2025 CanvasTV を割引価格で販売しています。 65インチのCanvasTVは、今年最高の価格である779.99ドル（520ドル引き）に値下げされているが、サムスンの同様の考えを持つフレームTVは[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/940211/samsung-frame-hisense-canvastv-art-tv-sale-deal" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 23:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/940157/valve-steam-controller-singing-music-doom" target="_blank" rel="noopener">Listen to the new Steam Controller buzz to the tune of Doom</a></div>
+    <div class="card-summary">You may have heard that Valve&#x27;s new Steam Controller can ring like a telephone or do the Wilhelm scream. But did you know it can sing songs, too? Let me show you. Here&#x27;s the new Steam Controller performing the &quot;Ground Theme&quot; from Super Mario Bros. 2: Here is &quot;Still Alive&quot; from Portal - fitting for […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Doom の曲に合わせて新しい Steam コントローラーが鳴る音を聞いてください。</div>
+      <div class="ja-summary">Valve の新しい Steam コントローラーは電話のように鳴ったり、ヴィルヘルムの叫び声を上げたりできるという話を聞いたことがあるかもしれません。しかし、歌も歌うことができることをご存知ですか?見せてみましょう。こちらは、スーパーマリオブラザーズ 2 の「Ground Theme」を演奏する新しい Steam コントローラーです。 こちらは、Portal の「Still Alive」です - […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/940157/valve-steam-controller-singing-music-doom" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/review/keychron-k2-he-concrete-edition/" target="_blank" rel="noopener">Keychron K2 HE Concrete Edition Review: Rock-Solid Typing</a></div>
+    <div class="card-summary">Keychron&#x27;s K2 HE Concrete Edition sounds like a cute gimmick, but as I discovered, there&#x27;s a really solid keyboard beyond the absurd choice of materials.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Keychron K2 HE Con​​crete Edition レビュー: 堅実なタイピング</div>
+      <div class="ja-summary">Keychron の K2 HE Con​​crete Edition はかわいいギミックのように聞こえますが、私が発見したように、ばかげた素材の選択を超えて、本当に堅牢なキーボードが存在します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/review/keychron-k2-he-concrete-edition/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/backrooms-movie-kane-parsons-interview/" target="_blank" rel="noopener">‘Backrooms’ Takes You Deeper Inside the Internet’s Most Uncanny Horror Myth</a></div>
+    <div class="card-summary">Kane Parsons was just 16 years old when he created a viral YouTube horror series based on a 4chan meme. Now he’s ready to conquer the big screen.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">「Backrooms」はインターネットの最も不気味なホラー神話をさらに深く掘り下げます</div>
+      <div class="ja-summary">ケイン・パーソンズは、4chan ミームに基づいてバイラルな YouTube ホラー シリーズを作成したとき、わずか 16 歳でした。今、彼は大画面を征服する準備ができています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/backrooms-movie-kane-parsons-interview/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 19:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/review/tello-mobile-custom-plans/" target="_blank" rel="noopener">Tello Mobile Plan Review (2026): Low Cost, Reliable Service</a></div>
+    <div class="card-summary">With inflation and gas prices rising, I’m trying to save money wherever I can. I tested Tello’s budget cell phone plan, and for me, it turns out prepaid can be just as good.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Tello モバイル プランのレビュー (2026): 低コスト、信頼性の高いサービス</div>
+      <div class="ja-summary">インフレとガソリン価格が上昇しているため、私はできる限りお金を節約しようとしています。 Tello の格安携帯電話プランをテストしてみたところ、プリペイドも同様に優れていることがわかりました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/review/tello-mobile-custom-plans/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/security-news-this-week-cybercrime-crew-claims-it-hacked-mike-lindells-mypillow/" target="_blank" rel="noopener">Cybercrime Crew Claims It Hacked Mike Lindell’s MyPillow</a></div>
+    <div class="card-summary">Plus: A ransomware group is now stealing data in person, BusPatrol wants to hand its license plate surveillance data to the cops, and more.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サイバー犯罪集団がマイク・リンデル氏のMyPillowをハッキングしたと主張</div>
+      <div class="ja-summary">さらに、ランサムウェア グループが個人的にデータを盗み始めており、BusPatrol はナンバー プレートの監視データを警察に渡したいと考えています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/security-news-this-week-cybercrime-crew-claims-it-hacked-mike-lindells-mypillow/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-05-30 19:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/quilts-are-better-than-sleeping-bags/" target="_blank" rel="noopener">Quilts Are Better Than Sleeping Bags</a></div>
+    <div class="card-summary">Tired of sleeping like a mummy in a bag? Improve your backcountry sleep and carry less weight with an ultralight quilt.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">キルトは寝袋よりも優れています</div>
+      <div class="ja-summary">バッグの中でミイラのように寝ることにうんざりしていませんか?超軽量キルトでバックカントリーでの睡眠を改善し、体重を軽減します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/quilts-are-better-than-sleeping-bags/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
