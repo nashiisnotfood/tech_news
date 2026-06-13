@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年06月14日 07:26 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年06月14日 07:26 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>26</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 16:48 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/takeda_h/items/b5ccdb0f2f7c6c09f0b2?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">自治体のガバメントクラウド AWS 環境で現在 Bedrock をどこまで使えるのか（2026 年 6 月版）</a></div>
+    <div class="card-summary">地方自治体のガバメントクラウド AWS 環境で、Amazon Bedrock をどこまで使えるの？という質問を受けることが多いので、公開情報から分かる範囲だけで整理してみようと思います。 2026/06/13 現在の情報ですのでご注意ください。 最初に自治体ガバメ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/takeda_h/items/b5ccdb0f2f7c6c09f0b2?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 13:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/issey_dotlog/items/19b84d3a38c1c9aa9567?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Claude Code × OpenSCAD × 3Dプリンターで、憧れの3Dプリンター住宅を施工してみた</a></div>
+    <div class="card-summary">3Dプリンター住宅に憧れたので、まずはClaudeCode×3Dプリンターで施工してみた この記事でやること Claude Code + OpenSCAD で設計 → Bambu Lab P1S で PLA 中空シェルを印刷 → 針金で配筋 → 軽量粘土を充填 → 竣...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/issey_dotlog/items/19b84d3a38c1c9aa9567?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 12:06 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/moritalous/items/a3ac103480966ccec75d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Smithyがすごい！AgentCoreゲートウェイとBedrockナレッジベースが直接つながる！！（LambdaやAgentCoreランタイムいらない）</a></div>
+    <div class="card-summary">三行まとめ SmithyはAWSのAPIを定義する言語 AgentCoreゲートウェイにSmithyを使用するとAWS APIを呼び出すMCPサーバーが簡単に作れる Smityの定義を自分で記述するのは大変なので、Claudeに任せよう AgentCoreゲート...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/moritalous/items/a3ac103480966ccec75d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 11:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/yamadatt/articles/20260613-fable5-access-suspended" target="_blank" rel="noopener">Claude Fable 5が突然使えなくなった(輸出管理指令によるアクセス停止)</a></div>
+    <div class="card-summary">何が起きたか Claude Codeで新しいSkillを作ろうとしたら、いきなりこのメッセージが出ました。 There&#x27;s an issue with the selected model (claude-fable-5). It may not exist or you may not have access to it. Run /model to pick a different model. 「モデルが存在しないか、アクセス権がない」。 ついさっきまで普通に使えていた claude-fable-5 です。/model を開くとFable 5自体は一覧に出ていて選択もできるの...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/yamadatt/articles/20260613-fable5-access-suspended" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 08:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/yakumo_09/items/76e416a5ae28f18ad976?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【AWS】AI-DLCを実際にチームでやってみてわかったことをまとめてみました</a></div>
+    <div class="card-summary">はじめに 先日(2026年5月)、AWSが主催する以下のハッカソンに、チームで参加してきました。 このハッカソンのテーマのひとつが、AWSが提唱する新しい開発手法 AI-DLC（AI-Driven Development Life Cycle） を利用することでした...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/yakumo_09/items/76e416a5ae28f18ad976?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-13 07:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Shiro_Shihi/items/07ae715805655298bd59?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">この素晴らしいプロジェクトに爆焔を！〜負債だらけのレガシーコードを1万行消し飛ばした話〜</a></div>
+    <div class="card-summary">光に覆われし漆黒よ。夜を纏いし爆炎よ。 紅魔の名のもとに原初の崩壊を顕現す。 終焉の王国の地に、力の根源を隠匿せし者。 我の前に統べよ！ エクスプロージョン（rm -rf）！！ 我が名はエンジニア！ クリーンアーキテクチャを極めし者、そしてレガシーコードの破壊を渇望する...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Shiro_Shihi/items/07ae715805655298bd59?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">20</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 06:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/949601/amazon-anthropic-fablemythos-government-ban" target="_blank" rel="noopener">Amazon security research reportedly led to the White House’s Anthropic Fable ban</a></div>
+    <div class="card-summary">According to the Wall Street Journal, the export control directive that led to Anthropic cutting off access to Fable 5 and Mythos 5 was triggered in part by cybersecurity research from Amazon and conversations between CEO Andy Jassy and the White House. According to the report, the paper from Amazon claims that, through a series […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アマゾンのセキュリティ調査がホワイトハウスの「人類の寓話」禁止につながったと報じられている</div>
+      <div class="ja-summary">ウォール・ストリート・ジャーナルによると、アンスロピックがフェイブル5とミトス5へのアクセスを遮断するきっかけとなった輸出管理指令は、部分的にはアマゾンのサイバーセキュリティ研究とCEOのアンディ・ジャシーとホワイトハウスとの会話がきっかけとなったという。レポートによると、Amazon の論文は、一連の […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/949601/amazon-anthropic-fablemythos-government-ban" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 05:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/13/kpmg-pulls-report-on-ai-usage-due-to-apparent-hallucinations/" target="_blank" rel="noopener">KPMG pulls report on AI usage due to apparent hallucinations</a></div>
+    <div class="card-summary">Once again, AI proves to be an unreliable source of information about AI.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">KPMG、明らかな幻覚のためAI使用に関する報告書を撤回</div>
+      <div class="ja-summary">繰り返しになりますが、AI に関する情報源は信頼できないことが判明しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/13/kpmg-pulls-report-on-ai-usage-due-to-apparent-hallucinations/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 05:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/947064/xmen-97-season-2-disney-plus-marvel-masters-of-the-universe-mattel" target="_blank" rel="noopener">X-Men ’97 has what Master of the Universe is missing</a></div>
+    <div class="card-summary">In 2026, Marvel and Mattel are both releasing projects designed to capitalize on people&#x27;s love for iconic animated heroes from their childhoods. Masters of the Universe has put a live-action He-Man on the big screen, and the second season of X-Men &#x27;97 is about to fling some of Charles Xavier&#x27;s mutants into an apocalyptic future. […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">X-MEN &#x27;97にはマスター・オブ・ザ・ユニバースに欠けているものがある</div>
+      <div class="ja-summary">2026 年、マーベルとマテルはともに、人々の幼少期からの象徴的なアニメーション ヒーローへの愛を活用することを目的としたプロジェクトをリリースします。マスターズ・オブ・ザ・ユニバースは実写のヒーマンを大画面に公開し、X-MEN &#x27;97 の第 2 シーズンでは、チャールズ・エグゼビアのミュータントの一部が終末的な未来に放り出されようとしています。 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/947064/xmen-97-season-2-disney-plus-marvel-masters-of-the-universe-mattel" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 04:11 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/13/amazon-ceo-reportedly-raised-anthropic-model-concerns-before-government-crackdown/" target="_blank" rel="noopener">Amazon CEO reportedly raised Anthropic model concerns before government crackdown</a></div>
+    <div class="card-summary">Amazon CEO Andy Jassy may have been the source of security concerns that led Anthropic to cut off worldwide access to two models on Friday.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アマゾンCEOは政府の取り締まり前に人間モデルへの懸念を表明したと伝えられている</div>
+      <div class="ja-summary">アマゾンの最高経営責任者（CEO）アンディ・ジャシー氏は、金曜日にアンスロピック社が2つのモデルへの全世界からのアクセスを遮断したセキュリティ上の懸念の原因となった可能性がある。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/13/amazon-ceo-reportedly-raised-anthropic-model-concerns-before-government-crackdown/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 03:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/949593/super-mario-bros-3-million-auction" target="_blank" rel="noopener">Sealed Super Mario Bros. sells for a record $3 million</a></div>
+    <div class="card-summary">A copy of Super Mario Bros., still in the box and sealed with its original sticker, just sold at Heritage Auctions for $3 million. That absolutely crushes the previous record of $2 million, also for a copy of Super Mario Bros., in 2021. That sale also came hot on the heels of a controversial auction […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">封印されたスーパーマリオブラザーズが史上最高額の300万ドルで落札される</div>
+      <div class="ja-summary">スーパーマリオブラザーズのコピーが箱に入ったまま、オリジナルのステッカーが貼られたまま、ヘリテージオークションで300万ドルで落札された。これは、同じく『スーパーマリオブラザーズ』のコピーの200万ドルという過去の記録を、2021年に完全に破るものだ。この売却は、物議を醸したオークションの直後にも行われた[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/949593/super-mario-bros-3-million-auction" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 03:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://chrisdevblog.com/2026/06/08/running-dos-on-behringers-ddx3216-using-a-diy-x86-bios/" target="_blank" rel="noopener">Running DOS on Behringers DDX3216 with a DIY x86-Bios from Scratch</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">DIY x86-Bios を使用して Behringers DDX3216 で DOS をゼロから実行する</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://chrisdevblog.com/2026/06/08/running-dos-on-behringers-ddx3216-using-a-diy-x86-bios/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 02:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://tcrf.net/Workboy" target="_blank" rel="noopener">GameBoy Workboy</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ゲームボーイ ワークボーイ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://tcrf.net/Workboy" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 01:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/13/openai-faces-investigation-from-state-attorneys-general/" target="_blank" rel="noopener">OpenAI faces investigation from state attorneys general</a></div>
+    <div class="card-summary">It&#x27;s not clear which states are involved, but they&#x27;re asking about everything from OpenAI&#x27;s ad policies to its handling of health data.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAIは州司法長官の捜査に直面している</div>
+      <div class="ja-summary">どの州が関与しているかは明らかではないが、OpenAIの広告ポリシーから健康データの扱いに至るまで、あらゆることについて質問している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/13/openai-faces-investigation-from-state-attorneys-general/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 01:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/949584/microsoft-spinning-off-xbox" target="_blank" rel="noopener">Microsoft hasn’t ruled out spinning off Xbox</a></div>
+    <div class="card-summary">Microsoft is preparing to lay off a significant chunk of its Xbox division and is reevaluating the plans for its next-generation Project Helix console. It&#x27;s apparently also considering dramatically restructuring its relationship with Xbox, and hasn&#x27;t ruled out spinning it off into a separate company. A new report from The Information suggests that Microsoft has […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マイクロソフトはXboxのスピンオフを排除していない</div>
+      <div class="ja-summary">MicrosoftはXbox部門のかなりの部分を解雇する準備を進めており、次世代ゲーム機Project Helixの計画を再評価している。同社はXboxとの関係を大幅に再構築することも検討しているようで、Xboxと別会社として分社化する可能性も排除していない。 The Information の新しいレポートによると、Microsoft は […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/949584/microsoft-spinning-off-xbox" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 01:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/13/this-thin-under-pillow-speaker-helped-me-fall-asleep-without-earbuds/" target="_blank" rel="noopener">This thin under-pillow speaker helped me fall asleep without earbuds</a></div>
+    <div class="card-summary">I’ve struggled with insomnia since I was very young. Like many chronic overthinkers, I tend to fall asleep best when my mind is occupied by something else, such as podcasts, YouTube compilations, or my personal favorite: rain sounds. But earbuds can be uncomfortable, and playing audio out loud isn’t exactly considerate when I’m staying at […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">この薄い枕の下のスピーカーのおかげで、イヤホンなしで眠りにつくことができました</div>
+      <div class="ja-summary">私は幼い頃から不眠症に悩まされてきました。慢性的に考えすぎてしまう人の多くと同じように、私もポッドキャスト、YouTube のコンピレーション、または私のお気に入りの雨音など、別のことに頭が占領されているときに最もよく眠りにつく傾向があります。しかし、イヤホンは不快な場合があり、滞在中にオーディオを大音量で再生するのはまったく配慮とは言えません […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/13/this-thin-under-pillow-speaker-helped-me-fall-asleep-without-earbuds/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-14 01:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/949190/bose-quietcomfort-ultra-headphones-deal-sale" target="_blank" rel="noopener">Bose’s latest QuietComfort Ultra are $70 off, marking a new low price</a></div>
+    <div class="card-summary">If you’re planning on traveling anytime soon, Bose’s second-generation QuietComfort Ultra headphones are a great companion for long flights and train rides. Not only do they offer excellent noise cancellation, but they also retain the foldable design of their predecessor, making them easy to pack in a carry-on. They’re even easier to recommend today, now […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Bose の最新 QuietComfort Ultra が 70 ドルオフとなり、新たな低価格を実現</div>
+      <div class="ja-summary">近いうちに旅行を計画している場合、ボーズの第 2 世代 QuietComfort Ultra ヘッドフォンは、長時間のフライトや電車に乗るときに最適です。優れたノイズキャンセリングを提供するだけでなく、前モデルの折りたたみ可能なデザインを維持しているため、機内持ち込み手荷物に簡単に詰め込むことができます。今ではさらにお勧めしやすくなりました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/949190/bose-quietcomfort-ultra-headphones-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 22:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://desfontain.es/blog/banning-noise.html" target="_blank" rel="noopener">Noise infusion banned from statistical products published by Census Bureau</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">国勢調査局が発行する統計製品へのノイズ注入を禁止</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://desfontain.es/blog/banning-noise.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 22:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://economist.com/science-and-technology/2026/06/12/treating-pancreatic-tumours-may-have-revealed-cancers-master-switch" target="_blank" rel="noopener">Treating pancreatic tumours may have revealed cancer&#x27;s master switch</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">膵臓腫瘍の治療により、がんのマスタースイッチが明らかになった可能性がある</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://economist.com/science-and-technology/2026/06/12/treating-pancreatic-tumours-may-have-revealed-cancers-master-switch" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 20:40 JST</span>
+    </div>
+    <div class="card-title"><a href="https://tonsky.me/blog/every-frame-perfect/" target="_blank" rel="noopener">Every Frame Perfect</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">すべてのフレームが完璧</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://tonsky.me/blog/every-frame-perfect/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 20:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/meet-dysons-new-cordless-vacuum-lineup/" target="_blank" rel="noopener">Meet the New Dyson Vacuums: V16 Piston Animal, V10 Konical, V8 Cyclone (2026)</a></div>
+    <div class="card-summary">The rest of Dyson’s promised 2026 vacuum lineup is here, from the new Dyson V16 Piston Animal to an updated version of the favored Dyson V8 Cyclone.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">新しいダイソン掃除機のご紹介: V16 ピストン アニマル、V10 コニカル、V8 サイクロン (2026)</div>
+      <div class="ja-summary">新しい Dyson V16 Piston Animal から人気の Dyson V8 Cyclone のアップデートバージョンまで、Dyson が約束する 2026 年の掃除機ラインナップの残りがここにあります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/meet-dysons-new-cordless-vacuum-lineup/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/13/the-fbi-built-its-own-replica-small-town-to-simulate-real-world-cyberattacks/" target="_blank" rel="noopener">The FBI built its own replica small town to simulate real-world cyberattacks</a></div>
+    <div class="card-summary">Hidden inside a building in Alabama, the FBI has created its own small town as a dedicated cyber training ground for simulating cyberattacks.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">FBI は現実世界のサイバー攻撃をシミュレートするために独自のレプリカの小さな町を建設しました</div>
+      <div class="ja-summary">FBI は、アラバマ州の建物内に、サイバー攻撃をシミュレートする専用のサイバー訓練場として独自の小さな町を設立しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/13/the-fbi-built-its-own-replica-small-town-to-simulate-real-world-cyberattacks/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/how-can-soccer-players-bend-their-shots-in-midair/" target="_blank" rel="noopener">How Can Soccer Players Bend Their Shots in Midair?</a></div>
+    <div class="card-summary">As World Cup action kicks off, we look at the physics of the beautiful game.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サッカー選手はどうやって空中でシュートを曲げることができるのでしょうか?</div>
+      <div class="ja-summary">ワールドカップの試合が始まる中、私たちはこの美しい試合の物理学に注目します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/how-can-soccer-players-bend-their-shots-in-midair/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/security-news-this-week-the-fcc-wants-to-kill-burner-phones/" target="_blank" rel="noopener">The FCC Wants to Kill Burner Phones</a></div>
+    <div class="card-summary">Plus: AI bug hunting fuels Microsoft’s biggest-ever Patch Tuesday, ShinyHunters ransomware gang exploits an Oracle zero-day, and more.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">FCCはBurner Phoneを廃止したいと考えている</div>
+      <div class="ja-summary">さらに: AI のバグハンティングが Microsoft 史上最大の Patch Tuesday を促進し、ShinyHunters ランサムウェア集団が Oracle のゼロデイを悪用するなど、さまざまな取り組みが行われています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/security-news-this-week-the-fcc-wants-to-kill-burner-phones/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/review/ecoflow-powerocean-home-battery/" target="_blank" rel="noopener">EcoFlow PowerOcean Battery Review: Cutting My Bill in Half</a></div>
+    <div class="card-summary">Whether you want to buy cheaper electricity, store solar energy, or guard against outages, EcoFlow’s home battery might be just what you need.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">EcoFlow PowerOcean バッテリーのレビュー: 請求額を半分に削減</div>
+      <div class="ja-summary">より安い電力を購入したい場合でも、太陽エネルギーを蓄えたい場合でも、停電を防ぎたい場合でも、EcoFlow の家庭用バッテリーはまさに必要なものかもしれません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/review/ecoflow-powerocean-home-battery/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-13 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/interview-with-rivian-ceo-rj-scaringe/" target="_blank" rel="noopener">Rivian’s CEO on Tesla’s Cybertruck, Ferrari’s Luce, and What Happens If the R2 Fails</a></div>
+    <div class="card-summary">RJ Scaringe, the CEO of Rivian Automotive, joined us for a wide-ranging interview about how his company’s new electric SUV fits into the current EV industry, and what comes next.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">テスラのサイバートラック、フェラーリのルーチェ、そして R2 が故障した場合の対応について語る Rivian の CEO</div>
+      <div class="ja-summary">Rivian Automotive の CEO、RJ Scaringe 氏も参加し、彼の会社の新しい電動 SUV が現在の EV 業界にどのように適合するのか、そして次に何が起こるのかについて幅広いインタビューを行いました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/interview-with-rivian-ceo-rj-scaringe/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
