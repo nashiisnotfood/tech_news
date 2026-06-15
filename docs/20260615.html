@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年06月16日 07:43 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年06月16日 07:43 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>36</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>3</strong></div> <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>4</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>3</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (3)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (4)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (8)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (3)</span> <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (4)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (3)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">8</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 14:22 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/miyakiyo/items/40346d3f0d285b9523e7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIエージェントで業務開発はここまで来た｜1日で5画面作った話</a></div>
+    <div class="card-summary">はじめに 最近、AIエージェント（Claude Code / Codex）を使って 「どこまで実務開発が高速化できるのか」を検証しました。 結論から言うと、 1日でマスター画面を5つ（5機能）作成 フロント〜バックエンドまで一通り完成 というレベルまで持っていけました。 ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/miyakiyo/items/40346d3f0d285b9523e7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 13:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/hitomin_poke/items/621a19d6a1a6500eaca6?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">9割のエンジニア未経験者がつまずく『最初の壁』 。それでもアプリを作りたい #3</a></div>
+    <div class="card-summary">はじめまして。株式会社PRUMでエンジニアをしている人見です。 日々、プログラミング学習や実務の中で、つまずきやすいポイントや、 仕事で起きやすい“ズレ”について整理して発信しています。 誰かの助けになれば幸いです。 9割のエンジニア未経験者がつまずく『最初の壁』 それで...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/hitomin_poke/items/621a19d6a1a6500eaca6?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 13:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tomo-ryo/items/3f88009e5342fca03ffd?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Hono × Zod OpenAPI × Swagger UIでAPIドキュメント簡単自動生成</a></div>
+    <div class="card-summary">はじめに 前回に引き続き、Hono関連の記事を書きました。 Honoでは OpenAPI 定義と API 実装を同じ場所で管理できます。 さらに Swagger UI を組み合わせることで、ブラウザから API ドキュメントの閲覧や動作確認も可能になります。 この記事では...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tomo-ryo/items/3f88009e5342fca03ffd?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 12:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tomoki-miso/items/81433a4eaae7d2030751?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">コーディングエージェント時代に、あえて自分でコードを書く</a></div>
+    <div class="card-summary">コーディングエージェントというパラダイムシフト Claude Code が爆誕してから1年以上経った。 その誕生により、明らかにプログラミングという作業の方法は激変した。 自分は、GPT 3.5 Turbo が出たころに、本格的にプログラミングをはじめた。 それ以前に少し...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tomoki-miso/items/81433a4eaae7d2030751?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 12:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/aishift/articles/5a5383987efee6" target="_blank" rel="noopener">Local LLMでのデータ分析を試してみた</a></div>
+    <div class="card-summary">こんにちは AIチームの戸田です 最近、Coding Agentを使った開発体験がかなり変わってきています。ファイルを読ませ、コードを書かせ、テストを実行させ、エラーを直させる、という流れはすでに日常的に使える水準になってきました。 一方で、Agentに任せられる範囲はコーディングだけではありません。データ分析も、ファイルを読む、前処理を書く、評価指標を出す、結果をレポートにまとめる、という意味ではかなりAgent向きのタスクです。 例えばデータ分析コンペティションのKaggleでも、EDA(Exploratory Data Analysis)にAIを使う流れは見え始めています。 htt...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/aishift/articles/5a5383987efee6" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 11:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/dress_code/articles/dresscode-ai-dev-camp" target="_blank" rel="noopener">AI 開発合宿で見えたのは普段の開発文化だった</a></div>
+    <div class="card-summary">はじめに こんにちは、Dress Code でプロダクトエンジニアをしている ないとー です！ 私たちは DRESS CODE という、人事労務・情報システム・総務・採用・プロジェクト・コーポレートガバナンスなど、複数領域を横断する業務 OS（コンパウンドプロダクト）を開発しています。 扱う領域が広いぶん、AI を活かせる余地も大きく、プロダクトへの組み込みは以前から構想していました。ただ、日々の開発が回っているからこそ、そこに割く時間はなかなか確保できずにいました。そこで今回、意図的に 2 日間の時間を確保し、AI 開発合宿として集中的に取り組むことにしました。 この記事では、合...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/dress_code/articles/dresscode-ai-dev-camp" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 11:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/yusukebe/articles/ccb1f953e48ee1" target="_blank" rel="noopener">AIエージェントはCloudflareに賭けろ</a></div>
+    <div class="card-summary">最初に表明しておくと、自分はCloudflareの社員である。 AIエージェント時代にCloudflareは最適なプラットフォームである！今回はCloudflareがなぜAIエージェントに向いているかを紹介する。 AIエージェント時代のアーキテクチャ AIエージェントを構築するためのアーキテクチャについて考えてみる。 クラウドはAI時代を想定していない Cloudflareは今年の4月に出したブログ記事で強く言っていてる。 https://blog.cloudflare.com/ja-jp/welcome-to-agents-week/ インターネットは元々、AI時代を想定し...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/yusukebe/articles/ccb1f953e48ee1" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-15 10:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/mo__mo/items/49f9601481aec596f545?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">CVSS 9.8ってどれくらい危ない？脆弱性情報を読むためのものさし</a></div>
+    <div class="card-summary">はじめに セキュリティ情報を見ていると、こんな表記を見かけることがあります。 CVSS 9.8 CVSS v3.1 Base Score Critical High 認証なしでリモートから悪用可能 なんとなく「数字が高いほど危なそう」という雰囲気はあります。 でも、い...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/mo__mo/items/49f9601481aec596f545?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">28</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 06:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/" target="_blank" rel="noopener">The US government’s Anthropic models ban was never about an AI jailbreak</a></div>
+    <div class="card-summary">The Trump administration&#x27;s decision that forced Anthropic to pull its latest cybersecurity models could be reactionary, retaliatory, or both, but the message is clear: The AI industry isn&#x27;t immune from U.S. government interference.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">米国政府による人体模型の禁止は、決して AI 脱獄に関するものではなかった</div>
+      <div class="ja-summary">Anthropic に最新のサイバーセキュリティ モデルの廃止を強制したトランプ政権の決定は、反動的なもの、報復的なもの、あるいはその両方である可能性がありますが、メッセージは明らかです。AI 業界は米国政府の干渉から免れないわけではありません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/15/the-us-governments-anthropic-models-ban-was-never-about-an-ai-jailbreak/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 06:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/andrew-bosworth-meta-employees-unrest/" target="_blank" rel="noopener">Meta CTO Andrew Bosworth Admits the Company’s AI Reorg Was ‘Atrocious’</a></div>
+    <div class="card-summary">In an internal memo seen by WIRED, Bosworth promised employees more stability, better communication, and the return of workplace perks as the company seeks to improve morale.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Meta CTOのアンドリュー・ボスワース氏、同社のAI再編は「ひどい」ものだったと認める</div>
+      <div class="ja-summary">『WIRED』が入手した社内メモの中で、ボズワース氏は従業員に対し、士気の向上を目指して安定性の向上、コミュニケーションの向上、職場での特典の返還を約束した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/andrew-bosworth-meta-employees-unrest/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 06:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/950264/meta-ai-mode-search-facebook" target="_blank" rel="noopener">Facebook’s new AI Mode search gets its info from public posts</a></div>
+    <div class="card-summary">Your public Facebook posts could help inform AI-generated results in Meta&#x27;s new AI Mode. When you search on Facebook, the &quot;AI Mode&quot; option will appear alongside the usual search modes like &quot;People&quot; and &quot;Marketplace.&quot; It&#x27;s one of several new AI features Meta is rolling out starting today, including photo presets that swap sports jerseys onto […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Facebook の新しい AI モード検索は公開投稿から情報を取得します</div>
+      <div class="ja-summary">Facebook の公開投稿は、Meta の新しい AI モードで AI が生成した結果を知らせるのに役立つ可能性があります。 Facebook で検索すると、「People」や「Marketplace」などの通常の検索モードと並んで「AI モード」オプションが表示されます。これは、スポーツジャージを交換する写真プリセットを含む、メタが今日から展開するいくつかの新しい AI 機能の 1 つです […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/950264/meta-ai-mode-search-facebook" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 06:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/950204/xbox-ninja-theory-shutdown-hellblade-senua" target="_blank" rel="noopener">Xbox is closing down Hellblade creator Ninja Theory</a></div>
+    <div class="card-summary">Xbox is closing down Ninja Theory, the studio behind the Hellblade series, a source tells The Verge. Staffers were told on a call on Monday about the closure, but they are hoping the studio will find a buyer. The closure comes as &quot;several&quot; Xbox studios at Microsoft, including Compulsion Games and Double Fine, are in […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Xbox、『Hellblade』の作者であるNinja Theoryを閉鎖へ</div>
+      <div class="ja-summary">XboxはHellbladeシリーズのスタジオであるNinja Theoryを閉鎖すると情報筋がThe Vergeに語った。スタッフらは月曜日の電話で閉鎖について知らされたが、スタジオが買い手が見つかることを期待しているという。この閉鎖は、Compulsion Games や Double Fine を含むマイクロソフトの「いくつかの」Xbox スタジオが […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/950204/xbox-ninja-theory-shutdown-hellblade-senua" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 05:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/the-best-fans-2026/" target="_blank" rel="noopener">The 15 Best Fans to Buy Before It Gets Hot Again (2026)</a></div>
+    <div class="card-summary">Swap out your creaky old box fan for a new model that lights up, mists, or even follows you around the room.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">再び暑くなる前に買うべきベスト扇風機 15 選 (2026)</div>
+      <div class="ja-summary">きしむ古いボックスファンを、ライトが点灯したり、ミストが出たり、部屋中を追いかけたりする新しいモデルに交換します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/the-best-fans-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 05:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://fred.stlouisfed.org/series/IPG33591S" target="_blank" rel="noopener">US battery manufacturing output continues to break records</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">米国のバッテリー製造生産高は記録を更新し続ける</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://fred.stlouisfed.org/series/IPG33591S" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 05:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://michaelenger.com/blog/i-love-the-computer/" target="_blank" rel="noopener">I Love the Computer</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">コンピューターが大好きです</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://michaelenger.com/blog/i-love-the-computer/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 05:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/streaming/950116/fox-roku-takeover" target="_blank" rel="noopener">Fox wants to take over your TV — and the tech inside it</a></div>
+    <div class="card-summary">Fox is about to take over the TVs in more than 100 million homes worldwide. On Monday, Fox announced that it&#x27;s acquiring Roku, the streaming middleman that serves as a portal for viewers to hop into services like Netflix, Disney Plus, Hulu, and more. The $22 billion deal may not change Roku&#x27;s familiar purple interface, […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Fox はテレビとその内部のテクノロジーを乗っ取りたいと考えています</div>
+      <div class="ja-summary">Fox は世界中の 1 億以上の家庭のテレビを乗っ取ろうとしています。 Foxは月曜日、視聴者がNetflix、Disney Plus、Huluなどのサービスに飛び込むためのポータルとして機能するストリーミング仲介業者Rokuを買収すると発表した。 220億ドルの契約では、Rokuのおなじみの紫色のインターフェースは変わらないかもしれない […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/streaming/950116/fox-roku-takeover" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 05:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://roman.pt/posts/linkedin-backdoor/" target="_blank" rel="noopener">A backdoor in a LinkedIn job offer</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">LinkedIn の求人のバックドア</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://roman.pt/posts/linkedin-backdoor/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 04:57 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/review/tcl-a65k-soundbar/" target="_blank" rel="noopener">TCL A65K Soundbar Review: Small Size, Big Sound</a></div>
+    <div class="card-summary">Don’t be fooled by the compact size of this soundbar. It’s a solid option for smaller TVs or spaces without having to sacrifice sound quality.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">TCL A65K サウンドバー レビュー: 小さいサイズ、大きなサウンド</div>
+      <div class="ja-summary">このサウンドバーのコンパクトなサイズに騙されないでください。音質を犠牲にすることなく、小型のテレビやスペースに最適なオプションです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/review/tcl-a65k-soundbar/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 04:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/950043/amazon-smart-thermostat-early-prime-day-deal-sale" target="_blank" rel="noopener">Amazon’s Smart Thermostat is on sale for just $58</a></div>
+    <div class="card-summary">If your electricity bill climbs every summer, a smart thermostat could help keep cooling costs in check. The Amazon Smart Thermostat is an excellent option for its price, especially today. It’s down to just $57.99 at Amazon as a part of Amazon’s early Prime Day sale, which is the best price we’ve seen since Black […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Amazonのスマートサーモスタットがわずか58ドルでセール中</div>
+      <div class="ja-summary">毎年夏になると電気代が高騰する場合、スマート サーモスタットが冷房コストを抑えるのに役立つ可能性があります。 Amazon スマート サーモスタットは、特に今日では、価格の点で優れた選択肢です。 Amazon のプライムデー初期セールの一環として、Amazon ではわずか 57.99 ドルまで値下げされています。これは、ブラック以来最高の価格です […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/950043/amazon-smart-thermostat-early-prime-day-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 04:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/950026/anthropic-fable-mythos-ban-ai-shutdown" target="_blank" rel="noopener">All the news about Anthropic’s new AI fight with the White House</a></div>
+    <div class="card-summary">Anthropic was already navigating one dispute with the government in its standoff with the Pentagon, and then came an order on June 12th to block off foreign access to its most recently released AI models, Fable 5 and Mythos 5. When they launched on June 9th, Anthropic said “Fable 5’s capabilities exceed those of any […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Anthropic の新しい AI とホワイトハウスの戦いに関するすべてのニュース</div>
+      <div class="ja-summary">Anthropic はすでに国防総省との対立で政府との紛争を乗り越えていましたが、6 月 12 日、同社が最近リリースした AI モデルである Fable 5 と Mythos 5 への外国からのアクセスを遮断する命令が出されました。6 月 9 日にリリースされたとき、Anthropic は「Fable 5 の能力は他のモデルの能力を上回っています。[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/950026/anthropic-fable-mythos-ban-ai-shutdown" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-16 03:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/" target="_blank" rel="noopener">Why do South Koreans love AI so much?</a></div>
+    <div class="card-summary">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. When I landed in Seoul after a grueling 12-hour flight from San Francisco, I walked through an unmanned immigration checkpoint, where a machine scanned my face and passport. On the subway home,…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">なぜ韓国人はこれほどまでにAIが好きなのでしょうか？</div>
+      <div class="ja-summary">このストーリーは元々、AI に関する週刊ニュースレター『The Algorithm』に掲載されました。このような記事を受信トレイで受信するには、まずここにサインアップしてください。サンフランシスコから12時間の過酷なフライトを経てソウルに到着したとき、私は無人の入国審査場を通り、そこで機械が私の顔とパスポートをスキャンしました。地下鉄のホームで…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/15/1138983/why-do-south-koreans-love-ai-so-much/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 03:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/15/metas-new-ai-mode-on-facebook-pulls-from-public-info-across-its-platforms/" target="_blank" rel="noopener">Meta’s new ‘AI Mode’ on Facebook pulls from public info across its platforms</a></div>
+    <div class="card-summary">Meta announced Monday that it&#x27;s rolling out a wave of new AI features on Facebook, the latest sign of the company&#x27;s effort to catch up in the AI race and keep users more engaged on the platform.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Meta の Facebook の新しい「AI モード」は、プラットフォーム全体の公開情報から取得します</div>
+      <div class="ja-summary">Meta は月曜日、Facebook 上で一連の新しい AI 機能を展開すると発表しました。これは、AI 競争に追いつき、ユーザーのプラットフォームへの関与を維持するための同社の取り組みの最新の兆候です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/15/metas-new-ai-mode-on-facebook-pulls-from-public-info-across-its-platforms/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 03:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/15/spacex-is-public-everything-you-need-to-know-post-ipo/" target="_blank" rel="noopener">SpaceX is public: Everything you need to know post-IPO</a></div>
+    <div class="card-summary">TechCrunch has followed SpaceX&#x27;s start, struggles, and successes from the early days. And we&#x27;re here for what happens next too. This package of SpaceX IPO coverage includes who stands to win (and maybe some who won&#x27;t), pre-IPO deals, and what&#x27;s tucked inside its S-1 registration document.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">SpaceX は公開されています: IPO 後に知っておくべきことすべて</div>
+      <div class="ja-summary">TechCrunchはSpaceXの初期からのスタート、苦闘、そして成功を追ってきた。そして私たちは次に何が起こるかのためにここにいます。 SpaceX の IPO 報道をまとめたこのパッケージには、誰が勝つのか (そしておそらく勝てない人もいるかもしれない)、IPO 前の取引、S-1 登録文書の内容が含まれています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/15/spacex-is-public-everything-you-need-to-know-post-ipo/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 02:55 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/" target="_blank" rel="noopener">Users cry foul after AMD stripped memory crypto from its consumer CPUs</a></div>
+    <div class="card-summary">AMD&#x27;s stripping of TSME from consumer CPUs appears to be a deliberate, covert move.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AMDがコンシューマー向けCPUからメモリ暗号を削除したことを受けてユーザーは不満の声を上げている</div>
+      <div class="ja-summary">AMDが民生用CPUからTSMEを取り除いたのは、意図的な秘密裏の動きのようだ。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/06/users-cry-foul-after-amd-stripped-memory-crypto-from-its-consumer-cpus/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 02:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/15/social-media-ban-children-countries-list/" target="_blank" rel="noopener">These are the countries moving to ban social media for children</a></div>
+    <div class="card-summary">Australia was the first country to issue a ban in late 2025, aiming to reduce the pressures and risks that young users may face on social media, including cyberbullying, social media addiction, and exposure to predators.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">これらの国は子供向けソーシャルメディアの禁止に動いています</div>
+      <div class="ja-summary">オーストラリアは、ネットいじめ、ソーシャルメディア依存症、捕食者への露出など、若者ユーザーがソーシャルメディア上で直面する可能性のあるプレッシャーとリスクを軽減することを目的として、2025年後半に禁止令を発令した最初の国となった。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/15/social-media-ban-children-countries-list/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 01:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://tinywind.io" target="_blank" rel="noopener">TinyWind: A pixel pirate sailing game with real wind physics (380k+ kms sailed)</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">TinyWind: 実際の風の物理学を使用したピクセル海賊セーリング ゲーム (航行距離 38 万キロ以上)</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://tinywind.io" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 00:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/" target="_blank" rel="noopener">Cybersecurity vets protest ‘dangerous’ US government ban on Anthropic’s most powerful models</a></div>
+    <div class="card-summary">A group made up of dozens of cybersecurity experts urged the White House to remove export-control restrictions on Anthropic’s Fable and Mythos models, arguing that the order is going to limit the ability of cybersecurity defenders to secure their software and products.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サイバーセキュリティ退役軍人が、Anthropic の最も強力なモデルに対する「危険な」米国政府の禁止に抗議</div>
+      <div class="ja-summary">数十人のサイバーセキュリティ専門家で構成するグループは、この命令によりサイバーセキュリティ擁護者のソフトウェアや製品を保護する能力が制限されると主張し、アンスロピック社の寓話と神話モデルに対する輸出管理規制を解除するようホワイトハウスに要請した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/15/cybersecurity-vets-protest-dangerous-us-government-ban-on-anthropics-most-powerful-models/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-16 00:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.iroh.computer/blog/v1" target="_blank" rel="noopener">Iroh 1.0</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">イロ1.0</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.iroh.computer/blog/v1" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-16 00:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/15/1138953/man-als-first-power-user-brain-implant-speak-bci/" target="_blank" rel="noopener">This man with ALS is “the first power user” of a brain implant that lets him speak</a></div>
+    <div class="card-summary">Casey Harrell has had a set of electrodes embedded in his brain for almost three years. Harrell, who has amyotrophic lateral sclerosis (ALS) and is paralyzed, first used his brain-computer interface (BCI) to “speak” sentences with the help of a research team in 2023. Since then, Harrell has clocked thousands of hours of use. He…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ALSのこの男性は、話すことができる脳インプラントの「最初のパワーユーザー」です</div>
+      <div class="ja-summary">ケイシー・ハレルさんはほぼ3年間、脳に電極を埋め込まれていた。筋萎縮性側索硬化症（ALS）を患い、麻痺のあるハレルさんは、2023年に研究チームの協力を得て、初めてブレイン・コンピューター・インターフェース（BCI）を使って文章を「話す」ことに成功した。それ以来、ハレルさんは数千時間の使用を記録している。彼…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/15/1138953/man-als-first-power-user-brain-implant-speak-bci/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-15 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/15/1138948/the-download-solid-state-air-conditioning-animal-drugs/" target="_blank" rel="noopener">The Download: cutting AC emissions, and nature’s drug designer</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. These new solid-state ACs promise a cool future. Scientists aren’t so sure. After three years of record-­breaking heat and another scorcher underway, air-conditioning isn’t going anywhere. That’s good for our health,…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: AC 排出量の削減と自然のドラッグデザイナー</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。これらの新しいソリッドステート AC は、素晴らしい未来を約束します。科学者たちはそれほど確信を持っていません。記録的な猛暑が 3 年間続き、さらに猛暑が続いているにもかかわらず、エアコンが効かなくなっています。それは私たちの健康に良いことですが…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/15/1138948/the-download-solid-state-air-conditioning-animal-drugs/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-15 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/the-kratom-civil-war-is-heating-up-and-maha-has-picked-a-side/" target="_blank" rel="noopener">The Kratom Civil War Is Heating Up, and MAHA Has Picked a Side</a></div>
+    <div class="card-summary">Both kratom and one of its active components, 7-OH, have opioid-like effects and are widely available across the US. As health secretary RFK Jr. aims to get 7-OH banned, proponents of both are fighting.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クラトム内戦は激化、MAHAはどちらかの側につくことを選択</div>
+      <div class="ja-summary">クラトムとその有効成分の 1 つである 7-OH はどちらもオピオイド様の効果があり、米国全土で広く入手可能です。 RFKジュニア保健長官は7-OHの禁止を目指しており、両者の支持者らは争っている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/the-kratom-civil-war-is-heating-up-and-maha-has-picked-a-side/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-15 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/harmonyos-7-china-ai-apple-gap/" target="_blank" rel="noopener">HarmonyOS 7 steps into the AI gap Apple left open in China</a></div>
+    <div class="card-summary">Four days after Apple confirmed that Siri AI would not launch in China, Huawei took the stage in Dongguan and declared HarmonyOS 7 the beginning of the agent era. The gap Apple could not fill, Huawei has moved into with an architecture built specifically for it. What HarmonyOS 7 actually changes The headline change is […] The post HarmonyOS 7 steps into the AI gap Apple left open in China…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">HarmonyOS 7 は Apple が中国で放置した AI のギャップに踏み込む</div>
+      <div class="ja-summary">AppleがSiri AIが中国で発売されないことを確認してから4日後、Huaweiは東莞でステージに上がり、HarmonyOS 7がエージェント時代の始まりであると宣言した。 Apple が埋めることができなかったギャップに、Huawei は専用に構築されたアーキテクチャを導入して参入しました。 HarmonyOS 7 の実際の変更点 ヘッドラインの変更は […] Apple が中国で放置していた AI のギャップに HarmonyOS 7 後の記事が登場</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/harmonyos-7-china-ai-apple-gap/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-15 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/how-apple-is-making-your-older-iphone-run-faster-and-stay-alive-longer/" target="_blank" rel="noopener">How Apple Is Making Your Older iPhone Run Faster and Stay Alive Longer</a></div>
+    <div class="card-summary">Even the aging iPhone 11 will feel a little more responsive soon, thanks to improvements in an unsung iOS feature.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple はどのようにして古い iPhone の動作を高速化し、長持ちさせるのか</div>
+      <div class="ja-summary">知られていない iOS 機能の改善のおかげで、老朽化し​​た iPhone 11 もすぐにもう少し反応が良くなるでしょう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/how-apple-is-making-your-older-iphone-run-faster-and-stay-alive-longer/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-15 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/ai-shopping-agents-consumer-trust-accenture-report/" target="_blank" rel="noopener">Accenture: Consumers show growing trust in AI shopping agents</a></div>
+    <div class="card-summary">Consumers are showing a willingness to let AI agents take on more shopping-related tasks, according to new research from Accenture. The company’s 2026 Consumer Pulse Research, based on a survey of 25,590 consumers across 16 countries, found that 74% of respondents would trust a personal AI agent more than their best friend to make a […] The post Accenture: Consumers show growing trust in AI…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アクセンチュア：消費者は AI ショッピング エージェントに対する信頼を高めている</div>
+      <div class="ja-summary">アクセンチュアの新しい調査によると、消費者はAIエージェントにショッピング関連のタスクをさらに引き受けてもらうことに意欲を示しているという。同社の 2026 年の Consumer Pulse Research は、16 か国 25,590 人の消費者を対象とした調査に基づいており、回答者の 74% が、買い物をするのに親友よりパーソナル AI エージェントを信頼すると回答しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/ai-shopping-agents-consumer-trust-accenture-report/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-15 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/15/1138552/solid-state-acs-promise-cool-future/" target="_blank" rel="noopener">These new solid-state ACs promise a cool future. Scientists aren’t so sure.</a></div>
+    <div class="card-summary">After three years of record-­breaking heat, this one is set to be yet another scorcher. Air-conditioning? Not going anywhere. The International Energy Agency projects that the number of AC units will triple by 2050. That’s good for health—one Lancet study estimated that AC prevented nearly 200,000 premature deaths in 2019 alone—but bad for the planet.…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">これらの新しいソリッドステート AC は、素晴らしい未来を約束します。科学者たちはそれほど確信を持っていません。</div>
+      <div class="ja-summary">記録的な猛暑が3年続いた後、今回もさらに猛暑が予想されている。空調？どこにも行かない。国際エネルギー機関は、エアコンの数が 2050 年までに 3 倍になると予測しています。これは健康には良いことです。あるランセットの研究では、エアコンは 2019 年だけで約 20 万人の早死を防いだという推定があります。しかし、地球にとっては悪影響です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/15/1138552/solid-state-acs-promise-cool-future/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-15 17:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/anthropic-export-controls-ai-sovereignty/" target="_blank" rel="noopener">The AI off switch: How Anthropic’s export controls sparked a global AI sovereignty scramble</a></div>
+    <div class="card-summary">Anthropic export controls turned an abstract policy fear into a live one last week: as of June 13, 2026, one US government directive took the company’s two most powerful AI models offline for users everywhere, including, briefly, Anthropic’s own foreign-born employees, and set off alarm bells across Europe and Canada about who really controls the […] The post The AI off switch: How Anthropic’s…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AI のオフ スイッチ: Anthropic の輸出規制が世界規模の AI 主権争奪戦を引き起こした経緯</div>
+      <div class="ja-summary">Anthropic の輸出規制は、抽象的な政策不安を先週現実のものに変えました。2026 年 6 月 13 日、ある米国政府の指令により、Anthropic の 2 つの最も強力な AI モデルが世界中のユーザーに対してオフラインになりました。これには、Anthropic の外国生まれの従業員も含まれ、実際に誰がこの AI を管理しているのかについてヨーロッパとカナダ中に警鐘を鳴らしました。[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/anthropic-export-controls-ai-sovereignty/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
