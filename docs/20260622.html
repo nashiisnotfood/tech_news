@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年06月23日 07:36 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年06月23日 07:36 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>33</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>2</strong></div> <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>3</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>2</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (2)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (3)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (7)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (2)</span> <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (3)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (2)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">7</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 16:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/maketahara_ise/items/8b8c3116f07fcefe2047?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">未経験エンジニアなら、キーボードよりノートを汚せ</a></div>
+    <div class="card-summary">はじめに 小生、未経験から開発職について早一年。今やどんなソースもガリレオのように解読し、もう八面六臂の大活躍で上司もにんまり。なんて力がついていればどれだけ良かっただろう。その実、複雑であるソースを日々腕を組みながら睨み続け、何とか一年を過ごせた初学者に過ぎないのである...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/maketahara_ise/items/8b8c3116f07fcefe2047?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 14:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/seamoooooo/items/5fc5f1921243a50948ae?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">あれ、このプロバイダだけおかしくない？と思った時にみる NewRelic Browser</a></div>
+    <div class="card-summary">Webアプリケーションのフロントエンドを運用していると、「特定のユーザーからだけ画面が開かない・エラーになるという報告が来るが、手元では再現しない」といった厄介な問題に直面することがあります。 今回は、New Relic Browserを使って「特定のインターネットプロバイ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/seamoooooo/items/5fc5f1921243a50948ae?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 12:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/nttdata_tech/articles/e1e7bc7aeb9b20" target="_blank" rel="noopener">Databricksが発表したOLAP×OLTP両刀⚔️の次世代DBアーキテクチャ「LTAP」を深堀る！</a></div>
+    <div class="card-summary">はじめに 株式会社NTTデータ所属、Databricksビジネス推進室の井能です。 Databricks Solutions Architect Championとしても活動しています。 現在サンフランシスコで開催され、私も現地参加している『Data+AI Summit 2026』にて、従来の常識を覆す全く新しいアーキテクチャのデータベース『LTAP』が発表されました！ キーノートより：LTAP（Lake Transactional/Analytical Processing） LTAPは、DatabricksにおけるOLAP機能であるLakehouseと、OLTP機能であるLak...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/nttdata_tech/articles/e1e7bc7aeb9b20" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 11:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/nexta_/articles/be13a2395a5d2a" target="_blank" rel="noopener">Claude Code に「7人の意地悪なQA」を仕込んでテストケースの観点漏れを潰した</a></div>
+    <div class="card-summary">こんにちは、QAエンジニアのAyakaです。 製造業向けSaaS（Blazor＋Radzen / SQL Server で開発）のテスト設計・品質管理を担当しつつ、最近はコーポレートIT寄りの仕事も兼務しています。 テストケースをAIに「書かせる」こと自体は、もう誰でもできます。難しいのは、毎回同じ観点で、同じ品質で書かせることでした。 テストケースを作る作業は、わりと早い段階からAIに手伝ってもらっていました。 課題（PBI）の説明を渡して「テストケースを出して」と頼めば、それらしいものは返ってきます。最初のうちはそれで足りていました。 ただ、しばらく使っていると、AIで作れてはいるの...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/nexta_/articles/be13a2395a5d2a" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 10:53 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/akachiryo/items/c6f24bc95a3c2a46de4d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Railsアプリのメモリが「無駄に」減る話 〜リーク・断片化〜</a></div>
+    <div class="card-summary">お疲れ様です！ 前回はメモリ管理の基本を書きましたが、今回はその続きで メモリリーク と 断片化（フラグメンテーション） についてまとめてみました 前回ふれた「OOM（メモリ枯渇でプロセスが落ちる）」の 原因編 にあたる話です。 興味ある方は読んでいただけると嬉しいです ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/akachiryo/items/c6f24bc95a3c2a46de4d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 08:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Takashi_Masumori/items/9a35fa099a7840a4a394?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Copilot Studio の新しい UI で以前作ったエージェントを作り直してみた</a></div>
+    <div class="card-summary">はじめに 今回は、以下の記事の続きで、以前作成したエージェントを新しい UI で作り直してみました。 特許調査エージェント (自律型) こちらで紹介したものです。結論から言うと同じもの作れませんでした。 エージェントのツールで「Excel のテーブル更新...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Takashi_Masumori/items/9a35fa099a7840a4a394?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-22 08:31 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/KanNishida/items/9ae8a5135726d9cb2be7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">機械学習モデルのパラメーター・チューニング入門：過学習を防ぎ、予測精度を上げる考え方</a></div>
+    <div class="card-summary">機械学習モデルのパラメーター・チューニングの基礎 機械学習モデルを使って予測モデルを作るとき、同じデータを使っていても、モデルの設定によって予測精度が大きく変わることがあります。 たとえば、ランダムフォレスト、XGBoost、LightGBM、CatBoostといったモデ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/KanNishida/items/9ae8a5135726d9cb2be7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">26</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 07:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/a-source-of-mysterious-repeating-radio-signals-from-space-has-been-identified/" target="_blank" rel="noopener">A Source of Mysterious Repeating Radio Signals From Space Has Been Identified</a></div>
+    <div class="card-summary">Researchers say the discovery could be a “Rosetta stone” for cosmic signals.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">宇宙からの謎の繰り返し無線信号の発信源が特定される</div>
+      <div class="ja-summary">研究者らは、今回の発見は宇宙信号の「ロゼッタストーン」となる可能性があると述べている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/a-source-of-mysterious-repeating-radio-signals-from-space-has-been-identified/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 06:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://unsloth.ai/docs/models/glm-5.2" target="_blank" rel="noopener">Unsloth GLM-5.2 – How to Run Locally</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Unsloth GLM-5.2 – ローカルで実行する方法</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://unsloth.ai/docs/models/glm-5.2" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 06:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/meta-pauses-employee-tracking-program-following-internal-security-breach/" target="_blank" rel="noopener">Meta Pauses Employee-Tracking Program Following Internal Data Leak</a></div>
+    <div class="card-summary">The move comes after the company left potentially sensitive data from the initiative exposed internally.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">メタ社、内部データ漏洩を受けて従業員追跡プログラムを一時停止</div>
+      <div class="ja-summary">この動きは、同社がこの取り組みからの潜在的に機密データを社内に公開したままにしていた後に行われた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/meta-pauses-employee-tracking-program-following-internal-security-breach/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 06:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/953945/valve-steam-machine-memory-component-crisis" target="_blank" rel="noopener">Valve describes just how brutal RAM negotiations are in 2026</a></div>
+    <div class="card-summary">Valve&#x27;s Steam Machine finally has a price: a whopping $1,049 for the 512GB configuration or $1,349 for the 2TB version. And those are without bundled controllers, which drive up the cost more. The prices are so high in part because Valve isn&#x27;t subsidizing the hardware, and the company has already indicated that the component crisis […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Valve、2026 年の RAM 交渉がいかに残酷であるかを説明</div>
+      <div class="ja-summary">Valve の Steam Machine の価格は、512GB 構成でなんと 1,049 ドル、2TB バージョンで 1,349 ドルとなりました。また、これらにはコントローラーがバンドルされていないため、コストがさらに上昇します。価格が非常に高いのは、Valve がハードウェアに補助金を出していないことと、同社がすでにコンポーネントの危機を示唆していることが理由の 1 つです […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/953945/valve-steam-machine-memory-component-crisis" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:55 JST</span>
+    </div>
+    <div class="card-title"><a href="https://mrmarket.lol/job-application-asked-for-my-sat-scores/" target="_blank" rel="noopener">Job application asked for my SAT scores</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">求人応募で SAT スコアを求められました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://mrmarket.lol/job-application-asked-for-my-sat-scores/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:53 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/22/the-ai-world-is-getting-loopy/" target="_blank" rel="noopener">The AI world is getting ‘loopy’</a></div>
+    <div class="card-summary">The loop takes agentic AI a step further by authorizing a swarm of agents to work continuously in the background, endlessly.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AIの世界は「ループ状」になりつつある</div>
+      <div class="ja-summary">このループは、エージェントの群れがバックグラウンドで無限に継続的に動作することを許可することで、エージェント AI をさらに一歩進めます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/22/the-ai-world-is-getting-loopy/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/22/microsoft-and-chevron-plan-one-of-the-largest-gas-powered-data-center-projects-in-us/" target="_blank" rel="noopener">Microsoft and Chevron plan one of the largest gas-powered data center projects in US</a></div>
+    <div class="card-summary">Microsoft inked a 20-year power purchase agreement with Chevron, locking in decades of carbon emissions from a new natural gas power plant.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マイクロソフトとシェブロンは、米国最大のガス燃料データセンター プロジェクトの 1 つを計画しています</div>
+      <div class="ja-summary">マイクロソフトはシェブロンと 20 年間の電力購入契約を結び、新しい天然ガス発電所からの数十年間の炭素排出量を固定しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/22/microsoft-and-chevron-plan-one-of-the-largest-gas-powered-data-center-projects-in-us/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/meta-accidentally-let-employees-access-each-others-keystroke-data/" target="_blank" rel="noopener">Meta Exposed Data Internally From Its Controversial Employee-Tracking Program</a></div>
+    <div class="card-summary">Employees had previously raised concerns about the initiative, which involves collecting workers’ keystroke data to train AI models.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">物議を醸している従業員追跡プログラムから内部にデータがメタ公開される</div>
+      <div class="ja-summary">AIモデルをトレーニングするために従業員のキーストロークデータを収集するこの取り組みについて、従業員らは以前から懸念を表明していた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/meta-accidentally-let-employees-access-each-others-keystroke-data/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/" target="_blank" rel="noopener">AI chipmaker Groq confirms $650M raise, re-staffs after Nvidia’s $20B not-acqui-hire deal</a></div>
+    <div class="card-summary">What does an AI company do after one of those not-acqui-hire deals? Groq raised money, is leaning into its neocloud business, and is hiring new execs.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AIチップメーカーGroq、6億5千万ドルの調達を確認、Nvidiaの200億ドルの不採用契約を受けて人員を再配置</div>
+      <div class="ja-summary">AI 企業は、こうした採用不成立の取引の後、何をするのでしょうか? Groq は資金を調達し、ネオクラウド ビジネスに力を入れ、新しい幹部を雇用しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/22/ai-chipmaker-groq-confirms-650m-raise-re-staffs-after-nvidias-20b-not-acqui-hire-deal/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/22/nvidia-wants-to-cut-data-center-water-use-but-thats-not-the-same-as-fixing-ais-water-problem/" target="_blank" rel="noopener">Nvidia wants to cut data center water use, but that’s not the same as fixing AI’s water problem</a></div>
+    <div class="card-summary">Nvidia announced a new cooling system that cuts water use inside the data center. But it does nothing to address AI&#x27;s biggest water use — fossil fuel power plants.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Nvidia はデータセンターの水使用量を削減したいと考えていますが、それは AI の水問題を解決することとは異なります</div>
+      <div class="ja-summary">Nvidia は、データセンター内の水の使用量を削減する新しい冷却システムを発表しました。しかし、AIによる最大の水使用量である化石燃料発電所への対処には何の役にも立たない。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/22/nvidia-wants-to-cut-data-center-water-use-but-thats-not-the-same-as-fixing-ais-water-problem/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 05:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/report/953888/ai-virtual-staging-real-estate-apartment-listings" target="_blank" rel="noopener">AI is cursing renters with the promise of impossible homes</a></div>
+    <div class="card-summary">Joyce, a native New Yorker, didn&#x27;t think finding her first solo apartment in the city would be easy. But she also didn&#x27;t think it&#x27;d be &quot;hell.&quot; After looking at a lot of tiny, overpriced places she described as &quot;shitholes,&quot; Joyce found her dream apartment: a reasonably priced studio in Manhattan. &quot;It was big and airy, […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AIは不可能な住宅を約束して賃貸人を呪っている</div>
+      <div class="ja-summary">生来のニューヨーカーであるジョイスは、市内で初めての一人暮らしアパートを見つけるのが簡単だとは思っていませんでした。しかし、彼女はそれが「地獄」になるとは思っていませんでした。ジョイスさんは、彼女が「くそったれ」と表現した狭くて高すぎる場所をたくさん見た後、夢のアパート、マンハッタンにある手頃な価格のスタジオを見つけました。 「広くて風通しがよかったです […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/report/953888/ai-virtual-staging-real-estate-apartment-listings" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 04:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/22/tata-electronics-a-major-tech-supplier-to-apple-and-tesla-confirms-data-breach/" target="_blank" rel="noopener">Tata Electronics, a major tech supplier to Apple and Tesla, confirms data breach</a></div>
+    <div class="card-summary">The incident comes as Tata Electronics expands its role in global technology supply chains.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アップルとテスラへの大手技術サプライヤーであるタタ・エレクトロニクスがデータ侵害を認める</div>
+      <div class="ja-summary">この事件は、タタ・エレクトロニクスが世界的な技術サプライチェーンにおける役割を拡大する中で起こった。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/22/tata-electronics-a-major-tech-supplier-to-apple-and-tesla-confirms-data-breach/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 04:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.crunchydata.com/blog/british-columbia-and-time-zone-changes" target="_blank" rel="noopener">British Columbia, Time Zones, and Postgres</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ブリティッシュコロンビア州、タイムゾーン、およびPostgres</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.crunchydata.com/blog/british-columbia-and-time-zone-changes" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 04:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/dorukkumkumoglu/optocamzero" target="_blank" rel="noopener">Optocam Zero: a Pi Zero based digital camera made using off the shelf components</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Optocam Zero: 既製のコンポーネントを使用して作られた Pi Zero ベースのデジタル カメラ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/dorukkumkumoglu/optocamzero" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 04:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/06/following-user-outcry-amd-reinstates-memory-encryption-in-consumer-cpus/" target="_blank" rel="noopener">Following user outcry, AMD reinstates memory encryption in consumer CPUs</a></div>
+    <div class="card-summary">Critics saw the move as an underhanded way to steer them toward more costly chips.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ユーザーの抗議を受けて、AMDはコンシューマCPUのメモリ暗号化を復活させた</div>
+      <div class="ja-summary">批評家らはこの動きを、より高価なチップに誘導するための陰険な方法だとみなした。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/06/following-user-outcry-amd-reinstates-memory-encryption-in-consumer-cpus/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 03:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-mushroom-coffee/" target="_blank" rel="noopener">We Tried the Most Popular Mushroom Coffees. These Are the Best (2026)</a></div>
+    <div class="card-summary">“Coffee” made with functional mushrooms like lion’s mane and chaga is all the rage. We tried the most popular brands to find which were the most palatable.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">一番人気のマッシュルームコーヒーを試してみました。これらは最高です (2026)</div>
+      <div class="ja-summary">ライオンのたてがみやチャーガなどの機能性キノコを使った「コーヒー」が大流行。最も人気のあるブランドを試して、どれが最もおいしいかを見つけました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-mushroom-coffee/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-23 03:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/" target="_blank" rel="noopener">Three things to watch amid Anthropic’s latest feud with the government</a></div>
+    <div class="card-summary">This story originally appeared in The Algorithm, our weekly newsletter on AI. To get stories like this in your inbox first, sign up here. For those of you enjoying your summer unaware of Anthropic’s latest feud with the US government, here’s a recap: In April the company said it had built an AI model called Mythos…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Anthropic と政府との最近の確執の中で注意すべき 3 つのこと</div>
+      <div class="ja-summary">このストーリーは元々、AI に関する週刊ニュースレター『The Algorithm』に掲載されました。このような記事を受信トレイで受信するには、まずここにサインアップしてください。 Anthropic と米国政府との最近の確執を知らずに夏を楽しんでいる人のために、ここで要約してみましょう: 同社は 4 月に、Mythos と呼ばれる AI モデルを構築したと発表しました…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/22/1139424/three-things-to-watch-amid-anthropics-latest-feud-with-the-government/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 03:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/953458/apple-watch-se-3-prime-day-deal-sale" target="_blank" rel="noopener">The Apple Watch SE 3 is just $199 for Prime Day</a></div>
+    <div class="card-summary">The Apple Watch SE 3 is at an all-time low of $199, making the sleeper hit of last year’s Apple Watches an even better value. While the Series 11 and Ultra 3 were iterative updates, the SE 3 was a wide-ranging glow-up that added an always-on display, gestures like double tap and wrist flick, a […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple Watch SE 3はプライムデーでわずか199ドル</div>
+      <div class="ja-summary">Apple Watch SE 3 は史上最低価格の 199 ドルで、昨年のスリーパーヒット商品である Apple Watch がさらにお買い得になっています。 Series 11 と Ultra 3 は反復的なアップデートでしたが、SE 3 は、常時表示のディスプレイ、ダブルタップや手首のフリックなどのジェスチャー、[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/953458/apple-watch-se-3-prime-day-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 03:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/953615/steam-machine-price-game-consoles-future-ps6-project-helix" target="_blank" rel="noopener">The Steam Machine is the start of an even more expensive future for game consoles</a></div>
+    <div class="card-summary">It&#x27;s no secret that just about every aspect of video games is getting more expensive. Game consoles are getting regular price hikes, PC components are spiking in cost, and the golden age of affordable handhelds is over, all largely due to the global RAM shortage, which has had a similarly costly impact on PC gaming, […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Steam Machine はゲーム コンソールのさらに高価な未来の始まりです</div>
+      <div class="ja-summary">ビデオゲームのあらゆる側面が高価になっていることは周知の事実です。ゲーム機の価格は定期的に値上げされ、PC コンポーネントの価格は高騰し、手頃な価格の携帯端末の黄金時代は終わりました。これはすべて世界的な RAM 不足が主な原因であり、PC ゲームにも同様のコストのかかる影響を及ぼしています。[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/953615/steam-machine-price-game-consoles-future-ps6-project-helix" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 02:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/953596/google-deepmind-a24-studio-ai-partnership" target="_blank" rel="noopener">Google invests in A24 to build AI movie tools</a></div>
+    <div class="card-summary">Google&#x27;s DeepMind AI lab is teaming up with A24 to develop new movie production technologies that aim to help future filmmakers &quot;expand their storytelling possibilities.&quot; As part of this new research and development collaboration, The Wall Street Journal reports that Google is investing &quot;around $75 million&quot; into A24, marking the first time the search giant […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google、AI動画ツール構築のためA24に投資</div>
+      <div class="ja-summary">Google の DeepMind AI ラボは A24 と協力して、将来の映画制作者が「ストーリーテリングの可能性を広げる」ことを目的とした新しい映画制作テクノロジーを開発しています。この新たな研究開発協力の一環として、ウォール・ストリート・ジャーナルは、GoogleがA24に「約7,500万ドル」を投資し、検索大手としては初めてのことであると報じた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/953596/google-deepmind-a24-studio-ai-partnership" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 02:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://store.steampowered.com/news/group/45479024/view/685257114654870245" target="_blank" rel="noopener">Steam Machine launches today</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Steam Machine が本日発売</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://store.steampowered.com/news/group/45479024/view/685257114654870245" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-23 02:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/ninja-slushi-amazon-prime-day-deal-2026/" target="_blank" rel="noopener">The Ninja Slushi Is Only $200: Early Amazon Prime Day Deal 2026</a></div>
+    <div class="card-summary">Two years after it turned Marg Monday into a daily, the Ninja Slushi is only $200. That’s the cheapest deal ever.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Ninja Slushi はわずか 200 ドル：2026 年の Amazon プライムデー早期セール</div>
+      <div class="ja-summary">マーグ・マンデーを日刊紙に変えてから 2 年が経ち、Ninja Slushi の価格はわずか 200 ドルです。これまでで最も安い取引です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/ninja-slushi-amazon-prime-day-deal-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-23 01:11 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/mitigating-vendor-lock-in-sakana-ai-fugu-multi-agent-models/" target="_blank" rel="noopener">Mitigating vendor lock-in with Sakana AI Fugu multi-agent models</a></div>
+    <div class="card-summary">Sakana AI launched Fugu to orchestrate multi-agent operations and mitigate single-vendor dependency risks in enterprise deployments. Enterprises face operational vulnerabilities when relying entirely on monolithic AI APIs. Japanese AI firm Sakana AI designed Fugu as a response to these concentration risks by creating an orchestration language model that calls upon a pool of varied models […] The…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Sakana AI Fugu マルチエージェントモデルでベンダーロックインを軽減</div>
+      <div class="ja-summary">Sakena AI は、マルチエージェントの運用を調整し、エンタープライズ展開における単一ベンダー依存のリスクを軽減するために Fugu を立ち上げました。モノリシック AI API に全面的に依存すると、企業は運用上の脆弱性に直面します。日本の AI 企業、Sakana AI は、さまざまなモデルのプールを呼び出すオーケストレーション言語モデルを作成することで、これらの集中リスクに対応するために Fugu を設計しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/mitigating-vendor-lock-in-sakana-ai-fugu-multi-agent-models/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-22 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/22/1139385/the-download-rogfast-subsea-tunnel-flexible-data-centers/" target="_blank" rel="noopener">The Download: record-breaking subsea tunnels and flexible data centers</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Inside the world’s deepest and longest subsea road tunnel —Niall Firth I’m currently around 1,000 feet beneath the North Sea, in a dark, dank cave. It smells weird. And I’m increasingly…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: 記録破りの海底トンネルと柔軟なデータセンター</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。世界で最も深く、最も長い海底道路トンネルの内部 - ナイル・ファース 私は現在、北海の約 1,000 フィートの、暗くじめじめした洞窟の中にいます。変な匂いがする。そして私はますます…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/22/1139385/the-download-rogfast-subsea-tunnel-flexible-data-centers/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-22 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/loreal-maybelline-virtual-try-on-chatgpt/" target="_blank" rel="noopener">L’Oréal brings Maybelline virtual try-on to ChatGPT</a></div>
+    <div class="card-summary">L’Oréal has announced a collaboration with OpenAI that will bring Maybelline New York’s virtual makeup try-on feature into ChatGPT. The announcement was made at VivaTech 2026. The partnership covers consumer-facing shopping tools, product discovery, advertising pilots, research, and internal content production. The collaboration also covers L’Oréal’s internal use of AI in research, formulation,…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ロレアルがChatGPTにメイベリンのバーチャル試着を導入</div>
+      <div class="ja-summary">ロレアルは、メイベリン ニューヨークのバーチャル メイクアップ試着機能を ChatGPT に導入する OpenAI とのコラボレーションを発表しました。この発表は VivaTech 2026 で行われました。この提携は、消費者向けショッピング ツール、製品発見、広告パイロット、調査、社内コンテンツ制作を対象としています。この提携には、ロレアルの研究、配合、共同作業における AI の社内使用も含まれます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/loreal-maybelline-virtual-try-on-chatgpt/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-22 17:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/22/1138821/inside-worlds-deepest-longest-subsea-road-tunnel/" target="_blank" rel="noopener">Inside the world’s deepest and longest subsea road tunnel</a></div>
+    <div class="card-summary">It’s cold, it’s very, very noisy, and—if I can be quite honest with you—I’m not feeling super relaxed. I’m currently around 300 meters, or 1,000 feet, beneath the North Sea, in a dark, dank cave. It smells weird. And I am increasingly aware of the pressure from millions of tons of seawater just above my…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">世界で最も深くて長い海底道路トンネルの内部</div>
+      <div class="ja-summary">寒いし、とても騒がしいし、正直に言うと、とてもリラックスした気分ではありません。私は現在、北海の海底約 300 メートル、つまり 1,000 フィートの暗くてじめじめした洞窟の中にいます。変な匂いがする。そして、私は自分の真上にある何百万トンもの海水からの圧力をますます認識しています…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/22/1138821/inside-worlds-deepest-longest-subsea-road-tunnel/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
