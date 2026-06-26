@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年06月27日 07:29 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年06月27日 07:29 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>30</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>2</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>2</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (1)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (2)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (7)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (2)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (2)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">7</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 17:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tuanphan/items/5179c23d9b5a25ceeb2f?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【Frontend CSS – パート14】Style Query・Container Naming・実践パターンまで徹底解説</a></div>
+    <div class="card-summary">ご注意 この記事は AI のサポートを受けていますが 1. おさらい：なぜ Container Query が必要か 第13回で話しましたが、media query が知っているのは viewport だけ — カードが sidebar 280px の中にある...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tuanphan/items/5179c23d9b5a25ceeb2f?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 17:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/nogataka/items/2783f25816699e8318cc?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIエージェントにサボらせないSkillsの書き方 — 7つの設計手法＋サボり度測定Skill付き</a></div>
+    <div class="card-summary">はじめに AIコーディングエージェントでスキルを実行して、出てきた成果物が「それっぽいけど詰めが甘い」と感じたことはないでしょうか。 色や余白がだいたいで合わせてあります。正常系しか実装されていません。テストは緑なのに本番では動きません。エラーは握りつぶされ、肝心の分岐が...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/nogataka/items/2783f25816699e8318cc?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 14:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/newleaf/items/9f0b7adc57b99a998879?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">ティックデータから推定するOrder Imbalanceの性質</a></div>
+    <div class="card-summary">はじめに ザラバの約定は、板に指値を提示していた側の注文（パッシブサイド）と、その板を食いに行った側の注文（アグレッシブサイド）がぶつかることで成立します。 能動的な注文であるアグレッシブサイドは、なんらかの情報を持っていると考えられることから、アグレッシブサイドが買い注...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/newleaf/items/9f0b7adc57b99a998879?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 11:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/mkj/articles/3a4d70ac4e8fb4" target="_blank" rel="noopener">Kaggleコンペ紹介：NVIDIA Nemotron Model Reasoning Challenge</a></div>
+    <div class="card-summary">はじめに こんにちは、松尾研究所 データサイエンティストの力岡です。 今回、Kaggleで開催された 「NVIDIA Nemotron Model Reasoning Challenge」 コンペに参加し、金メダルを獲得することができました。本記事では、コンペの概要と公開ベースライン、私達の取り組み、そして上位解法について紹介します。 https://matsuo-institute.com/2026/06/1297/ ! 本記事は私の理解として記述をしているため、一部に誤りや解釈の相違が含まれる可能性があります。あらかじめご了承ください。 コンペ概要 https://www....</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/mkj/articles/3a4d70ac4e8fb4" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 10:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/nogataka/items/8f99cc6fc97541a14b76?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIエージェントを“セキュリティのプロ”に変える817個のスキル集 — Claude Code / Codex / Cursor / Copilot対応OSSを読み解く</a></div>
+    <div class="card-summary">はじめに 「AIエージェントにペネトレーションテスト（侵入テスト）やインシデント対応を任せたい」。 そう考える人は増えていますが、いざ任せてみると、エージェントが現場の細かい道具立てを知らないことに気づきます。 たとえば、Volatility3（メモリの中身を解析するツー...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/nogataka/items/8f99cc6fc97541a14b76?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 10:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/h-tanabe/items/c21adb5f80908ba8eb51?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">React Profilerを試す</a></div>
+    <div class="card-summary">はじめに ReactのDeveloper Toolでコンポーネント描画のパフォーマンスをパパっと調べたいと思います。 結論 React Developer Toolsで比較的簡単に描画パフォーマンスを確認できます。 やったこと 基本的には以下の記事に記載してあ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/h-tanabe/items/c21adb5f80908ba8eb51?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-06-26 09:57 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/gatechnologies/articles/aws-summit2026-gameday" target="_blank" rel="noopener">AWS Summit Japan 2026 GameDay参戦レポ：データサイエンティストが当日滑り込みで銅メダルを獲得するまで</a></div>
+    <div class="card-summary">はじめに こんにちは。GA technologiesのData本部 Applied ML部でデータサイエンスをしている酒井です。 普段は機械学習モデルの開発からMLパイプラインの構築・運用までを担当していますが、先日開催された AWS Summit Japan 2026 にて、大人気の体験型ワークショップ AWS GameDay に参加してきました！ 今回は、インフラ専任エンジニアではない私が、GameDayで3位（銅メダル獲得）という結果をチームで残すまでの体験記をお届けします。 「AWSインフラは実務でガッツリ触っていないから」「データサイエンティストだから」などとGameDay...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/gatechnologies/articles/aws-summit2026-gameday" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">23</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 07:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/958179/prime-day-what-i-bought-vampliers-stripped-screw-extractor" target="_blank" rel="noopener">After covering Prime Day for 36 hours over four days, this is the one thing I bought</a></div>
+    <div class="card-summary">We’ve covered so many deals during Prime Day that my head is spinning. But after four days of doing our damndest to try and help folks save money, the thing I’m most hyped for is a simple tool for fixing my most egregious mistakes. I bought a pair of Vampliers. If you’re unfamiliar, Vampliers are […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">プライムデーを4日間36時間取材した結果、私が買ったのはこれだけ</div>
+      <div class="ja-summary">プライムデーではあまりにも多くのセールを取り上げてきたので、頭がクラクラしてしまいました。しかし、人々がお金を節約できるよう全力を尽くして 4 日間過ごした後、私が最も期待しているのは、自分の最もひどい間違いを修正するためのシンプルなツールです。ヴァンプライヤーを一足購入しました。ご存知ない方のために説明すると、ヴァンプリアーは […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/958179/prime-day-what-i-bought-vampliers-stripped-screw-extractor" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 07:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/amazon-prime-day-deal-2026-fellow-series-1/" target="_blank" rel="noopener">Prime Day Deal 2026: Fellow Espresso Series 1 Is $200 Off</a></div>
+    <div class="card-summary">This is the last day for deals on Fellow Series 1 espresso machine, Fellow Aiden, and Fellow Stagg kettle. Each is the best in their category.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">2026 年のプライムデー セール: Fellow Espresso シリーズ 1 が 200 ドル割引</div>
+      <div class="ja-summary">フェロー シリーズ 1 エスプレッソ マシン、フェロー エイデン、フェロー スタッグ ケトルのセールは本日が最終日です。それぞれがそのカテゴリーで最高のものです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/amazon-prime-day-deal-2026-fellow-series-1/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/26/corgi-the-buzzy-y-combinator-backed-insurance-tech-startup-says-it-didnt-steal-an-open-source-product/" target="_blank" rel="noopener">Corgi, the buzzy Y Combinator-backed insurance tech startup, says it didn’t steal an open source product</a></div>
+    <div class="card-summary">Corgi became embroiled in controversy when Papermark accused it of stealing its software. Corgi says it did not, raising new questions about vibe coding.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Y Combinator が支援する話題の保険技術スタートアップ企業 Corgi は、オープンソース製品を盗んだわけではないと主張</div>
+      <div class="ja-summary">Corgi は、ソフトウェアを盗んだとして Papermark が告発したとき、論争に巻き込まれた。コーギーはそうではなかったと述べ、バイブコーディングに関する新たな疑問を引き起こしている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/26/corgi-the-buzzy-y-combinator-backed-insurance-tech-startup-says-it-didnt-steal-an-open-source-product/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/prime-day-vacuum-deals-06-26-2026/" target="_blank" rel="noopener">Best Prime Day Vacuum Deals Offer Up to 42% Off (2026): Shark, Dyson, Bissell</a></div>
+    <div class="card-summary">Move over, spring cleaning. These vacuum deals will give your home the cleanest summer yet thanks to Amazon Prime Day.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">最高のプライムデー掃除機セールが最大 42% オフ (2026 年): Shark、Dyson、Bissell</div>
+      <div class="ja-summary">引っ越して、春の大掃除です。これらの掃除機セールは、Amazon Prime Day のおかげで、あなたの家に今までで一番きれいな夏をもたらします。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/prime-day-vacuum-deals-06-26-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-prime-day-laptop-deals-06-26-2026/" target="_blank" rel="noopener">The Best Prime Day Laptop Deals on My Personal Favorites</a></div>
+    <div class="card-summary">From MacBooks to gaming laptops, these are the very best deals on some of my very favorite laptops for Amazon Prime Day.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">私の個人的なお気に入りのベスト プライムデー ラップトップ セール</div>
+      <div class="ja-summary">MacBook からゲーム用ノートパソコンまで、私のお気に入りのノートパソコンの Amazon Prime Day のお買い得情報をご紹介します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-prime-day-laptop-deals-06-26-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/957473/prime-day-2026-fun-gadgets-under-100-deal-sale" target="_blank" rel="noopener">Our favorite Prime Day gadgets under $100 you don’t need but will really want</a></div>
+    <div class="card-summary">Prime Day has a funny way of convincing you to buy things you weren’t shopping for in the first place. You sign on intending to buy something sensible you actually need, like a pack of USB-C cables, and an hour later you’ve also added a gadget that can press your coffee maker’s power button and […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">必要はないけど本当に欲しくなる、100 ドル未満のプライムデーのお気に入りガジェット</div>
+      <div class="ja-summary">プライムデーには、最初から買うつもりのなかったものを買うよう説得する面白い方法があります。 USB-C ケーブルのパックなど、実際に必要なものを購入するつもりでサインオンすると、1 時間後にはコーヒー メーカーの電源ボタンを押して […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/957473/prime-day-2026-fun-gadgets-under-100-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/Tessil/hopscotch-map" target="_blank" rel="noopener">A C++ implementation of a fast hash map and hash set using hopscotch hashing</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">石けり遊びハッシュを使用した高速ハッシュ マップとハッシュ セットの C++ 実装</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/Tessil/hopscotch-map" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://blog.doubleword.ai/frontier-os-llm" target="_blank" rel="noopener">The gap between open weights LLMs and closed source LLMs</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">オープンウェイト LLM とクローズドソース LLM の間のギャップ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://blog.doubleword.ai/frontier-os-llm" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/how-people-in-china-keep-outsmarting-anthropics-geolocation-restrictions/" target="_blank" rel="noopener">How People in China Keep Outsmarting Anthropic’s Geolocation Restrictions</a></div>
+    <div class="card-summary">As Anthropic tightens restrictions on access to Claude in China, users keep finding new workarounds, from proxy services to fake identities sourced on Telegram.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国の人々はどのようにして Anthropic の位置情報制限を突破し続けるのか</div>
+      <div class="ja-summary">Anthropic が中国でクロードへのアクセス制限を強化する中、ユーザーはプロキシ サービスから Telegram をソースとする偽の ID に至るまで、新たな回避策を見つけ続けています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/how-people-in-china-keep-outsmarting-anthropics-geolocation-restrictions/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 06:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/samsungs-odyssey-oled-monitors-prime-day-2026/" target="_blank" rel="noopener">Samsung’s Excellent OLED Monitors Are Up to 36 Percent Off for Prime Day</a></div>
+    <div class="card-summary">Samsung makes some of the very best OLED gaming monitors, and they’ve never been this affordable.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Samsung の優れた OLED モニターがプライムデーで最大 36% オフ</div>
+      <div class="ja-summary">Samsung は最高の OLED ゲーム モニターをいくつか製造していますが、これほど手頃な価格になったことはありません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/samsungs-odyssey-oled-monitors-prime-day-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 05:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/957435/prime-day-2026-best-tech-deals-sale-day-four" target="_blank" rel="noopener">It’s the last day of Prime Day — here are over 140 great deals to choose from</a></div>
+    <div class="card-summary">We’ve arrived at the final day of Prime Day, which at this point should probably be called “Prime Week.” We’ve found discounts on all manner of gadgets, including TVs, smart home tech, chargers, headphones, and more. Some of the best deals have started selling out at some retailers, so if you’ve been craving a popular […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">プライムデーの最終日です - 140 以上のお買い得品からお選びいただけます</div>
+      <div class="ja-summary">プライムデーの最終日を迎えました。この時点ではおそらく「プライムウィーク」と呼ぶべきでしょう。テレビ、スマート ホーム テクノロジー、充電器、ヘッドフォンなど、あらゆる種類のガジェットが割引価格になっていることがわかりました。一部の小売店では、最もお得な商品の一部が売り切れ始めているため、人気のある商品を欲しがっている場合は […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/957435/prime-day-2026-best-tech-deals-sale-day-four" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 04:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/956830/prime-day-macbook-deals-apple-price-hikes" target="_blank" rel="noopener">These are the best deals you can still get on MacBooks before Apple’s price hike kicks in</a></div>
+    <div class="card-summary">Apple just raised the prices on Macs and iPads in response to the rising costs of memory chips, right in the middle of Amazon Prime Day. That means existing discounts (even small ones) on Apple laptops like the MacBook Neo, MacBook Air, and MacBook Pro just became significantly better deals. As an example, the 13-inch […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">これらは、Apple の値上げが始まる前に MacBook でまだ入手できる最高のセールです</div>
+      <div class="ja-summary">AppleはちょうどAmazon Prime Dayの真っ最中に、メモリチップのコスト上昇に対応してMacとiPadの価格を引き上げたばかりだ。つまり、MacBook Neo、MacBook Air、MacBook Pro などの Apple ノートパソコンの既存の割引 (たとえ少額であっても) が大幅に割引になったということです。例として、13 インチ […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/956830/prime-day-macbook-deals-apple-price-hikes" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 04:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/26/novak-djokovic-has-a-new-job-advisor-to-private-equity-firm-general-atlantic/" target="_blank" rel="noopener">Novak Djokovic has a new job — advisor to private equity firm General Atlantic</a></div>
+    <div class="card-summary">General Atlantic has tapped tennis legend Novak Djokovic to serve as a global strategic advisor.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ノバク・ジョコビッチは新しい仕事に就いた - プライベート・エクイティ会社ジェネラル・アトランティックのアドバイザー</div>
+      <div class="ja-summary">ゼネラル・アトランティックは、テニス界のレジェンドであるノバク・ジョコビッチを世界戦略アドバイザーとして起用した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/26/novak-djokovic-has-a-new-job-advisor-to-private-equity-firm-general-atlantic/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 03:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/951901/prime-day-video-games-switch-playstation-xbox-pc-deal-sale" target="_blank" rel="noopener">Our 36 favorite gaming deals on Prime Day for Switch, PS5, and Xbox</a></div>
+    <div class="card-summary">There are some some sizable discounts on new and recent hits from the last few years for the Nintendo Switch 2, PlayStation 5, and the Xbox Series X / S for Prime Day. Most Amazon game deals are physical copies, but every so often there’s a better or equivalent price on digital versions, as well […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Switch、PS5、Xbox のプライムデーで人気のゲーム セール 36 件</div>
+      <div class="ja-summary">プライムデーでは、Nintendo Switch 2、PlayStation 5、Xbox Series X / S について、過去数年の新作や最近のヒット作が大幅に割引されます。 Amazon のゲームのセールのほとんどは物理的なコピーですが、場合によっては、デジタル バージョンでもより良い価格または同等の価格が販売されることもあります。[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/951901/prime-day-video-games-switch-playstation-xbox-pc-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 03:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/" target="_blank" rel="noopener">OpenAI limits GPT-5.6 rollout after government request, says restrictions shouldn’t be the norm</a></div>
+    <div class="card-summary">“We don’t believe this kind of government access process should become the long-term default,” says OpenAI. “It keeps the best tools from users, developers, enterprises, cyber defenders, and global partners who need them.”</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI、政府の要請を受けてGPT-5.6の展開を制限、制限は標準的であるべきではないと主張</div>
+      <div class="ja-summary">「私たちは、この種の政府によるアクセスプロセスが長期的なデフォルトになるべきだとは考えていません」とOpenAIは言う。 「最高のツールを、それらを必要とするユーザー、開発者、企業、サイバー防御者、グローバルパートナーから確保します。」</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 03:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.washingtonpost.com/technology/2026/06/26/openai-says-us-government-will-vet-users-its-latest-ai-model/" target="_blank" rel="noopener">U.S. government will decide who gets to use GPT-5.6</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">誰が GPT-5.6 を使用できるかは米国政府が決定する</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.washingtonpost.com/technology/2026/06/26/openai-says-us-government-will-vet-users-its-latest-ai-model/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 03:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/06/26/openai-poaches-uber-india-chief-to-lead-its-biggest-market-outside-the-u-s/" target="_blank" rel="noopener">OpenAI poaches Uber India chief to lead its biggest market outside the US</a></div>
+    <div class="card-summary">The hire marks OpenAI&#x27;s latest push into India, expanding offices, partnerships and hiring.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI、ウーバー・インディアの責任者を引き抜いて米国外の最大市場を率いる</div>
+      <div class="ja-summary">この雇用は、OpenAIのインドへの最近の進出を示し、オフィス、パートナーシップ、雇用を拡大している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/06/26/openai-poaches-uber-india-chief-to-lead-its-biggest-market-outside-the-u-s/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 02:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/video/why-everyone-from-openai-to-spacex-is-building-their-own-chips-and-turning-up-the-heat-on-nvidia/" target="_blank" rel="noopener">Why everyone from OpenAI to SpaceX is building their own chips (and turning up the heat on Nvidia)</a></div>
+    <div class="card-summary">Nvidia has dominated the AI chip market for years, but the era of total dependence might be ending. OpenAI just shared its plans to spice things up with Jalapeño, its custom inference chip built with Broadcom, joining Google, Apple, and SpaceX in a growing list of companies building their way out of single-supplier risk. The goal is less of a […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI から SpaceX まで、誰もが独自のチップを開発している理由 (そして Nvidia への熱意を高めている)</div>
+      <div class="ja-summary">Nvidia は長年にわたって AI チップ市場を独占してきましたが、完全に依存する時代は終わりを迎えようとしています。 OpenAIは、Broadcomと共同開発した同社のカスタム推論チップ「Jalapeño」で事態を盛り上げる計画を発表したばかりで、Google、Apple、SpaceXに加え、単一サプライヤーのリスクから抜け出す方法を構築する企業の増加リストに加わることになる。目標はそれほど重要ではありません […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/video/why-everyone-from-openai-to-spacex-is-building-their-own-chips-and-turning-up-the-heat-on-nvidia/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 02:06 JST</span>
+    </div>
+    <div class="card-title"><a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank" rel="noopener">Previewing GPT‑5.6 Sol: a next-generation model</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">次世代モデル GPT‑5.6 Sol をプレビュー</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-06-27 01:40 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/workweave/router" target="_blank" rel="noopener">Show HN: Smart model routing directly in Claude, Codex and Cursor</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">HN を表示: Claude、Codex、および Cursor で直接スマート モデル ルーティングを実行</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/workweave/router" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-06-26 21:55 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/sap-aligns-commerce-data-for-ai-personalisation/" target="_blank" rel="noopener">SAP aligns commerce data for AI personalisation</a></div>
+    <div class="card-summary">SAP aligns fragmented commerce data structures to enable operational AI personalisation at the execution layer. Enterprise leadership routinely establishes objectives to anticipate customer requirements and deliver relevant interactions across digital touchpoints. However, the actual infrastructure running inside these enterprises fails to support systematic execution at the required volume.…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">SAP が AI パーソナライゼーションのためにコマース データを調整</div>
+      <div class="ja-summary">SAP は、断片化されたコマース データ構造を調整して、実行レイヤーでのオペレーショナル AI のパーソナライゼーションを可能にします。企業のリーダーは、顧客の要件を予測し、デジタル タッチポイント全体で適切なインタラクションを提供するという目標を定期的に確立します。ただし、これらの企業内で実行されている実際のインフラストラクチャは、必要な量での体系的な実行をサポートできません。レコム</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/sap-aligns-commerce-data-for-ai-personalisation/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-26 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/26/1139780/the-download-heatwaves-brain-health-openai-restrictions/" target="_blank" rel="noopener">The Download: brain-melting heatwaves and unprecedented OpenAI restrictions</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Heat waves mess with your brain. Scientists are trying to figure out why. —Jessica Hamzelou It’s been hot in London this week. Really hot. A dangerous heat wave has hit Western…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: 脳が溶けるような熱波と前例のない OpenAI 制限</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。熱波は脳を混乱させます。科学者たちはその理由を解明しようとしている。 —ジェシカ・ハムゼロウ 今週のロンドンは暑い日が続いています。本当に暑いです。危険な熱波が西部を襲いました…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/26/1139780/the-download-heatwaves-brain-health-openai-restrictions/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-06-26 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/06/26/1139760/heat-waves-mess-with-your-brain-scientists-are-trying-to-figure-out-why/" target="_blank" rel="noopener">Heat waves mess with your brain. Scientists are trying to figure out why.</a></div>
+    <div class="card-summary">It’s been hot in London this week. Really hot. A dangerous heat wave has hit Western Europe. Yesterday, the UK recorded its highest ever June temperature at 36.1 °C (about 97 °F). But as the weather app on my phone confirmed, it felt like 39 °C. It’s frightening that we are seeing such temperatures in…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">熱波は脳を混乱させます。科学者たちはその理由を解明しようとしている。</div>
+      <div class="ja-summary">今週のロンドンは暑いですね。本当に暑いです。危険な熱波が西ヨーロッパを襲いました。昨日、英国は6月としては史上最高気温となる36.1℃（約97°F）を記録した。しかし、携帯電話の天気予報アプリで確認したところ、体感温度は 39 °C でした。このような気温が続いているのは恐ろしいことです…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/06/26/1139760/heat-waves-mess-with-your-brain-scientists-are-trying-to-figure-out-why/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
