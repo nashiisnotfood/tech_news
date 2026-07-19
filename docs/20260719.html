@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年07月20日 07:19 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年07月20日 07:19 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>30</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>5</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (10)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (5)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">10</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 17:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/natsugure/items/e12091867becb931bce0?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【個人開発】マルチレポでnoteクリエイター向け統計ダッシュボードを作ってみた【React / Hono / Chrome拡張】</a></div>
+    <div class="card-summary">はじめに 私は以前ブログサービスのnoteで記事を書いていたのですが、note公式で実装されているクリエイター向け統計画面（ダッシュボード）には「固定された期間の数字しか見られない」「記事を横断して推移を見られない」という不満をずっと感じていました。 「これ、自分で作った...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/natsugure/items/e12091867becb931bce0?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 17:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/potato11/items/6f010e9bd4d74f88c855?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【個人開発】セルフネイルのネイルレシピアプリを開発しました！（React/Supabase/PWA）</a></div>
+    <div class="card-summary">はじめに 最近セルフネイルを始めたのですが、ショート動画を見て「このデザインを真似したい！」と思っても、使用しているネイル用品が動画内に散らばっていたり、そもそも何のアイテムを使っているのか紹介されていなかったりすることがあります。 そこで、ネイルデザインだけでなく「使用...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/potato11/items/6f010e9bd4d74f88c855?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 16:48 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/r_kaga/articles/a27a3879dd3ce4" target="_blank" rel="noopener">ゴールまで自走するだけではない？——ループエンジニアリングの本質はどこにあるのか</a></div>
+    <div class="card-summary">ループエンジニアリングという言葉が流行っています。エージェントが人の手を離れて、コーディングから何から最後まで自走する。そういう話として語られることが多い気がします。 ただ、少し引っかかってもいました。それって、昔からあった話じゃなかったっけ? 一方で最近は、Software Factoryという言葉も聞くようになりました。 エージェントを都度呼び出すのではなく、仕事が来れば仕組みが起動するようにして、人間は設計者や監督者として関わる。そういう世界観です。 この記事では、この引っかかりから出発して、ループエンジニアリングの本質はむしろこのソフトウェアファクトリーが指している側にあるんじゃ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/r_kaga/articles/a27a3879dd3ce4" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 16:35 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/tkou15/articles/bonsai-1bit-llm-guide" target="_blank" rel="noopener">1-bit LLM「Bonsai」活用ガイド — 1.15GB で動く 8B モデルをローカルで使い倒す</a></div>
+    <div class="card-summary">はじめに 2026年3月31日、Caltech 発のスタートアップ PrismML が 1-bit LLM ファミリー Bonsai を発表しました。8B クラスのモデルがわずか 1.15GB、必要メモリ約 1.5GB で動作し、GPU なしの普通の PC でも実用的な速度で推論できるとして大きな話題になっています。 Bonsai の注目ポイントは次の3つです。 真の 1-bit モデル — 量子化ではなく、最初から 1-bit（+1 / -1 のみ）で学習 圧倒的な省フットプリント — 8B モデルで 1.15GB。同クラスの 16-bit モデルの約 1/14 Apach...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/tkou15/articles/bonsai-1bit-llm-guide" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 15:35 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/nuresen/articles/claude-code-ime-wezterm" target="_blank" rel="noopener">Claude Codeの日本語入力が荒ぶる問題がWezTerm Nightlyビルドで解決した</a></div>
+    <div class="card-summary">TL;DR WSL2 + WezTerm で Claude Code の TUI に日本語入力すると表示が乱れる（変換候補が変な場所に出る、IME 切り替え直後に荒ぶる） 原因は WezTerm 安定版（20240203）が2年以上更新されておらず、IME まわりの修正が nightly にしか入っていないこと nightly ビルドに更新するだけで解決。ime_preedit_rendering = &quot;System&quot; などの設定変更は不要だった 環境 項目 内容 OS Windows 11 + WSL2 (Ubuntu) ターミナル WezTerm（Wi...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/nuresen/articles/claude-code-ime-wezterm" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 15:19 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/hokutoh/items/575cc42b5dafe8697447?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">skills.shのおすすめスキルまとめ</a></div>
+    <div class="card-summary">はじめに 「skillsが便利らしい」こう聞いて「じゃあ入れようかでも何をどうやって？」で止まっている人もいらっしゃるのではないでしょうか。 そこでskillsがたくさん置いてあるskills.shの登場です。 ・・・とか言われましても「超たくさんあるんだけど、結局どれ入...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/hokutoh/items/575cc42b5dafe8697447?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 14:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/syu_tan/books/chatgpt-satellite-image-intro" target="_blank" rel="noopener">ChatGPTで始める衛星画像処理入門</a></div>
+    <div class="card-summary">生成AIで対話のみの成果物で知識なしでも JAXA の公式配信経路やSTACからデータを取得し、Google Colab で処理します。 用意した題材に、生成AIへ任せてよいこと、人間とコードで検証すべきことを整理します。事前データがあるので、衛星画像処理の入門書としても活用できます。</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/syu_tan/books/chatgpt-satellite-image-intro" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 13:36 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Nakanishi_RareTECH/items/16fd0b847aa68c152e00?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">セキュリティの勉強になるサイト138選(2026年版)</a></div>
+    <div class="card-summary">セキュリティを独学するときに役立つサイトを、Webアプリ・クラウド・CTF・マルウェア解析・資格まで分野ごとにまとめました。ほとんどが無料で、ブラウザだけ、あるいはDockerで自分のマシンに立てればすぐ試せます。 全部で138本。リンクはすべて2026年7月17日に到達を...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Nakanishi_RareTECH/items/16fd0b847aa68c152e00?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 13:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/u1/articles/codex-referent-before-label" target="_blank" rel="noopener">codexの独自用語乱立･曖昧問題への対策</a></div>
+    <div class="card-summary">この記事はXの元記事をZenn向けに再掲載したものです。 codexで起きやすい問題 codexでよく起きる問題として､言葉の定義を適当にして設計や実装をしてしまう問題があります｡経験上､claudeだと少し起きづらいのですがcodexの場合､5.5のときからも駄目で5.6にしてもやはり継続して起きていて困っていた件への対策です｡ 例えば､調査レポートの一節に「圧縮時点」という見出しがありました。本文を読むと、その語は「会話履歴が設定量に達したこと」「自動要約を始めるしきい値」「実際に要約が始まる時」の三つを行き来していました。 文章は流暢で、技術的な説明らしく見えます。 しかし、一...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/u1/articles/codex-referent-before-label" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-19 09:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ishi720/items/3e4597bc50695fa9bf79?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">白って1600色あんねん！</a></div>
+    <div class="card-summary">はじめに 「白って200色あんねん」というアンミカさんが残したミームがありますが、200色って少なくないかと思い、本当に白が200色なのか調べてみることにしました。 200色の白の範囲 RGBそれぞれを256階調(0~255)とした場合の色の数は、16,777,216 ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ishi720/items/3e4597bc50695fa9bf79?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">20</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 06:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/19/netflix-paid-587m-for-ben-afflecks-ai-filmmaking-startup/" target="_blank" rel="noopener">Netflix paid $587M for Ben Affleck’s AI filmmaking startup</a></div>
+    <div class="card-summary">Netflix revealed that it paid $587 million in cash for InterPositive, a startup co-founded by Ben Affleck.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Netflixはベン・アフレックのAI映画制作スタートアップに5億8,700万ドルを支払った</div>
+      <div class="ja-summary">Netflixは、ベン・アフレックが共同設立した新興企業InterPositiveに現金5億8,700万ドルを支払ったことを明らかにした。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/19/netflix-paid-587m-for-ben-afflecks-ai-filmmaking-startup/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 06:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/19/what-to-watch-for-after-jensen-huangs-japan-visit/" target="_blank" rel="noopener">What to watch for after Jensen Huang’s Japan visit</a></div>
+    <div class="card-summary">Jensen Huang left Tokyo with deals spanning Japan&#x27;s entire tech ecosystem.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ジェンセン・ファン来日後に注目すべきこと</div>
+      <div class="ja-summary">ジェンセン・ファンは、日本のテクノロジーエコシステム全体にわたる取引を携えて東京を去りました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/19/what-to-watch-for-after-jensen-huangs-japan-visit/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 06:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/967696/four-tet-wingdings-album-review" target="_blank" rel="noopener">This unpronounceable series of glyphs is an incredible side project from Kieran Hebden (aka Four Tet)</a></div>
+    <div class="card-summary">Just why? ʅ͡͡͡͡͡͡͡͡͡͡͡(̸̢̛̼̞̭͋ͅ)̸͚̰͛̔̾̀̿͒͂:̴͓̞̑̌̂̆̊͋̀:̸͎̟̯̂̓̌ ҉ ͡ ͞ ͞ ͞ ҉● ࿀ ● ࿀ ● ҉⃝ ⃝͢ ͞ ͘ ͞⃝̕ ͢ ̛ ⃝ ̸ ̡ ͢⃝̧ ͡ ͡ ̀ ̧ ̢⃝͜ ҉ ͞ ͞ ⃝͞ ͞ ͡⃝ ⃝҉҈҉҈҉҈҉҈҉҈҉ :̶̢͙͙͕̠̩͆(̷̮͍͚̫͚͂̍)̵̳̗̊( ̟̞̝̜̙̘̗̖҉̵̴̨̧̢̡̼̻̺̹̳̲̱̰̯̮̭̬̫̪̩̦̥ What am I supposed to do with this? It&#x27;s un-Googleable. Unpronounceable. It doesn&#x27;t even render the same way on various platforms. It looks one way on YouTube Music. Another on Apple Music.…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">この発音できないグリフのシリーズは、Kieran Hebden (別名 Four Tet) による素晴らしいサイド プロジェクトです。</div>
+      <div class="ja-summary">なぜでしょうか？ ʅ͡͡͡͡͡͡͡͡͡͡͡(̸̢̛̼̞̭͋ͅ)̸͚̰͛̔̾̀̿͒͂:̴͓̞̑̌̂̆̊͋̀:̸͎̟̯̂̓̌ ͡ ͞ ͞ ͞ ͉● ࿀ ● ࿀ ● ͉⃝ ⃝͢ ͞ ͘ ͞⃝̕ ͢ ̛ ⃝ ̸ ̡ ͢⃝̧ ͡ ͡ ̀ ̧ ̢⃝͜ ͉ ͞ ͞ ⃝͞ ͞ ͡⃝ ⃝̶̢͙͙͕̠̩͆(̷̮͍͚̫͚͂̍)̵̳̗̊( ̵̴̨̧̢̡̟̞̝̜̙̘̗̖͉̼̻̺̹̳̲̱̰̯̮̭̬̫̪̩̦̥ これはどうすればよいでしょうか。これは、さまざまなプラットフォームで同じように表示されません。Apple Music では、一方的に表示されます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/967696/four-tet-wingdings-album-review" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 04:26 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/967687/kodak-ec35-point-and-shoot-film-camera" target="_blank" rel="noopener">Kodak EC35 is a dirt-cheap point-and-shoot film camera</a></div>
+    <div class="card-summary">Following the success of its $99 Kodak-branded Snapic A1, Reto Project is releasing the Kodak EC35, an even more affordable 35mm film camera for just $34.99. The EC35 certainly isn&#x27;t fancy. Its 25mm acrylic lens with a fixed f/10 aperture and 1/100 shutter speed basically put it on par with a drugstore disposable. The fact […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Kodak EC35 は非常に安価なオートフォーカス フィルム カメラです</div>
+      <div class="ja-summary">99 ドルの Kodak ブランドの Snapic A1 の成功を受けて、Reto Project は、さらに手頃な価格の 35mm フィルム カメラである Kodak EC35 をわずか 34.99 ドルでリリースします。 EC35は確かに派手ではありません。固定 f/10 絞りと 1/100 シャッタースピードを備えた 25mm アクリルレンズは、基本的にドラッグストアの使い捨て製品と同等です。事実 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/967687/kodak-ec35-point-and-shoot-film-camera" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 04:24 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/19/can-an-apple-lawsuit-derail-openais-hardware-plans/" target="_blank" rel="noopener">Can an Apple lawsuit derail OpenAI’s hardware plans?</a></div>
+    <div class="card-summary">On the latest episode of Equity, we debate whether Apple&#x27;s lawsuit will cast over OpenAi&#x27;s much-discussed plans to get into hardware and go public.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Appleの訴訟によりOpenAIのハードウェア計画が狂うことはあるだろうか?</div>
+      <div class="ja-summary">Equityの最新エピソードでは、Appleの訴訟がOpenAiのハードウェアへの参入と上場という大いに議論されている計画に影響を与えるかどうかを議論します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/19/can-an-apple-lawsuit-derail-openais-hardware-plans/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 03:57 JST</span>
+    </div>
+    <div class="card-title"><a href="https://justsomebody.dev/blog/mikrotik-home-router" target="_blank" rel="noopener">HomeLab #1: MikroTik as a Home Router</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">HomeLab #1: ホームルーターとしての MikroTik</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://justsomebody.dev/blog/mikrotik-home-router" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 02:35 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/967678/1010benja-semiramis-dream-suno-ai-music" target="_blank" rel="noopener">I hate that I don’t hate this song made with Suno</a></div>
+    <div class="card-summary">I would never go so far as to say there&#x27;s no place for AI in music (I&#x27;m a fan of Holly Herndon, after all). But I generally find music made with generative AI to be offensively boring, especially the outputs of Suno. So I&#x27;m having a bit of a tough time processing the fact that […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">スノと作ったこの曲は嫌いじゃないのが嫌い</div>
+      <div class="ja-summary">私は、音楽に AI が入る余地はないとまでは言いません (何と言っても、私はホリー・ハーンドンのファンです)。しかし、私は一般に、生成 AI で作られた音楽、特に Suno の作品は不快なほど退屈だと感じます。そのため、この事実を処理するのに少し苦労しています […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/967678/1010benja-semiramis-dream-suno-ai-music" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 01:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/967674/fbi-wont-investigate-ice-assaults" target="_blank" rel="noopener">The FBI reportedly won’t investigate ICE anymore</a></div>
+    <div class="card-summary">According to the New York Times, federal agents have been told that the FBI will no longer be investigating confrontations involving ICE agents. The DHS and DOJ denied the change in policy to The Times. The reported change in guidance follows renewed scrutiny of violence by ICE agents who have killed two people in the […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">FBIは今後ICEを捜査しないと伝えられている</div>
+      <div class="ja-summary">ニューヨーク・タイムズ紙によると、連邦捜査官らは、FBIは今後ICE捜査官が関与する対立を捜査しないと伝えられたという。 DHSと司法省はタイムズ紙に対し方針変更を否定した。報告された指針の変更は、事件で2人を殺害したICE職員による暴力に対する新たな精査を受けてのものである[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/967674/fbi-wont-investigate-ice-assaults" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 01:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/19/techcrunch-mobility-the-battle-over-robotaxi-rules/" target="_blank" rel="noopener">TechCrunch Mobility: The battle over robotaxi rules</a></div>
+    <div class="card-summary">Welcome back to TechCrunch Mobility, your hub for the future of transportation and now, more than ever, how AI is playing a part.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">TechCrunch Mobility: ロボタクシーのルールを巡る争い</div>
+      <div class="ja-summary">TechCrunch Mobility へようこそ。未来の交通機関、そして今まで以上に AI がどのように役割を果たしているかを知るためのハブです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/19/techcrunch-mobility-the-battle-over-robotaxi-rules/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-20 00:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/967485/telepathic-instruments-orchid-tame-impala-synth-review" target="_blank" rel="noopener">Orchid is a delightfully retro and approachable hipster synth</a></div>
+    <div class="card-summary">In 2017, I bought an old Magnus chord organ off Craigslist for $10. It&#x27;s one of my favorite music gear purchases. Electric chord organs let you play full chords with just a press of a button, making them perfect for aspiring singer-songwriters or fooling around at home. But chord organs largely fell out of favor […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Orchid は、レトロで親しみやすいヒップスター シンセです。</div>
+      <div class="ja-summary">2017 年に、私は古いマグナス コード オルガンを Craigslist から 10 ドルで購入しました。それは私のお気に入りの音楽機材の一つです。エレクトリック・コード・オルガンを使用すると、ボタンを押すだけでフルコードを演奏できるため、シンガーソングライターを目指す人や家でのんびり過ごすのに最適です。しかし、コードオルガンはほとんど人気がなくなってしまいました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/967485/telepathic-instruments-orchid-tame-impala-synth-review" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 23:52 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/19/odyssey-director-christopher-nolan-calls-ai-an-obvious-trojan-horse/" target="_blank" rel="noopener">‘Odyssey’ director Christopher Nolan calls AI an obvious ‘Trojan horse’</a></div>
+    <div class="card-summary">&quot;Everybody knows the Greeks are inside.&quot;</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">「オデッセイ」監督クリストファー・ノーランはAIを明らかな「トロイの木馬」と呼んでいる</div>
+      <div class="ja-summary">「ギリシャ人が内部にいるのは誰もが知っている。」</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/19/odyssey-director-christopher-nolan-calls-ai-an-obvious-trojan-horse/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 23:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://news.ycombinator.com/item?id=48968606" target="_blank" rel="noopener">Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Show HN: 12 万ドルのボウリング センター システムを 1,600 ドルの ESP32 に交換しました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://news.ycombinator.com/item?id=48968606" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 20:48 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.minecraft.net/en-us/article/minecraft-26-3-snapshot-4" target="_blank" rel="noopener">Minecraft: Java Edition now uses SDL3</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Minecraft: Java Edition は SDL3 を使用するようになりました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.minecraft.net/en-us/article/minecraft-26-3-snapshot-4" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-portable-chargers-power-banks/" target="_blank" rel="noopener">Best Power Banks (2026): My Picks After Testing Over 100</a></div>
+    <div class="card-summary">Keep your phone, laptop, handheld gaming console, and other electronics running with these travel-friendly power banks.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベストパワーバンク (2026): 100 以上をテストした後の私の選択</div>
+      <div class="ja-summary">携帯電話、ラップトップ、携帯ゲーム機、その他の電子機器を旅行に便利なモバイルバッテリーで常に動作させましょう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-portable-chargers-power-banks/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/how-to-disable-all-the-music-videos-in-spotify/" target="_blank" rel="noopener">How to Disable Music Videos in Spotify</a></div>
+    <div class="card-summary">A recent update made video playback the default for songs and podcasts with a visual component. If you just want to listen to music—and save your data and battery—follow these tips.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Spotify でミュージックビデオを無効にする方法</div>
+      <div class="ja-summary">最近のアップデートにより、ビジュアル コンポーネントを含む曲やポッドキャストのデフォルトでビデオ再生が行われるようになりました。音楽を聴きたいだけで、データとバッテリーを節約したい場合は、次のヒントに従ってください。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/how-to-disable-all-the-music-videos-in-spotify/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 19:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-electrolyte-powders/" target="_blank" rel="noopener">The 10 Best Electrolyte Powders (We Tested Over 20)</a></div>
+    <div class="card-summary">Get those lost minerals back with the help of our top electrolyte powders, tablets, drops, and chews for athletes, partiers, and everyone in between.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベスト 10 の電解質パウダー (20 以上をテストしました)</div>
+      <div class="ja-summary">アスリート、パーティー、その他あらゆる人々に最適な当社の最高級電解質パウダー、タブレット、ドロップ、噛むものを利用して、失われたミネラルを取り戻しましょう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-electrolyte-powders/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 19:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/" target="_blank" rel="noopener">Claude Code uses Bun written in Rust now</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クロードコードは現在 Rust で書かれた Bun を使用しています</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/search-for-earth-like-planet-step-forward/" target="_blank" rel="noopener">The Search for Another Earth-Like Planet Just Took a Big Step Forward</a></div>
+    <div class="card-summary">Astronomers have discovered a rocky exoplanet that has an atmosphere and sits within the habitable zone of a solar system.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">地球に似た別の惑星の探索が大きな一歩を踏み出した</div>
+      <div class="ja-summary">天文学者らは、大気を持ち、太陽系のハビタブルゾーン内に位置する岩石質の系外惑星を発見した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/search-for-earth-like-planet-step-forward/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/fifa-world-cup-halftime-show-what-to-expect/" target="_blank" rel="noopener">FIFA’s World Cup Halftime Show Puts American-Style Spectacle on the World Stage</a></div>
+    <div class="card-summary">Organizers want the show to be the most-viewed halftime show in history. Having Shakira, Justin Bieber, Coldplay, and BTS will surely help—but do soccer fans want it?</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">FIFAワールドカップのハーフタイムショーがアメリカンスタイルのスペクタクルを世界舞台に披露</div>
+      <div class="ja-summary">主催者はこのショーが史上最も視聴されたハーフタイムショーになることを望んでいる。シャキーラ、ジャスティン・ビーバー、コールドプレイ、防弾少年団の存在は確かに助けになるだろうが、サッカーファンはそれを望んでいるのだろうか？</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/fifa-world-cup-halftime-show-what-to-expect/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-19 17:44 JST</span>
+    </div>
+    <div class="card-title"><a href="https://twitter.com/Alibaba_Qwen/status/2078759124914098291" target="_blank" rel="noopener">Qwen 3.8</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クウェン 3.8</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://twitter.com/Alibaba_Qwen/status/2078759124914098291" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
