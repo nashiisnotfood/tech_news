@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年07月25日 07:25 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年07月25日 07:25 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>27</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>2</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (2)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (5)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (2)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">5</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-24 17:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/sumomoo/items/d8c22cb512d9ba036154?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AI時代のポートフォリオ、転職で本当に見られているのは「言語化力」</a></div>
+    <div class="card-summary">はじめまして。株式会社PRUMでエンジニアをしている、すもも🍑です 日々、プログラミング学習や実務の中で、つまずきやすいポイントや 考え方を整理して発信しています。 PRUMについて気になった方は、コーポレートサイトもぜひご覧ください。 ▶コーポレートサイト 転職活動で...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/sumomoo/items/d8c22cb512d9ba036154?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-24 17:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/prumnn/items/b5b8a10713e2a96a2861?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">ITパスポートと基本情報の違いは？どちらを勉強すべき？</a></div>
+    <div class="card-summary">はじめに 実務で使うわけじゃないし、資格の勉強なんて後回しでいい。そう思っていたぷらむんですが、先輩に話を聞いて、資格勉強と向き合うことにしました。 会社で自称マスコットキャラをやってるのに、社内で一番空気が読めない、ぷらむんです🐯 実は最近まで、「資格なんて実...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/prumnn/items/b5b8a10713e2a96a2861?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-24 12:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/kimuchi_a/items/d0cc21f56660cbad5457?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AI時代、デザインはこれからどうなるのだろうか 〜エンジニア視点で考える〜</a></div>
+    <div class="card-summary">はじめに 大学3年の頃にMaterial Design3を読み込んだあの日々から、4年の月日が経とうとしています。 当時（2023年頃）はAIもまだ今ほど一般的ではなく、自力でFigmaでいろなものを模倣し、必死に知識を吸収してデザインを形にしようともがいていた気がします...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/kimuchi_a/items/d0cc21f56660cbad5457?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-24 11:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/kanzawa_kentaro/items/3a2b7cba67f4d8e0a7c7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">go.sumって何のためにあんの？</a></div>
+    <div class="card-summary">はじめに go.mod と go.sum 最近、Goの脆弱性チェックで落ちていてモジュールのバージョンを更新しろとCIに怒られたのをキッカケに改めて整理しました。 1. バージョンを決めるのは go.mod と MVS go.mod はモジュールのバージョンを管理するフ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/kanzawa_kentaro/items/3a2b7cba67f4d8e0a7c7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-24 09:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/inamuu/items/8439fcee712184740608?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">生成AIを活用した自動化に必要な権限設計の考え方</a></div>
+    <div class="card-summary">こちらの記事は Medley Summer Tech Blog Relay の 9日目の記事です。 はじめに 株式会社メドレーの人材プラットフォームのSREグループに所属する稲村(@kzm0211)と申します。 最近、子供が週4でバスケ（ミニバス）🏀 をやっており私...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/inamuu/items/8439fcee712184740608?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">22</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 07:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/24/techcrunch-disrupt-2026s-new-smart-money-stage-explores-fintech-payments-ai-and-everything-between/" target="_blank" rel="noopener">TechCrunch Disrupt 2026’s new Smart Money Stage explores fintech, payments, AI, and everything between</a></div>
+    <div class="card-summary">Money has evolved into far more than the cash in your wallet or your bank account. And at TechCrunch Disrupt 2026, we’re devoting an entire stage to that progression.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">TechCrunch Disrupt 2026 の新しい Smart Money ステージでは、フィンテック、決済、AI、およびそれらの間のあらゆるものを探求します</div>
+      <div class="ja-summary">お金は、財布や銀行口座の中の現金をはるかに超えたものへと進化しました。そしてTechCrunch Disrupt 2026では、ステージ全体をその進歩に捧げます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/24/techcrunch-disrupt-2026s-new-smart-money-stage-explores-fintech-payments-ai-and-everything-between/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 06:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/24/social-media-ban-children-countries-list/" target="_blank" rel="noopener">Vietnam is looking to restrict social media for kids; here are the growing number of other countries doing the same</a></div>
+    <div class="card-summary">Australia was the first country to issue a ban in late 2025, aiming to reduce the pressures and risks that young users may face on social media, including cyberbullying, social media addiction, and exposure to predators.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベトナムは子供向けのソーシャルメディアを制限しようとしている。同じことをやっている他の国も増えています</div>
+      <div class="ja-summary">オーストラリアは、ネットいじめ、ソーシャルメディア中毒、捕食者との接触など、若者ユーザーがソーシャルメディア上で直面する可能性のあるプレッシャーとリスクを軽減することを目的として、2025年後半に禁止令を発令した最初の国となった。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/24/social-media-ban-children-countries-list/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 05:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/24/waymo-reportedly-mulling-a-breakup-with-uber/" target="_blank" rel="noopener">Waymo reportedly mulling a breakup with Uber</a></div>
+    <div class="card-summary">The contract between the two companies ends in May 2028, Uber told TechCrunch.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Waymo、Uberとの決別を検討中と報道</div>
+      <div class="ja-summary">両社間の契約は2028年5月に終了するとウーバーはTechCrunchに語った。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/24/waymo-reportedly-mulling-a-breakup-with-uber/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 05:42 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/made-in-china-chinas-vape-makers-have-a-new-way-around-flavor-bans/" target="_blank" rel="noopener">Chinese Companies Are Selling Vapes With Chemicals Potentially More Potent Than Nicotine</a></div>
+    <div class="card-summary">Big Tobacco studied nicotine analogs like 6-methyl-nicotine for decades but never marketed them. Now, Chinese vape makers are using them to sidestep US regulations.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国企業、ニコチンより強力な可能性のある化学物質を使用した電子タバコを販売</div>
+      <div class="ja-summary">ビッグ・タバコ社は、6-メチル-ニコチンなどのニコチン類似体を数十年にわたって研究していましたが、決して市販しませんでした。現在、中国の電子タバコメーカーは米国の規制を回避するためにそれらを利用している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/made-in-china-chinas-vape-makers-have-a-new-way-around-flavor-bans/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 04:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/24/volkswagen-engineers-charged-with-insider-trading-tied-to-rivian-joint-venture/" target="_blank" rel="noopener">Volkswagen engineers charged with insider trading tied to Rivian joint venture</a></div>
+    <div class="card-summary">The indictment, which was unsealed Friday, alleges the Volkswagen engineers used confidential insider information to buy stock in Rivian.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">フォルクスワーゲンのエンジニアがリビアンの合弁会社に関連したインサイダー取引で起訴</div>
+      <div class="ja-summary">金曜に公開された起訴状では、フォルクスワーゲンのエンジニアらが機密のインサイダー情報を利用してリビアンの株を購入したと主張している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/24/volkswagen-engineers-charged-with-insider-trading-tied-to-rivian-joint-venture/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 04:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/report/970901/instagram-meta-glasses-prank-harassment-ban" target="_blank" rel="noopener">Meta just created a moderation nightmare for its smart glasses</a></div>
+    <div class="card-summary">Meta&#x27;s smart glasses have been a PR headache for the company. Public backlash has been swift, and fierce; people are concerned about the erosion of privacy and expansion of surveillance. Some especially bad actors are using the glasses to film themselves &quot;pranking&quot; random strangers. Women have become unsuspecting social media content for men filming themselves […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Meta はスマート グラスにモデレーションの悪夢を生み出しました</div>
+      <div class="ja-summary">Meta のスマートグラスは、同社にとって PR の悩みの種となっている。国民の反発は急速かつ激しいものとなった。人々はプライバシーの侵害と監視の拡大を懸念しています。特に悪質な俳優の中には、このメガネを使用して、見知らぬ人に「いたずら」する自分自身を撮影する人もいます。女性は自分自身を撮影する男性にとって、何の疑いも持たないソーシャル メディア コンテンツになっています […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/report/970901/instagram-meta-glasses-prank-harassment-ban" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 04:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/970910/qualcomm-raising-prices-bloomberg" target="_blank" rel="noopener">Qualcomm is about to raise prices and that’s bad news for everyone</a></div>
+    <div class="card-summary">Qualcomm sent a letter to customers on Friday warning of plans to increase its prices by &quot;a percentage in the double digits,&quot; Bloomberg reports. The price hikes will go into effect starting with products shipped after September 1st. Qualcomm claims it has &quot;exhausted its ability to absorb higher costs from suppliers,&quot; as ongoing component shortages […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クアルコムが値上げしようとしている、それは誰にとっても悪いニュースだ</div>
+      <div class="ja-summary">ブルームバーグの報道によると、クアルコムは金曜日、顧客に書簡を送り、価格を「2桁の割合」で値上げする計画について警告した。値上げは9月1日以降に出荷される商品から適用される。クアルコムは、部品不足が続いているため「サプライヤーからのコスト上昇を吸収する能力を使い果たした」と主張している[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/970910/qualcomm-raising-prices-bloomberg" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 04:06 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/970894/midjourney-co-star-acquisition" target="_blank" rel="noopener">Midjourney bought the astrology app Co-Star</a></div>
+    <div class="card-summary">Midjourney, which has gone from generating AI cat images to full-body ultrasound scans, is getting into a new field: astrology. The AI startup announced on Thursday that it has acquired the personalized astrology app Co-Star, as reported earlier by Bloomberg. Co-Star is a free app that offers daily horoscopes and allows you to check your […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ミッドジャーニーが占星術アプリ Co-Star を買収</div>
+      <div class="ja-summary">AI 猫画像の生成から全身超音波スキャンに移行した Midjourney は、占星術という新しい分野に参入しようとしています。ブルームバーグが先に報じたように、このAIスタートアップは木曜日、パーソナライズされた占星術アプリのCo-Starを買収したと発表した。 Co-Star は、毎日の星占いを提供し、あなたの運勢をチェックできる無料アプリです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/970894/midjourney-co-star-acquisition" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 04:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.dbos.dev/blog/postgres-listen-notify-scalability" target="_blank" rel="noopener">Postgres LISTEN/NOTIFY actually scales</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Postgres LISTEN/NOTIFY は実際にスケーリングする</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.dbos.dev/blog/postgres-listen-notify-scalability" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 03:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/2026-el-nino-the-strongest-in-150-years/" target="_blank" rel="noopener">The 2026 El Niño Is on Track to Be the Strongest on Record</a></div>
+    <div class="card-summary">This climate phenomenon could cause a massive global temperature spike and cause economic losses of $10 trillion by 2032.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">2026年のエルニーニョは観測史上最強となる見通し</div>
+      <div class="ja-summary">この気象現象は地球規模の気温上昇を引き起こし、2032 年までに 10 兆ドルの経済損失を引き起こす可能性があります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/2026-el-nino-the-strongest-in-150-years/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 03:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/970742/dji-camera-clone-company-xtra-is-halting-and-refunding-all-preorders" target="_blank" rel="noopener">DJI camera clone company Xtra is halting and refunding all preorders</a></div>
+    <div class="card-summary">After selling a barely disguised version of the hit DJI Osmo Pocket 3 in the United States last year, Xtra Technology seemed ready to sneak in its version of the new dual-lens Osmo Pocket 4 Pro, too. But today, Xtra has abruptly removed the new Xtra Muse 2 Pro from its website landing page, is […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">DJIカメラクローン会社Xtraは予約注文をすべて停止し返金する</div>
+      <div class="ja-summary">昨年、米国で大ヒットしたDJI Osmo Pocket 3のほとんど偽装バージョンを販売した後、Xtra Technologyは、新しいデュアルレンズOsmo Pocket 4 Proのバージョンもこっそり導入する準備ができているように見えました。しかし今日、Xtra は新しい Xtra Muse 2 Pro を Web サイトのランディング ページから突然削除しました。[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/970742/dji-camera-clone-company-xtra-is-halting-and-refunding-all-preorders" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 03:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/970848/nothing-layoffs-rumors-phone-4b" target="_blank" rel="noopener">Nothing confirms layoffs, but calls market exit rumors ‘fake news’</a></div>
+    <div class="card-summary">In response to a report that Nothing is planning to &quot;exit 12 markets as global shipments decline,&quot; Nothing cofounder Akis Evangelidis said the company is &quot;reorganizing&quot; and laying off some of its staff, but that &quot;the reported numbers are way overblown.&quot; Evangelidis disputed a claim about underwhelming sales for Nothing&#x27;s Phone 4B, saying it &quot;sold […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">人員削減を裏付けるものは何もないが、市場撤退の噂を「フェイクニュース」と呼ぶ</div>
+      <div class="ja-summary">ナッシング社が「世界的な出荷量の減少に伴い、12の市場から撤退する」計画を立てているとの報道に対し、ナッシング社の共同創設者アキス・エヴァンゲリディス氏は、同社は「組織再編」を行っており、従業員の一部を解雇しているが、「報告された数字はあまりにも誇張されている」と述べた。エヴァンゲリディス氏は、Nothing&#x27;s Phone 4B の売り上げが圧倒的に少ないという主張に異議を唱え、「売れた […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/970848/nothing-layoffs-rumors-phone-4b" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 03:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/24/why-cognition-bought-poke-ai-personality-is-becoming-a-competitive-advantage/" target="_blank" rel="noopener">Why Cognition bought Poke: AI personality is becoming a competitive advantage</a></div>
+    <div class="card-summary">AI coding startup Cognition has acquired Poke, the AI assistant you text like a friend, in a deal valuing the startup in the low nine figures. The acquisition brings Poke’s conversational style and interaction model to Cognition’s coding agent Devin, reflecting a growing belief that how AI assistants interact with users is as important as the models powering them.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">コグニションが Poke を買収した理由: AI の個性が競争上の優位性になりつつある</div>
+      <div class="ja-summary">AI コーディングのスタートアップ Cognition は、友人のようにテキスト メッセージを送信できる AI アシスタントである Poke を買収し、そのスタートアップの評価額は 9 桁前半です。この買収により、Poke の会話スタイルとインタラクション モデルが Cognition のコーディング エージェント Devin に導入され、AI アシスタントがユーザーとどのように対話するかが、AI アシスタントを動かすモデルと同じくらい重要であるという考えの高まりを反映しています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/24/why-cognition-bought-poke-ai-personality-is-becoming-a-competitive-advantage/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 02:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://ui.gsxhq.dev/" target="_blank" rel="noopener">Gsxui – Shadcn-style components for Go</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Gsxui – Go 用の Shadcn スタイルのコンポーネント</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://ui.gsxhq.dev/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 02:53 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/uncanny-valley-podcast/" target="_blank" rel="noopener">Did Chinese AI Steal From Anthropic, and OpenAI Loses Control of Two Models</a></div>
+    <div class="card-summary">On this episode of Uncanny Valley, we dive into accusations that China’s Moonshot AI stole from Anthropic, and how the US Army needs to cut back on AI use.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国のAIは人類から盗んだのか、OpenAIは2つのモデルの制御を失う</div>
+      <div class="ja-summary">不気味の谷のこのエピソードでは、中国のムーンショット AI が Anthropic から盗んだという告発と、米軍が AI の使用をどのように削減する必要があるかについて詳しく掘り下げます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/uncanny-valley-podcast/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-07-25 02:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/07/24/1140790/the-quest-to-keep-organs-alive-outside-the-body/" target="_blank" rel="noopener">The quest to keep organs alive outside the body</a></div>
+    <div class="card-summary">This week, I covered a fascinating effort to preserve organs outside the body. There’s a huge shortage of donor organs, and one of the main reasons is time—they survive only a matter of hours outside the body, even when they’re kept on ice. Doctors dream of organ banks—stores of human organs that can be preserved…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">臓器を体外で生かし続ける探求</div>
+      <div class="ja-summary">今週、私は臓器を体外に保存するという興味深い取り組みについて取り上げました。ドナー臓器は大幅に不足しており、その主な理由の 1 つは時間です。臓器は、たとえ氷上に保管されていても、体外では数時間しか生存しません。医師たちは臓器バンク、つまり保存可能な人間の臓器を保管することを夢見ています…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/07/24/1140790/the-quest-to-keep-organs-alive-outside-the-body/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 01:57 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener">Claude Opus 5</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クロード 作品5</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.anthropic.com/news/claude-opus-5" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-25 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/silicon-valley-is-completely-divided-over-chinese-ai/" target="_blank" rel="noopener">Silicon Valley Is Completely Divided Over Chinese AI</a></div>
+    <div class="card-summary">The AI “startups” worth billions of dollars are raising alarm bells about Chinese AI. The smaller players have a totally different take.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国AIを巡ってシリコンバレーは完全に二分化</div>
+      <div class="ja-summary">数十億ドル規模のAI「新興企業」が中国のAIに警鐘を鳴らしている。小型の選手はまったく異なる見解を持っています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/silicon-valley-is-completely-divided-over-chinese-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-24 22:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html" target="_blank" rel="noopener">Nvidia, Microsoft, Meta warn against overregulating open-weight models</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Nvidia、Microsoft、Meta、無差別重量モデルの過剰規制に警告</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.cnbc.com/2026/07/24/nvidia-microsoft-meta-open-weight-ai-models.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-07-24 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/07/24/1140776/the-download-organ-transplant-breakthrough-chinese-chips/" target="_blank" rel="noopener">The Download: an organ transplant breakthrough, and homegrown Chinese chips</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Supercooled kidneys have been transplanted into pigs in a “landmark achievement” When it comes to organ donation, time is everything. As soon as an organ has been removed from a donor’s…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: 臓器移植の画期的な進歩と国産の中国製チップ</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。過冷却された腎臓がブタに移植された「画期的な成果」 臓器提供に関しては、時間がすべてです。ドナーから臓器が摘出されるとすぐに…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/07/24/1140776/the-download-organ-transplant-breakthrough-chinese-chips/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-24 20:54 JST</span>
+    </div>
+    <div class="card-title"><a href="https://hhh.hn/hanwha-github-token/" target="_blank" rel="noopener">My security camera shipped a GitHub admin token in its login page</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">私のセキュリティ カメラはログイン ページに GitHub 管理者トークンを送信しました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://hhh.hn/hanwha-github-token/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-24 20:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-window-air-conditioners/" target="_blank" rel="noopener">Best Window Air Conditioners of 2026: Midea, Zafro, GE</a></div>
+    <div class="card-summary">These are the AC units we’ve trusted to cool our homes for months, if not years.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">2026 年のベスト ウィンドウ エアコン: Midea、Zafro、GE</div>
+      <div class="ja-summary">これらは、数年とは言わないまでも、何か月も家を冷やすことができると私たちが信頼している AC ユニットです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-window-air-conditioners/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
