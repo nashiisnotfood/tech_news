@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年08月01日 07:22 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年08月01日 07:22 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>30</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>1</strong></div> <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>2</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (1)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (2)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (1)</span> <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (2)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 16:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/saku_rye/items/473987ca21d9dffd15fe?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">大吉祥寺.pm2026に参加してきました！ #kichijojipm</a></div>
+    <div class="card-summary">はじめに 7/25(土)の大吉祥寺.pmに参加してきました！ 「大」井町で開催される「吉祥寺.pm」なので大吉祥寺.pmです。納得ですね。 （毎年使用していた吉祥寺の会場が大規模改修工事中のため👷） 今年の大吉祥寺.pmのテーマは「かわるもの、かわらないもの」。めま...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/saku_rye/items/473987ca21d9dffd15fe?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 15:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/hisaju01/books/meteorfall-development" target="_blank" rel="noopener">メテオフォール開発</a></div>
+    <div class="card-summary">AIエージェントで粗い初期実装をまず落とし、人間が観測・分解・修正していく開発手法「メテオフォール開発」の考え方と実践をまとめた本。依頼設計・レビュー・タスク分解・ジュニア参加・品質ゲート・ケーススタディ・テンプレートまでを扱う。</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/hisaju01/books/meteorfall-development" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 14:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/sumomoo/items/8bbe719ed4de1a36def9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIの限界は頭脳ではなく、電気と冷却にあった【宇宙のデーターセンターって何？】</a></div>
+    <div class="card-summary">はじめまして。株式会社PRUMでエンジニアをしている、すもも🍑です 日々、プログラミング学習や実務の中で、つまずきやすいポイントや 考え方を整理して発信しています。 PRUMについて気になった方は、コーポレートサイトもぜひご覧ください。 ▶コーポレートサイト はじめに ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/sumomoo/items/8bbe719ed4de1a36def9?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 14:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/prumnn/items/da1cd811a3a7408472d2?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">「アーキテクチャ」って結局何？ITパスポートのEAを調べてみた</a></div>
+    <div class="card-summary">はじめに 本屋の技術書コーナーでよく見かける「〇〇アーキテクチャ」というタイトルの本。なんとなくスルーしていたぷらむんが、ITパスポートの勉強中についに「アーキテクチャ」の文字に出会って、調べずにいられなくなった話です。 こんにちわ、会社で自称マスコットキャラをや...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/prumnn/items/da1cd811a3a7408472d2?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 13:05 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/maskot1977/items/700728d034ce4819aa37?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">人手不足なのに働き控え？ 「年収の壁」をシステム設計から考える : システム設計視点の行動経済学 (9)</a></div>
+    <div class="card-summary">user: 「システム設計視点の行動経済学」、第9回を始めましょう。まず前回の復習として、 社会システムをデバッグする ― 情報公開と監査可能性が作る信頼 : システム設計視点の行動経済学 (8) https://qiita.com/maskot1977/items/12...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/maskot1977/items/700728d034ce4819aa37?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-07-31 09:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/YuNagura/items/07e3a57eb39fe3f4fe3c?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">EKS における EKS アドオンと組み込みアドオンの整理</a></div>
+    <div class="card-summary">本記事は、BIPROGY / ユニアデックス社内AWSコミュニティ「BIPROGY AWS SPARK」の定期投稿企画第5回目の記事です。他の定期投稿企画の記事は、インデックスページをご覧ください。 1. はじめに 先日、ある検証環境にて Amazon EKS ク...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/YuNagura/items/07e3a57eb39fe3f4fe3c?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">24</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 07:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/973886/sharge-disk-pro-2-hands-on-switch-2-hdmi-usb-c-dock" target="_blank" rel="noopener">With Switch 2, iPhone, and laptop tricks, the Sharge Disk Pro 2 is finally a worthy EDC</a></div>
+    <div class="card-summary">Sharge, the company that makes delightful retro Mac-shaped chargers and see-inside batteries, is finally impressing me with a portable SSD. I couldn&#x27;t recommend the Sharge Disk, Disk Plus, or even the Disk Pro, but I&#x27;d be happy to own the new Disk Pro 2 Ultra. This isn&#x27;t just a drive. It&#x27;s a 4K HDMI dock […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Switch 2、iPhone、ラップトップのトリックにより、Sharge Disk Pro 2 はついに価値のある EDC になりました</div>
+      <div class="ja-summary">Sharge は、レトロな Mac の形をした楽しい充電器や内部が見えるバッテリーを製造する会社ですが、ついにポータブル SSD で私を感動させました。 Sharge Disk、Disk Plus、さらには Disk Pro さえお勧めできませんでしたが、新しい Disk Pro 2 Ultra を所有できることを嬉しく思います。これは単なるドライブではありません。 4K HDMI ドックです […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/973886/sharge-disk-pro-2-hands-on-switch-2-hdmi-usb-c-dock" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/31/rivian-spinoff-also-to-start-delivering-e-bikes-after-months-of-delays/" target="_blank" rel="noopener">Rivian spinoff Also to start delivering e-bikes after months of delays</a></div>
+    <div class="card-summary">Also has big plans beyond the TM-B. The startup mostly refers to itself as a &quot;vehicle&quot; company, and has plans to make four-wheel pedal-assist cargo vehicles for Amazon.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Rivian のスピンオフも数か月の遅れを経て電動自転車の配送を開始</div>
+      <div class="ja-summary">TM-B以外にも大きな計画がある。この新興企業は主に自社を「車両」会社と称しており、アマゾン向けに四輪ペダルアシスト貨物車両を製造する計画を持っている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/31/rivian-spinoff-also-to-start-delivering-e-bikes-after-months-of-delays/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 07:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/31/build-in-public-fail-in-public-what-its-like-to-be-a-founder-under-20-right-now/" target="_blank" rel="noopener">Silicon Valley loves young founders. Until it doesn’t.</a></div>
+    <div class="card-summary">AI tools have democratized the opportunity to build, shortening the timelines of success and enabling more young people to start successful companies without stepping foot inside a Big Tech company.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">シリコンバレーは若い創業者を愛しています。そうならないまでは。</div>
+      <div class="ja-summary">AI ツールにより、構築の機会が民主化され、成功までのタイムラインが短縮され、より多くの若者がビッグテック企業に足を踏み入れずに成功する企業を立ち上げることができるようになりました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/31/build-in-public-fail-in-public-what-its-like-to-be-a-founder-under-20-right-now/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 06:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/31/india-is-starting-to-pay-for-apps-not-just-download-them/" target="_blank" rel="noopener">India is starting to pay for apps, not just download them</a></div>
+    <div class="card-summary">India&#x27;s app market generated a record $345 million in Q2.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">インドはアプリをダウンロードするだけでなく、アプリに対しても支払いを開始している</div>
+      <div class="ja-summary">インドのアプリ市場は、第 2 四半期に記録的な 3 億 4,500 万ドルを生み出しました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/31/india-is-starting-to-pay-for-apps-not-just-download-them/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 05:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account/" target="_blank" rel="noopener">Claude published malicious code to the Internet and attacked 3 real companies</a></div>
+    <div class="card-summary">Had the hacks used conventional methods, someone would likely go to prison.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クロードは悪意のあるコードをインターネットに公開し、実在する企業 3 社を攻撃した</div>
+      <div class="ja-summary">もしハッキングが従来の方法を使用していたら、誰かが刑務所に送られる可能性がありました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/07/likely-illegally-claude-gained-access-to-3-networks-will-anthropic-be-held-to-account/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 04:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/31/google-nixes-its-earth-ai-feature-one-day-after-launch-amid-criticism-it-would-spread-misinformation/" target="_blank" rel="noopener">Google nixes its Earth AI feature one day after launch, amid criticism it would spread misinformation</a></div>
+    <div class="card-summary">A tool that allowed anyone to generate fake AI-generated imagery and superimpose it over real Google Earth maps quickly spurred backlash.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google、誤った情報を広めるという批判のなか、発売翌日にEarth AI機能を廃止</div>
+      <div class="ja-summary">AI が生成した偽の画像を誰でも生成して、実際の G​​oogle Earth 地図に重ね合わせることができるツールは、すぐに反発を引き起こしました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/31/google-nixes-its-earth-ai-feature-one-day-after-launch-amid-criticism-it-would-spread-misinformation/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 04:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/07/31/fresh-off-its-wiz-payout-index-ventures-raises-2b-across-three-funds/" target="_blank" rel="noopener">Fresh off its Wiz payout, Index Ventures raises $2B across three funds</a></div>
+    <div class="card-summary">The new funding brings Index&#x27;s total available investing capital to $3.5 billion.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Wiz の支払いを終えたばかりの Index Ventures が 3 つのファンドで 20 億ドルを調達</div>
+      <div class="ja-summary">この新たな資金調達により、インデックスの利用可能な投資資本の合計は 35 億ドルになります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/07/31/fresh-off-its-wiz-payout-index-ventures-raises-2b-across-three-funds/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 04:35 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/973973/apple-airtag-second-generation-deal-sale" target="_blank" rel="noopener">Apple’s new AirTags are back down to their best price</a></div>
+    <div class="card-summary">We spotted a great deal on Tile trackers earlier this week that’s still live, but if you’re an iPhone owner, we ultimately recommend Apple’s latest AirTag. Right now, you can pick up a four-pack for $89 ($10 off) at Amazon and Target, matching the bundle’s all-time low price. If you’re a member, Costco also has […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Appleの新しいAirTagsが最安値に戻った</div>
+      <div class="ja-summary">今週初めに、まだ公開されているタイルトラッカーに関する素晴らしい機能を発見しましたが、iPhone 所有者であれば、最終的には Apple の最新の AirTag をお勧めします。現在、Amazon と Target で 4 パックを 89 ドル (10 ドル引き) で購入できます。これはバンドルの史上最低価格と一致します。コストコの会員であれば、[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/973973/apple-airtag-second-generation-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 04:13 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/973943/google-earth-ai-image-generation-deepfake-tool" target="_blank" rel="noopener">Google Earth’s AI deepfake tool only lasted one day</a></div>
+    <div class="card-summary">Google has shut down Google Earth feature it launched Thursday that allowed users to edit satellite images with text prompts using AI. The tool essentially let users create AI deepfakes of the real world using text prompts; Digital Digging&#x27;s Henk van Ess, for example, intentionally generated images adding things like refugees near the Mexican border […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google EarthのAIディープフェイクツールは1日しか持続しなかった</div>
+      <div class="ja-summary">Googleは木曜日に開始した、ユーザーがAIを使ってテキストプロンプトを含む衛星画像を編集できるGoogle Earth機能を終了した。このツールは基本的に、ユーザーがテキスト プロンプトを使用して現実世界の AI ディープフェイクを作成できるようにします。たとえば、Digital Digging の Henk van Ess 氏は、メキシコ国境近くの難民などを追加した画像を意図的に生成しました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/973943/google-earth-ai-image-generation-deepfake-tool" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 04:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://tailscale.com/blog/hugging-face-intrusion" target="_blank" rel="noopener">Tailscale didn&#x27;t stop the Hugging Face intrusion</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">テールスケールはハグフェイスの侵入を止められなかった</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://tailscale.com/blog/hugging-face-intrusion" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 03:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/transportation/973887/nhtsa-tesla-investigation-suspension" target="_blank" rel="noopener">The NHTSA is investigating 1.2 million Tesla vehicles over suspension failure reports</a></div>
+    <div class="card-summary">The National Highway Traffic Safety Administration (NHTSA) is probing nearly 1.2 million Tesla vehicles after receiving complaints about a suspension failure that could cause &quot;a loss of vehicle directional control,&quot; as reported earlier by Reuters. The preliminary investigation includes the 2018-2020 Model 3 and 2021-2023 Model Y, according to a filing from the NHTSA&#x27;s Office […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">NHTSAはサスペンション故障報告をめぐって120万台のテスラ車を調査中</div>
+      <div class="ja-summary">ロイター通信が先に報じたように、米国道路交通安全局（NHTSA）は、「車両の方向制御の喪失」を引き起こす可能性があるサスペンションの故障に関する苦情を受けて、約120万台のテスラ車を調査している。 NHTSA事務局からの提出書類によると、予備調査には2018～2020年のモデル3と2021～2023年のモデルYが含まれている […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/transportation/973887/nhtsa-tesla-investigation-suspension" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 03:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/973889/google-pixel-tag-item-tracker" target="_blank" rel="noopener">Google might launch a ‘Pixel Tag’</a></div>
+    <div class="card-summary">Google is seemingly working on an item tracker that might compete with Apple&#x27;s AirTag. 9to5Google obtained an image of something called a &quot;Google Pixel Tag&quot; that has a small oval shape. The publication also linked to a Slovenian store listing about the Pixel Tag that describes the gadget as an item tracker with a speaker […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Googleが「Pixel Tag」を開始するかもしれない</div>
+      <div class="ja-summary">Googleは、AppleのAirTagと競合する可能性のあるアイテムトラッカーの開発に取り組んでいるようだ。 9to5Googleは、小さな楕円形をした「Google Pixel Tag」と呼ばれるものの画像を入手しました。この出版物は、ピクセルタグに関するスロベニアのストアのリストにもリンクしており、ガジェットをスピーカー付きのアイテムトラッカーとして説明しています[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/973889/google-pixel-tag-item-tracker" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 03:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/chinese-ai-researchers-are-finding-their-voice-on-x/" target="_blank" rel="noopener">Chinese AI Researchers Are Finding Their Voice on X</a></div>
+    <div class="card-summary">As OpenAI and Anthropic employees grow quieter online, researchers at Chinese AI labs are flocking to X to explain their work, recruit talent, and shape the global conversation on AI.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国の AI 研究者が X について自分たちの声を見つけている</div>
+      <div class="ja-summary">OpenAI と Anthropic の従業員がオンラインで静かになる中、中国の AI 研究所の研究者たちは、自分たちの仕事について説明し、人材を採用し、AI に関する世界的な会話を形成するために X に群がっています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/chinese-ai-researchers-are-finding-their-voice-on-x/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 03:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/yc-software/qm" target="_blank" rel="noopener">qm</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">qm</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/yc-software/qm" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 02:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://lcamtuf.substack.com/p/severance" target="_blank" rel="noopener">Severance</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">退職金</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://lcamtuf.substack.com/p/severance" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 01:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/can-republicans-actually-send-anthony-fauci-to-jail/" target="_blank" rel="noopener">Can Republicans Actually Send Anthony Fauci to Jail?</a></div>
+    <div class="card-summary">MAGA is loudly calling for the former White House chief medical adviser to end up in prison. WIRED asked legal experts to weigh in on whether that’s even possible.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">共和党は実際にアンソニー・ファウチ氏を刑務所に送ることができるのか?</div>
+      <div class="ja-summary">MAGAは、元ホワイトハウス首席医療顧問の投獄を声高に求めている。 『WIRED』は法律専門家に、それが可能なのかどうかについて意見を求めた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/can-republicans-actually-send-anthony-fauci-to-jail/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 00:53 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-robot-vacuum/" target="_blank" rel="noopener">Best Robot Vacuum of 2026: Shark, Eufy</a></div>
+    <div class="card-summary">Tired of vacuuming? Hand the reins to a robot vacuum.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">2026 年のベストロボット掃除機: Shark、Eufy</div>
+      <div class="ja-summary">掃除機をかけるのに飽きましたか？ロボット掃除機に手綱を渡します。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-robot-vacuum/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 00:17 JST</span>
+    </div>
+    <div class="card-title"><a href="https://john.fun/elevators" target="_blank" rel="noopener">Elevators</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">エレベーター</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://john.fun/elevators" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-08-01 00:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/openai-aligns-safety-practices-with-eu-ai-act-gpai-code/" target="_blank" rel="noopener">OpenAI aligns safety practices with EU AI Act’s GPAI Code</a></div>
+    <div class="card-summary">OpenAI has outlined how it aligns safety, security, and transparency work with the EU AI Act’s GPAI Code as enforcement approaches. The company has contributed to and endorsed the EU’s General-Purpose AI (GPAI) Code of Practice and the Code of Practice on Transparency of AI-Generated Content. Both emerged from multi-stakeholder processes. The GPAI Code sets […] The post OpenAI aligns safety…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI は安全慣行を EU AI 法の GPAI コードと整合させます</div>
+      <div class="ja-summary">OpenAI は、施行に向けて安全性、セキュリティ、透明性の取り組みを EU AI 法の GPAI コードとどのように連携させるかを概説しました。同社は、EU の汎用 AI (GPAI) 実践規範および AI 生成コンテンツの透明性に関する実践規範に貢献し、これを支持しています。どちらも複数の関係者によるプロセスから生まれました。 GPAI コードセット […] OpenAI 後の安全慣行を調整する</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/openai-aligns-safety-practices-with-eu-ai-act-gpai-code/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/ai-slop-melodramas-are-taking-over-x-and-their-creators-are-cashing-in/" target="_blank" rel="noopener">AI Slop Melodramas Are Taking Over X—and Their Creators Are Cashing In</a></div>
+    <div class="card-summary">Viral tales of good triumphing over evil are racking up millions of views. They’re almost entirely AI-generated clickbait.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">AI のスロップ メロドラマが X を引き継ぎ、そのクリエイターは利益を上げている</div>
+      <div class="ja-summary">善が悪に勝利するというバイラルな物語は、何百万もの再生回数を記録しています。それらはほぼ完全に AI によって生成されたクリックベイトです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/ai-slop-melodramas-are-taking-over-x-and-their-creators-are-cashing-in/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-31 23:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/this-ai-assistants-whole-pitch-is-making-up-for-your-boyfriends-incompetence/" target="_blank" rel="noopener">This AI Assistant Wants to Make Up for Your Boyfriend’s Incompetence</a></div>
+    <div class="card-summary">An ad for Orchid suggests the AI agent can fix relationship problems by simply doing everything for inconsiderate partners.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">この AI アシスタントはあなたのボーイフレンドの無能を補いたいと考えています</div>
+      <div class="ja-summary">Orchid の広告では、AI エージェントが思いやりのないパートナーのためにあらゆることを行うだけで、人間関係の問題を解決できることが示唆されています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/this-ai-assistants-whole-pitch-is-making-up-for-your-boyfriends-incompetence/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-07-31 21:16 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/07/31/1140999/the-download-montanas-right-to-try-law-anthropic-hacks/" target="_blank" rel="noopener">The Download: Montana’s new experimental drug rules</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Montana’s plan to become an experimental medical hub just pushed forward As of this week in Montana, biotech companies whose drugs have been through preliminary testing—sometimes in as few as 10…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: モンタナ州の新しい実験薬物規則</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。モンタナ州の実験的医療拠点となる計画は、まさに前進したばかりである 今週の時点で、モンタナ州では、バイオテクノロジー企業の医薬品が予備試験を通過しており、場合によってはわずか10日以内に…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/07/31/1140999/the-download-montanas-right-to-try-law-anthropic-hacks/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-07-31 19:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arielsalminen.com/2026/progressive-web-components/" target="_blank" rel="noopener">Progressive Web Components</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">プログレッシブ Web コンポーネント</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arielsalminen.com/2026/progressive-web-components/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-07-31 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/07/31/1140945/montanas-new-right-to-try-law-cant-come-soon-enough-for-some/" target="_blank" rel="noopener">Montana’s new “right to try” law can’t come soon enough for some</a></div>
+    <div class="card-summary">Kris DeVault is desperate. His son, Brody, was born in March 2023. It wasn’t long before he started to show signs of developmental delay, says DeVault. As time went on, Brody started missing key milestones in speech, movement, and coordination, he says. When Brody was around two and a half years old, a genetic test…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">モンタナ州の新しい「裁判の権利」法は、一部の人にとってはすぐには実現できない</div>
+      <div class="ja-summary">クリス・デボールトは必死だ。彼の息子、ブロディは 2023 年 3 月に生まれました。彼が発達遅延の兆候を示し始めるまでにそれほど時間はかかりませんでした、とデボールト氏は言います。時間が経つにつれて、ブロディはスピーチ、動き、調整における重要なマイルストーンを見逃し始めた、と彼は言います。ブロディが2歳半くらいのとき、遺伝子検査が…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/07/31/1140945/montanas-new-right-to-try-law-cant-come-soon-enough-for-some/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
