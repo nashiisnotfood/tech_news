@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年08月02日 07:19 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年08月02日 07:19 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>26</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 19:31 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/teppei19980914/items/8d0ec908a7943725ec98?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">個人開発で踏みやすいパフォーマンス・アンチパターン 5 点 — Prisma N+1 から useMemo 漏れまで</a></div>
+    <div class="card-summary">この記事は約 5 分で読めます。 筆者プロフィール: ソフトウェアエンジニア。「知った気にならない。いつまでも学び続ける」を信条に、業務と個人開発の両輪で技術を磨いています。AI 駆動開発で複数の個人開発アプリを構築・運用中。 👉 ポートフォリオ: 筆者ホームページ 「...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/teppei19980914/items/8d0ec908a7943725ec98?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 15:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ktdatascience/items/8d2dace07c9c7a9d0453?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIのアウトプットをそのまま出すだけの人にならないために</a></div>
+    <div class="card-summary">はじめに 自分はエンジニアとして4年です。いまは Claude Code と Codex を毎日並列で走らせて仕事をしています。 この記事は、仕事のかなりの部分をエージェントに渡してみて痛感した「それでも人間に残る仕事は何か」を、自分の失敗込みで整理したポエムです。あなた...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ktdatascience/items/8d2dace07c9c7a9d0453?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 14:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ssakita/items/fee908686d2b9f72b30d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">品川会 #7 に富山から参加して登壇してきた</a></div>
+    <div class="card-summary">はじめに こんにちは！ssakitaです！ 7月29日（水）、株式会社クレスコさんで開催された「品川会 #7」に参加してきました！ 品川会は初参加で、せっかくなので登壇もさせていただきました！ 品川会とは 前Jr.Championの八雲さんが立ち上げた、AWSを中心と...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ssakita/items/fee908686d2b9f72b30d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 13:55 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Yfuruchin/items/764968fa8d5c682656ac?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">リアルタイム交通流データをQGISで表示してみる</a></div>
+    <div class="card-summary">はじめに 都市の解析や災害時において、地域の交通状況はとても重要な情報となります。自動車メーカーさんなどは通行実績のデータ配信されていますが、独自形式だったり、ライセンスがしっかりしていたり、なかなかなお値段がして一般の方がGISなどに取り込むことはけっこう難しいです。...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Yfuruchin/items/764968fa8d5c682656ac?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 10:35 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/shunsuke_suzuki/articles/make-cli-ai-friendly" target="_blank" rel="noopener">AI フレンドリーな CLI を開発するテクニック</a></div>
+    <div class="card-summary">自分は趣味で様々な CLI を OSS として公開しています (aqua, pinact, tfcmt, ghalint, ghir, etc)。 昨今では AI がこれらを扱うことも増えてきていますが、それなりに知られた OSS でないかぎり AI はその OSS に関する質問に答えたりトラブルシューティングしたりするための知識を持ち合わせていません。 そのため Coding Agent は Web Fetch したりしますが、闇雲に Web Fetch するのは効率がよくありませんし、 Web Fetch だとコンテンツが要約されてしまうという問題もあります。 https://zen...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/shunsuke_suzuki/articles/make-cli-ai-friendly" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-01 10:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/infra365/items/daed33099cdf34e2e588?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AWS Organizations間のアカウント移行でRAM共有が外れる理由と共有を維持する設定</a></div>
+    <div class="card-summary">概要 AWS Organizations配下のアカウントに対してAWS RAM（Resource Access Manager）でTransit Gatewayを共有している環境で、そのアカウントを別のOrganizationへ移行するとRAM共有が外れます。2026年2...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/infra365/items/daed33099cdf34e2e588?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">20</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 06:31 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/974238/pixel-11-specs-and-price-leak" target="_blank" rel="noopener">Pixel 11 specs and price leak with no surprises</a></div>
+    <div class="card-summary">Android Headlines claims to have the specs and price for the entire Pixel 11 lineup. What the site shared basically lines up with everything else that we&#x27;ve heard in the lead-up to the August 12th event. The Pixel 11 is expected to get a $100 price hike, starting at $899, but will come with 256GB […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Pixel 11のスペックと価格リーク、驚きなし</div>
+      <div class="ja-summary">Android Headlines は、Pixel 11 ラインナップ全体のスペックと価格を掲載していると主張しています。このサイトが共有した内容は、8月12日のイベントに向けて私たちが聞いた他の内容と基本的に一致している。 Pixel 11は899ドルから100ドルの値上げが予想されていますが、256GBが搭載されます[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/974238/pixel-11-specs-and-price-leak" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 06:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/01/inside-one-london-founder-house-rewriting-the-founder-house-rules/" target="_blank" rel="noopener">Inside the London hacker house taking a stand against founder burnout</a></div>
+    <div class="card-summary">How one founder house is betting work-life balance can beat burnout .</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">創業者の燃え尽き症候群に対して立ち向かうロンドンのハッカーハウスの内部</div>
+      <div class="ja-summary">ある創業家はワークライフバランスが燃え尽き症候群を克服できると賭けている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/01/inside-one-london-founder-house-rewriting-the-founder-house-rules/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 05:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5" target="_blank" rel="noopener">Seedance 2.5</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">シーダンス 2.5</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://seed.bytedance.com/en/blog/one-take-creation-flexible-referencing-introducing-seedance-2-5" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 05:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://diataxis.fr/" target="_blank" rel="noopener">Diátaxis</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">糖尿病性</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://diataxis.fr/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 05:26 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/01/judge-denies-xais-request-to-block-minnesota-ban-on-nudify-apps/" target="_blank" rel="noopener">Judge denies xAI’s request to block Minnesota ban on ‘nudify’ apps</a></div>
+    <div class="card-summary">Despite a lawsuit from xAI, a Minnesota ban on apps that allow users to “nudify” images can move forward.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">判事、ミネソタ州による「裸化」アプリの禁止を阻止するxAIの要請を却下</div>
+      <div class="ja-summary">xAIからの訴訟にもかかわらず、ユーザーが画像を「ヌード化」できるアプリに対するミネソタ州の禁止令は前進する可能性がある。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/01/judge-denies-xais-request-to-block-minnesota-ban-on-nudify-apps/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 05:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zaksa.zip/blog/silicon-valley-founder-meat-grinder/" target="_blank" rel="noopener">The Silicon Valley Founder Meat Grinder</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">シリコンバレーの創始者 肉挽き師</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zaksa.zip/blog/silicon-valley-founder-meat-grinder/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 05:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/report/974226/angela-nissel-interview-good-grief-pass-the-bread-mom-is-dead" target="_blank" rel="noopener">Angela Nissel faces down grief with a laugh</a></div>
+    <div class="card-summary">Angela Nissel&#x27;s latest book, Good Grief, Pass the Bread, Mom Is Dead, is my kind of memoir. Sure, it&#x27;s a deeply emotional tale about caring for a terminally ill parent. But it&#x27;s delivered with the sort of gallows humor that I often turn to to get me through tough times. Of course, that sort of […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アンジェラ・ニッセルは笑いながら悲しみに立ち向かう</div>
+      <div class="ja-summary">アンジェラ・ニッセルの最新作『Good Grief, Pass the Bread, Mom Is Dead』は、私の一種の回想録です。確かに、これは末期の病気の親の介護についての非常に感情的な物語です。しかし、それは、私が困難な時期を乗り越えるためによく頼る絞首台のようなユーモアとともに届けられています。もちろん、そういう […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/report/974226/angela-nissel-interview-good-grief-pass-the-bread-mom-is-dead" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 04:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/01/youtuber-hank-green-says-his-ai-usage-is-not-healthy/" target="_blank" rel="noopener">YouTuber Hank Green says his AI usage is ‘not healthy’</a></div>
+    <div class="card-summary">Green offered a remarkable apology, saying that &quot;the level of dopamine that I&#x27;ve been getting from interacting with LLMs ... is not healthy for me or good for the world.&quot;</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">YouTuberのハンク・グリーン氏、自身のAI利用は「健全ではない」と語る</div>
+      <div class="ja-summary">グリーン氏は、「LLMとの交流から得られるドーパミンのレベルは、私にとっても世界にとっても良くない」と述べ、驚くべき謝罪をした。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/01/youtuber-hank-green-says-his-ai-usage-is-not-healthy/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 03:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/01/should-you-still-buy-your-next-smartphone-or-subscribe-to-it-instead/" target="_blank" rel="noopener">Should you still buy your next smartphone — or subscribe to it instead?</a></div>
+    <div class="card-summary">Apple&#x27;s new Upgrade program is the latest sign that smartphone ownership is changing.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">次のスマートフォンを購入する必要がありますか? それとも定期購入する必要がありますか?</div>
+      <div class="ja-summary">Apple の新しいアップグレード プログラムは、スマートフォンの所有権が変化していることを示す最新の兆候です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/01/should-you-still-buy-your-next-smartphone-or-subscribe-to-it-instead/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 03:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/" target="_blank" rel="noopener">Postmortem for Kernel Soundness Bug #14576</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">カーネル健全性バグ #14576 の事後分析</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://leodemoura.github.io/blog/2026-8-1-postmortem-for-kernel-soundness-bug-14576/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 03:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/974209/fenix-flexin-billboard-hot-100-rubberz-ai-slop" target="_blank" rel="noopener">Is this Billboard Hot 100 hit AI slop?</a></div>
+    <div class="card-summary">Fenix Flexin is best known as a member of Shoreline Mafia, a rap duo from Los Angeles. But he&#x27;s recently found solo success with the track &quot;Rubberz,&quot; which has climbed to number 58 on the Billboard Hot 100. Almost immediately, though, questions were raised about the song&#x27;s origins, with many speculating that it was largely, […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">これは Billboard Hot 100 のヒット AI のスロップですか?</div>
+      <div class="ja-summary">フェニックス・フレキシンは、ロサンゼルス出身のラップデュオ、ショアライン・マフィアのメンバーとして最もよく知られています。しかし、彼は最近、ビルボード ホット 100 で 58 位まで上昇した「ラバーズ」という曲でソロで成功を収めました。しかし、ほぼすぐにこの曲の起源について疑問が生じ、多くの人がその主な理由は […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/974209/fenix-flexin-billboard-hot-100-rubberz-ai-slop" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 03:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://openrss.org/blog/how-google-helped-destroy-adoption-of-rss-feeds" target="_blank" rel="noopener">How Google helped destroy adoption of RSS feeds (2023)</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Google が RSS フィードの普及を破壊するのにどのように貢献したか (2023)</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://openrss.org/blog/how-google-helped-destroy-adoption-of-rss-feeds" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 02:07 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/01/sam-altman-is-still-making-the-case-for-parenting-via-chatgpt/" target="_blank" rel="noopener">Sam Altman is still making the case for parenting via ChatGPT</a></div>
+    <div class="card-summary">OpenAI&#x27;s CEO seemed excited to share a &quot;cool use case&quot; for parents.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サム・アルトマンは今もChatGPTを通じて子育てについて主張している</div>
+      <div class="ja-summary">OpenAI の CEO は、保護者向けに「クールな使用例」を共有することに興奮しているようでした。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/01/sam-altman-is-still-making-the-case-for-parenting-via-chatgpt/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 02:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/974199/spider-man-brand-new-day-leak-box-office-records" target="_blank" rel="noopener">Spider-Man: Brand New Day leak racks up millions of views</a></div>
+    <div class="card-summary">A bootleg of Spider-Man: Brand New Day was up on X for over seven hours before eventually being pulled. During that time, it reached over 5.9 million accounts and accumulated over 143,000 likes. Other accounts have reposted the leaked film, but none have lasted particularly long, as Disney now seems to be on top of […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">スパイダーマン：ブランニューデイのリークが数百万回の再生回数を記録</div>
+      <div class="ja-summary">『スパイダーマン：ブランニュー・デイ』の海賊版は、最終的に削除されるまで 7 時間以上にわたって X 上にアップされていました。その間、アカウント数は 590 万を超え、「いいね！」の数は 143,000 件を超えました。他のアカウントもリークされた映画を再投稿しましたが、ディズニーが今やトップに立っているように見えるため、どれもそれほど長くは続きませんでした[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/974199/spider-man-brand-new-day-leak-box-office-records" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-02 00:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/974197/trump-tim-walz-minnesota-water-hacks-iran" target="_blank" rel="noopener">Trump blames Tim Walz for water hacks even though it’s probably Iran</a></div>
+    <div class="card-summary">The FBI, the EPA, and the Cybersecurity and Infrastructure Security Agency (CISA) have stopped short of officially blaming Iran for a spate of cyberattacks on Minnesota&#x27;s water systems, but consensus is that Iran is likely behind them. That, of course, hasn&#x27;t stopped Donald Trump from sharing his own theory - that Governor Tim Walz is […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">トランプ大統領、ウォーターハッキングはおそらくイランによるものだとしてもティム・ウォルツ氏を非難</div>
+      <div class="ja-summary">FBI、EPA、サイバーセキュリティ・インフラセキュリティ庁（CISA）は、ミネソタ州の水道システムに対する相次ぐサイバー攻撃についてイランを正式に非難するまでには至っていないが、イランが背後にいる可能性が高いというのがコンセンサスだ。もちろん、それはドナルド・トランプが自身の理論を共有することを妨げるものではありません - ティム・ウォルツ知事は[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/974197/trump-tim-walz-minnesota-water-hacks-iran" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 20:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-office-chairs/" target="_blank" rel="noopener">15 Best Office Chairs of 2026—We Tested 70 to Pick Them</a></div>
+    <div class="card-summary">Upgrade your WFH setup and work in style with these comfy, WIRED-tested seats.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">2026 年のベストオフィスチェア 15 脚 - 70 脚をテストして選びました</div>
+      <div class="ja-summary">WIRED でテスト済みの快適なシートで、WFH セットアップをアップグレードし、スタイリッシュに仕事をしましょう。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-office-chairs/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 20:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-organic-mattress/" target="_blank" rel="noopener">Best Organic Mattresses (2026): Certified Nontoxic, Natural Sleep</a></div>
+    <div class="card-summary">These natural, organic mattresses are eco-friendly alternatives to conventional models and just as comfortable.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベストオーガニックマットレス (2026): 認定された無毒で自然な睡眠</div>
+      <div class="ja-summary">これらのナチュラルでオーガニックなマットレスは、従来のモデルに代わる環境に優しい代替品であり、同様に快適です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-organic-mattress/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/china-millions-of-evs-battery-recycling/" target="_blank" rel="noopener">China’s EV Market Is Booming. There’s Just One Problem</a></div>
+    <div class="card-summary">More EVs reaching the end of their life means more batteries to recycle. But waste management companies have yet to catch up to the new reality.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">中国のEV市場は活況を呈している。問題が 1 つだけあります</div>
+      <div class="ja-summary">寿命を迎えるEVが増えれば、リサイクルすべきバッテリーも増えます。しかし、廃棄物管理会社はまだ新たな現実に追いついていない。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/china-millions-of-evs-battery-recycling/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/security-news-this-week-7-states-water-systems-hit-by-cyberattacks-likely-tied-to-iran/" target="_blank" rel="noopener">7 States’ Water Systems Hit by Cyberattacks Likely Tied to Iran</a></div>
+    <div class="card-summary">Plus: The FBI eyes AI-powered tech to detect future crimes, Russia charges Telegram’s founder, xAI sues to stop a state’s “nudification” ban, and the Democrats learn a lesson about getting scammed.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">7つの国の水道システムがサイバー攻撃に見舞われ、イランと関係がある可能性が高い</div>
+      <div class="ja-summary">さらに、FBIは将来の犯罪を検出するためにAIを活用したテクノロジーに注目し、ロシアはテレグラムの創設者を告発し、xAIは国家の「ヌード」禁止を阻止するために訴訟を起こし、民主党は詐欺に遭うという教訓を得る。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/security-news-this-week-7-states-water-systems-hit-by-cyberattacks-likely-tied-to-iran/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-01 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/steel-water-filters-head-to-head/" target="_blank" rel="noopener">Boroux vs. Rorra vs. Culligan: Water Filters, Tested Head to Head</a></div>
+    <div class="card-summary">In a world of plasticky water filter pitchers, I tested three new-generation stainless steel filter systems.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ボロー対ローラ対カリガン: 浄水フィルター、直接テスト</div>
+      <div class="ja-summary">プラスチックのような浄水器ピッチャーの世界で、私は 3 つの新世代ステンレス鋼フィルター システムをテストしました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/steel-water-filters-head-to-head/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
