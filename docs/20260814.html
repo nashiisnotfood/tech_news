@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年08月15日 07:21 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年08月15日 07:21 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>32</strong> 件</div>
+  <div class="stat-pill">Ars Technica: <strong>3</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>4</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (4)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (23)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (5)</span>
+  <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (3)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (4)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">5</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-14 13:36 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/tatsuya582/items/e5c56a2f7b976cfc17ea?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">エラーレスポンス設計の現在地2026</a></div>
+    <div class="card-summary">エラーレスポンス設計の現在地 2026、標準はコードに焼いて規約は最小にする 前回の記事「Web API設計の現在地 2026、いま従うべき標準とデファクトの一覧」で、この10年でいちばん大きく変わった領域としてエラーレスポンスを挙げました。この記事はその深掘りです。 エ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/tatsuya582/items/e5c56a2f7b976cfc17ea?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-14 11:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/nt_y-maeda112/items/48d124a11623b4f9e7c6?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【コピペOK】CSSで作るモダンなUIアニメーション集</a></div>
+    <div class="card-summary">はじめに フロントエンド開発をしていると、「押したくなるようなボタンにしたい」「ユーザーが直感的に操作できるようにしたい」と感じることがあります。 そんなときに活用できるのが、CSSによるアニメーションです。 transitionやtransformなどのCSSプロパティ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/nt_y-maeda112/items/48d124a11623b4f9e7c6?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-14 09:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/jksoft/items/65f7824679ddf171a93d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">エラーを 3 秒で AI に丸投げする若手を見て、AI から答えを取り上げることにした</a></div>
+    <div class="card-summary">「見事な手さばき」を笑えなかった話 先日、隣の席の若手エンジニアの画面をたまたま見て、手が止まりました。 エラーが出る。 コピーする。 AI に貼る。 返ってきたコードを貼り直す。 動く。次のタスクへ。 ここまで、およそ 3 秒 × 数往復。見事でした。 ですが、エラ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/jksoft/items/65f7824679ddf171a93d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-14 09:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/y-kojima-next/items/ce8598e9d94def04d78d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【AWS入門】EC2の購入オプションを実際に試算したら、スポットが最安じゃなかった話</a></div>
+    <div class="card-summary">はじめに 直近、AWS認定ソリューションアーキテクト – アソシエイト（SAA）の勉強をするにあたり、EC2について改めて調べました。 過去の業務ではLambda・S3・DynamoDBといったサーバーレスのサービスを使った経験はありましたが、EC2を本格的に触ったことが...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/y-kojima-next/items/ce8598e9d94def04d78d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-08-14 09:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/kasumi_sato/items/a7135eb6caaf336f4053?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【JavaScript】HTML5 Canvas API入門！基礎から図形・テキスト描画まで徹底解説</a></div>
+    <div class="card-summary">「Webページに動きのあるグラフィックを表示したい」 「JavaScriptを使って、図形やイラストを自由に描いてみたい」 そう思ったときに活躍するのが、HTML5の Canvas API です。 Canvasを使うと、普段CSSだけでは難しい複雑な図形や円、さらに...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/kasumi_sato/items/a7135eb6caaf336f4053?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">27</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 06:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/new-york-city-lawmakers-push-to-ban-the-scan-at-msg/" target="_blank" rel="noopener">New York City Lawmakers Push to ‘Ban the Scan’ at MSG</a></div>
+    <div class="card-summary">At a press conference outside Madison Square Garden, politicians, musicians, and privacy advocates argued for tighter restrictions on how public venues deploy biometric surveillance.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ニューヨーク市議会議員、MSGでの「スキャン禁止」を推進</div>
+      <div class="ja-summary">マディソン・スクエア・ガーデンの外で行われた記者会見では、政治家、ミュージシャン、プライバシー擁護団体が、公共の場での生体認証監視の導入方法に対する制限を強化するよう主張した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/new-york-city-lawmakers-push-to-ban-the-scan-at-msg/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 06:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/the-8-best-movies-to-stream-right-now/" target="_blank" rel="noopener">The Best Movies to Stream This Month (August 2026)</a></div>
+    <div class="card-summary">Avatar Aang, Heartstopper Forever, and Exit 8 are among the films deserving of your eyeballs this month.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">今月ストリーミングするベスト映画 (2026 年 8 月)</div>
+      <div class="ja-summary">『アバター アアン』、『ハートストッパー フォーエバー』、『イグジット 8』は、今月注目に値する映画の 1 つです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/the-8-best-movies-to-stream-right-now/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 05:59 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/unitree-influencer-4-foot-robot-from-china/" target="_blank" rel="noopener">The Next Big Influencer Is This 4-Foot-Tall Robot From China</a></div>
+    <div class="card-summary">The Unitree G1 has found online fame as a relatively affordable robot that can charm a crowd. But can it ever hold down a real job?</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/unitree-influencer-4-foot-robot-from-china/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 05:52 JST</span>
+    </div>
+    <div class="card-title"><a href="https://blog.cryptographyengineering.com/2026/08/14/everything-is-about-to-go-dark/" target="_blank" rel="noopener">Everything is about to &quot;go dark&quot;</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://blog.cryptographyengineering.com/2026/08/14/everything-is-about-to-go-dark/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 05:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/14/self-driving-trucks-are-officially-testing-on-california-highways/" target="_blank" rel="noopener">Self-driving trucks are officially testing on California highways</a></div>
+    <div class="card-summary">Aurora Innovation and Kodiak AI, two companies developing self-driving trucks, have received permits from the California Department of Motor Vehicles.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">自動運転トラックがカリフォルニアの高速道路で正式にテスト中</div>
+      <div class="ja-summary">自動運転トラックを開発する2社であるAurora InnovationとKodiak AIは、カリフォルニア州陸運局から許可を取得した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/14/self-driving-trucks-are-officially-testing-on-california-highways/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 04:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/14/thrives-joshua-kushner-chides-silicon-valley-vcs-over-ai-euphoria/" target="_blank" rel="noopener">Thrive’s Joshua Kushner chides Silicon Valley VCs over AI euphoria</a></div>
+    <div class="card-summary">The AI opportunity is huge, but &quot;it would also be a grave error in our minds to let excitement weaken our investment discipline,&quot; Kushner warns in his first-ever investment letter.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Thriveのジョシュア・クシュナー氏、AIの高揚感を理由にシリコンバレーのVCを叱責</div>
+      <div class="ja-summary">AIのチャンスは非常に大きいが、「興奮によって投資規律が弱まるのは重大な間違いでもある」とクシュナー氏は初めての投資書簡で警告している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/14/thrives-joshua-kushner-chides-silicon-valley-vcs-over-ai-euphoria/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 04:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://eliasfarhan.ch/gamedev/cpp/2026/08/14/srnative-01-why-a-custom-engine.html" target="_blank" rel="noopener">What You Gain by Building Your Own Game Engine</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://eliasfarhan.ch/gamedev/cpp/2026/08/14/srnative-01-why-a-custom-engine.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 04:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/980547/samsung-galaxy-h1-over-ear-headphones" target="_blank" rel="noopener">Samsung has new Galaxy headphones in the works</a></div>
+    <div class="card-summary">Strings of code in Samsung&#x27;s Galaxy Wearable app hint at an upcoming pair of over-ear headphones that could compete with the AirPods Max, SamMobile reports. Samsung&#x27;s reportedly referring to the headphones as the &quot;Galaxy H1,&quot; and SamMobile says they could launch sometime in 2027. That would make these the company&#x27;s first pair of over-ear headphones […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/980547/samsung-galaxy-h1-over-ear-headphones" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 04:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/14/what-we-know-about-the-alleged-iranian-hacks-on-u-s-water-utilities/" target="_blank" rel="noopener">What we know about the alleged Iranian hacks on US water utilities</a></div>
+    <div class="card-summary">Over the last couple of weeks, hackers have targeted and broken into the systems of several water plants in the United States. Here’s what we know and don’t know about this wave of attacks allegedly carried out by the Iranian government.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">米国の水道事業に対するイランによるハッキング疑惑について私たちが知っていること</div>
+      <div class="ja-summary">過去数週間にわたり、ハッカーは米国のいくつかの給水所のシステムを標的にして侵入しました。イラン政府が実行したとされるこの一連の攻撃について、私たちが知っていることと知らないことは次のとおりです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/14/what-we-know-about-the-alleged-iranian-hacks-on-u-s-water-utilities/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 03:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/14/read-it-later-app-pocket-is-shutting-down-here-are-the-best-alternatives/" target="_blank" rel="noopener">Read-it-later app Pocket shut down — here are the best alternatives</a></div>
+    <div class="card-summary">Pocket users have until October 8, 2025, to export their saved articles and other items, including lists, archives, favorites, notes, and highlights.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/14/read-it-later-app-pocket-is-shutting-down-here-are-the-best-alternatives/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 03:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/979996/best-laptops-students-middle-high-school" target="_blank" rel="noopener">A RAMageddon guide to back-to-school laptop shopping</a></div>
+    <div class="card-summary">If you’re a student looking for an affordable laptop, I have bad news and I have good news. The bad news is that computer prices are out of whack due to the ongoing RAM and storage crunch, making some a little pricier than they used to be and others wildly more expensive. The good news? […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/979996/best-laptops-students-middle-high-school" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 03:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/security/2026/08/vulnerability-giving-attackers-full-control-of-macs-is-under-active-exploitation/" target="_blank" rel="noopener">Vulnerability giving attackers full control of Macs is under active exploitation</a></div>
+    <div class="card-summary">Screen-sharing bug lets remote hackers log in without a password.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">攻撃者に Mac の完全な制御を与える脆弱性が活発に悪用されている</div>
+      <div class="ja-summary">画面共有のバグにより、リモートのハッカーがパスワードなしでログインできます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/security/2026/08/vulnerability-giving-attackers-full-control-of-macs-is-under-active-exploitation/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 03:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/transportation/979807/lamborghini-revuelto-sv-specs-performance" target="_blank" rel="noopener">Lamborghini’s flagship Revuelto levels up with SV trim</a></div>
+    <div class="card-summary">A lot of automakers talk about wanting to minimize or eliminate driver distractions so as to make the experience of driving more rewarding and safer overall. Lamborghini has a different strategy; it wants the driver to become one with their vehicle. This helps explain the storied super car maker&#x27;s tagline for the new Revuelto SV: […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ランボルギーニのフラッグシップ「レブエルト」がSVトリムでレベルアップ</div>
+      <div class="ja-summary">多くの自動車メーカーは、全体的に運転体験をより価値のある安全なものにするために、ドライバーの注意散漫を最小限に抑えるか排除したいと考えています。ランボルギーニは別の戦略を持っています。ドライバーが自分の車と一体になることを望んでいます。これは、この名高いスーパーカーメーカーの新型レブエルト SV のキャッチフレーズを説明するのに役立ちます。 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/transportation/979807/lamborghini-revuelto-sv-specs-performance" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 03:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/979925/the-x-files-chris-carter-vrach-frankenshteyn-interview-hulu" target="_blank" rel="noopener">The X-Files creator Chris Carter wanted to make a more horrific movie</a></div>
+    <div class="card-summary">The version of The X-Files: I Want to Believe that premiered in 2008 was not exactly the movie co-writer / director Chris Carter intended to make. Carter wanted to bring agents Mulder and Scully back to the big screen with a grisly story about faith and the supernatural. But executives at 20th Century Fox felt […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/979925/the-x-files-chris-carter-vrach-frankenshteyn-interview-hulu" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 02:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/980467/google-pixel-11-camera-looks-older-phones" target="_blank" rel="noopener">Google’s best new camera feature is only for the Pixel 11 series</a></div>
+    <div class="card-summary">Arguably the coolest new photo feature for the Pixel 11 lineup is Google&#x27;s new Camera Looks, which process image data differently at the sensor level to produce photos that don&#x27;t have that &quot;smartphone&quot; look. The result is new styles like &quot;Digi,&quot; which mimics the style of photos taken by older digital cameras. But to use […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/980467/google-pixel-11-camera-looks-older-phones" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 02:03 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/information-technology/2026/08/pbs-station-fears-losing-50tb-of-data-after-being-ghosted-by-cloud-storage-provider/" target="_blank" rel="noopener">PBS station fears losing 50TB of data after being ghosted by cloud storage provider</a></div>
+    <div class="card-summary">&quot;We don&#x27;t have access to the data on the hardware/servers,&quot; Iron Mountain told Ars.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/information-technology/2026/08/pbs-station-fears-losing-50tb-of-data-after-being-ghosted-by-cloud-storage-provider/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 01:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/08/14/unforgetful-is-a-new-reminders-app-for-people-who-cant-stop-hitting-snooze/" target="_blank" rel="noopener">Unforgetful is a new reminders app for people who can’t stop hitting snooze</a></div>
+    <div class="card-summary">Unforgetful, the latest app from longtime indie developer Marco Arment, is designed to make reminders harder to ignore — or accidentally dismiss.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Unforgetful は、スヌーズがやめられない人のための新しいリマインダー アプリです</div>
+      <div class="ja-summary">長年のインディーズ開発者 Marco Arment による最新アプリ Unforgetful は、リマインダーを無視したり、誤って無視したりするのを難しくするように設計されています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/08/14/unforgetful-is-a-new-reminders-app-for-people-who-cant-stop-hitting-snooze/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 01:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://rustdesk.com/blog/unattended-remote-access-wayland/" target="_blank" rel="noopener">RustDesk now supports true unattended remote access on Wayland</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">RustDesk は Wayland での真の無人リモート アクセスをサポートするようになりました</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://rustdesk.com/blog/unattended-remote-access-wayland/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/tech-visionary-says-the-big-ai-labs-dont-get-what-people-want/" target="_blank" rel="noopener">Tech Visionary Says the Big AI Labs Don’t Get What People Want</a></div>
+    <div class="card-summary">Tim O’Reilly built a publishing empire that AI is helping to destroy. Yet he loves AI—as long as it’s open source.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/tech-visionary-says-the-big-ai-labs-dont-get-what-people-want/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-15 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://huggingface.co/Qwen/Qwen3.8-27B-FP8" target="_blank" rel="noopener">Qwen 3.8 27B</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">クウェン 3.8 27B</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://huggingface.co/Qwen/Qwen3.8-27B-FP8" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-14 23:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground/" target="_blank" rel="noopener">OpenAI and Anthropic in price war as Chinese AI rivals gain ground</a></div>
+    <div class="card-summary">US groups release cheaper models after new challenges to their trillion-dollar ambitions.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-08-14 21:17 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/08/14/1142033/the-download-flock-new-rules-cloning-future/" target="_blank" rel="noopener">The Download: Flock’s new rules, cloning’s future, and children’s cells</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Flock is tightening its rules in response to a growing surveillance backlash The police-tech giant Flock is changing officers’ access to its nationwide network of license plate readers. The move comes…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: フロックの新しいルール、クローン作成の未来、そして子供の細胞</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。監視カメラへの反発が強まる中、フロックは規則を強化している 警察技術大手フロックは、全国規模のナンバープレート読み取りネットワークへの警察官のアクセスを変更している。その動きは…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/08/14/1142033/the-download-flock-new-rules-cloning-future/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-14 21:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-wireless-chargers/" target="_blank" rel="noopener">Best Wireless Chargers (2026): My Picks After Testing 100+</a></div>
+    <div class="card-summary">Stop fumbling for cables in the dark. These WIRED-tested stands and pads will take the hassle out of refueling your phone, wireless earbuds, and watch.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベストワイヤレス充電器 (2026): 100 以上をテストした私の選択</div>
+      <div class="ja-summary">暗闇の中でケーブルを手探りする必要はもうありません。これらの WIRED でテスト済みのスタンドとパッドを使用すると、携帯電話、ワイヤレス イヤフォン、時計に燃料を補給する手間が省けます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-wireless-chargers/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-08-14 19:12 JST</span>
+    </div>
+    <div class="card-title"><a href="https://mun-logadan.github.io/why-does-opus-5-feel-worse/" target="_blank" rel="noopener">Why does Opus 5 feel worse to work with?</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://mun-logadan.github.io/why-does-opus-5-feel-worse/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-08-14 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/08/14/1141354/deanne-taylor-gene-expression-children/" target="_blank" rel="noopener">This scientist is helping build a missing map of childhood</a></div>
+    <div class="card-summary">In 2017, Deanne Taylor attended a presentation at the University of Pennsylvania, just a short walk from her office. A researcher was there to unveil the Human Cell Atlas, an ambitious project that aimed to map every cell in the human body. Taylor was floored, and then concerned. As details emerged, she discovered that the…</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/08/14/1141354/deanne-taylor-gene-expression-children/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-08-14 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/08/14/1141431/job-titles-space-travel-agent-roman-chiporukha/" target="_blank" rel="noopener">Job titles of the future: Space travel agent</a></div>
+    <div class="card-summary">Roman Chiporukha has long turned wild travel dreams into reality. Over two decades as co-owner of the luxury lifestyle firm Roman &amp; Erica, he has orchestrated everything from the construction of a client’s superyacht to vacations in the Bahamas at a location so private that guests must sign an NDA. The experiences earned him “the…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">将来の職種：宇宙旅行代理店</div>
+      <div class="ja-summary">Roman Chiporukha は長い間、ワイルドな旅行の夢を現実にしてくれました。高級ライフスタイル会社ローマン＆エリカの共同オーナーとして20年以上にわたり、顧客のスーパーヨットの建造からバハマでの休暇に至るまで、ゲストが機密保持契約に署名する必要があるほどプライベートな場所での休暇に至るまで、あらゆることを調整してきました。この経験により、彼は「…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/08/14/1141431/job-titles-space-travel-agent-roman-chiporukha/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-08-14 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/08/14/1141919/cloning-save-species-or-make-human-organ-sacks/" target="_blank" rel="noopener">Cloning could be used to save species—or make human “organ sacks”</a></div>
+    <div class="card-summary">This week I spoke to scientists who have found a way to turn male mouse embryos female. They’ve developed a CRISPR-based approach to essentially cut out the Y chromosome. It allowed them to create female clones of male mice. That’s right: female animals that are genetically identical to males, except for the missing Y chromosome.…</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/08/14/1141919/cloning-save-species-or-make-human-organ-sacks/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
