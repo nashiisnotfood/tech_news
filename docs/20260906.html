@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年09月07日 08:29 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年09月07日 08:29 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>29</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>4</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>5</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (19)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (10)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (4)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (5)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">10</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-07 01:29 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/maskot1977/items/dcc594be88032bd4ea68?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">耳で聞く！Python で学ぶ マクロ経済学 入門 10</a></div>
+    <div class="card-summary">user: ソース動画のタイトル、そしてこの動画の内容について教えてください。 Gemini: ソース動画のタイトルは、「財政黒字が国民を貧しくする: Pythonで学ぶマクロ経済学入門 Podcast (10)」 です。 この動画は、一般的な「政府の赤字は悪であり、...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/maskot1977/items/dcc594be88032bd4ea68?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-07 01:02 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/songchong/items/94df4fbdeabaaf8f8ef5?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIエージェント14製品を徹底比較｜暴走せず社内業務を任せられるのは？ Claude・Cursor・Devin・Manus…【中小企業の導入判断ガイド】</a></div>
+    <div class="card-summary">「AIに社内システムを触らせて、事故は起きないのか？」 「エンジニア専用？ 一般業務にも使えるのか？」 「操作ミスは戻せるのか？ 費用は青天井にならないか？」 1. 業務視点での結論：AIエージェント 14製品の総合比較マトリクス 「AIエージェントを導入すれば、毎...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/songchong/items/94df4fbdeabaaf8f8ef5?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 21:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/darkcat666/articles/c2a19b874900ab" target="_blank" rel="noopener">初学者がRustに触れて感じたこと</a></div>
+    <div class="card-summary">ごあいさつ ●初めまして！！ダークネコだよー（死） 私が今を時めく言語である（？）Rustに触れて感じたことを記述します。 技術記事というより、私の感想なので「それってあなたの感想ですよね？」と言われたら 「Yes I do」と回答するしかない可哀そうなネコでござる。 ●悪魔でもサタン様でもルシファー様でも（？） ※ルシファー様の邪悪な瞳が光る✨✨ 感じたことなので、無意味な情報として君の脳の片鱗に焼き付けてくれればいいよ。 （炎の刻印は記憶の魔術と密接に関連しているのだから！！） ー出典：とある少女漫画 感じたことリスト💛 くそ難しい言語や・・・ コンパイラにとっては逆に...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/darkcat666/articles/c2a19b874900ab" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 20:50 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/dev_commune/articles/github-terraform-permission-management" target="_blank" rel="noopener">GitHub の権限管理を Terraform 化すると体験がよかった</a></div>
+    <div class="card-summary">はじめに 新規のメンバーが入るたび、チームの構成が変わるたび、依頼が Slack ワークフローで流れてきます。その都度、GitHub をブラウザで開いてパスキーで認証して、画面をポチポチする。しんどいですね。 いい加減 Terraform にしました。なにを管理したかと詰まったところについて紹介します。 https://github.com/integrations/terraform-provider-github 管理したもの Terraform でこれらを管理することにしました。すべてを管理するわけではありません。まずは画面ポチポチを減らすこと、依頼自体を Pull Req...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/dev_commune/articles/github-terraform-permission-management" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 19:48 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/issei_y/articles/4178a603322b8e" target="_blank" rel="noopener">ルービックキューブを一撃で解く専用LLMを作った</a></div>
+    <div class="card-summary">CUBE ZERO — ルービックキューブを一撃で解く専用LLMをゼロから育てた 1. なぜ作った？ 事前知識ゼロから育ち、ルービックキューブを一撃で解くLLMがあったら、かっこいいですよね。ということで、CEOの夏休みの自由研究として作りました！ 完成したモデルは、現在のキューブと過去の手順を受け取り、次の1手を自己回帰的に生成します。学習後は、初めて見る局面の99.83%を1回の生成で解けました。 2. ルービックキューブはどれくらい難しいのか ルービックキューブには、約 4.3 × 10^19 通りの状態があります。ただし、すべての状態が同じ難しさではありません。 完...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/issei_y/articles/4178a603322b8e" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 17:11 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/Sicut_study/items/8fa7302bbb5bc1c897bf?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【歴史】Next.jsが覇権を握り、そして直面した試練の物語【動画解説】</a></div>
+    <div class="card-summary">はじめに こんにちは、Watanabe Jin(@Sicut_study)です。 今日、私たちが当たり前のように使っているReactフレームワーク「Next.js」。 Netflix、Uber、OpenAIなど、世界中の巨大企業が採用し、日常的に利用するサービスの多くが...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/Sicut_study/items/8fa7302bbb5bc1c897bf?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 16:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/songchong/items/d1e1e908a1b76d6995b1?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">APIあるのに手入力？ 業務システムから分かるデータ連携の罠｜「項目名1つ1つの突合」から見えてきた現実</a></div>
+    <div class="card-summary">「API連携に対応しています」 SaaSの製品カタログや営業資料で、この言葉を見かけない日はありません。 しかし、いざ導入されたあと、情シスや社内SEが現場から突きつけられるのは、こんなクレームです。 「APIで自動化したはずなのに、毎月画面を開いて手入力する作業がど...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/songchong/items/d1e1e908a1b76d6995b1?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 15:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/yyamamot/articles/gpt2-to-qwen2-03-rope" target="_blank" rel="noopener">GPT-2-likeからQwen2-likeへの実験：第3回 絶対位置EmbeddingをRoPEに変える</a></div>
+    <div class="card-summary">GPT-2-likeからQwen2-likeへの実験：第3回 絶対位置EmbeddingをRoPEに変える GPT-2-likeからQwen2-likeへ、少しずつ構造を変更する実験の第3回です。今回は学習可能な絶対位置Embeddingを外し、RoPEへ変更します。 第2回では、GELUをSwiGLUへ変更しました。検証Lossは改善しましたが、学習は少し遅くなりました。今回は品質指標の差がさらに大きく出ています。その代わり、速度の低下もかなり明確でした。 先に結果を書くと下記です。 検証Lossと正解率は5つすべてのseedで改善した パラメーターは32,768減った 学習時間...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/yyamamot/articles/gpt2-to-qwen2-03-rope" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 10:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/yuki82511988/articles/45a5a464514ac1" target="_blank" rel="noopener">個人PCのClaude Codeの設定ファイルと、設定の動機を一部紹介します</a></div>
+    <div class="card-summary">はじめに Claude Codeは何も設定しないまま利用すると、意図しないコマンドを実行したり、サイトにアクセスしたりしてしまう可能性があります。それらを防いでくれるのが設定ファイルです。 本記事では、自分が調査しながら作成して普段使いしている設定ファイルの一部と、なぜそのように設定したかの動機を紹介したいと思います。 予期せぬ事故の記事を複数見て、自分の記事が何かの参考になればいいなと思ったのと、自分の設定を見直してきちんと設定の理由を言語化したいと思い記事を書きました。 この設定間違ってるかも？とか、こうした方が良いかも？などのアドバイスがあれば、とても嬉しいです。よろしくお願い...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/yuki82511988/articles/45a5a464514ac1" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-06 10:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/mnishiguchi/items/d22ccf08fb92a47b8732?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">UIAPduino Pro Micro CH32V006 で Elixir を動かしてみた</a></div>
+    <div class="card-summary">はじめに 先日、組込みシステム技術に関するサマーワークショップ SWEST28 に参加しました。 そこで、UIAPを開発されている埋田祐希さんによる、UIAPduinoを使った組込み開発の講習に参加しました。 講習では UIAPduino Pro Micro CH3...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/mnishiguchi/items/d22ccf08fb92a47b8732?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">19</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 08:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://austinhenley.com/blog/python1024.html" target="_blank" rel="noopener">Making a Python interpreter in 1024 bytes</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">1024バイトでPythonインタプリタを作る</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://austinhenley.com/blog/python1024.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 06:41 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/06/phil-schillers-app-store-exit-reportedly-driven-by-wariness-over-future-plans/" target="_blank" rel="noopener">Phil Schiller’s App Store exit reportedly driven by wariness over future plans</a></div>
+    <div class="card-summary">Schiller reportedly had reservations about new CEO John Ternus&#x27; goal of bringing in more recurring revenue from the App Store.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">フィル・シラー氏のApp Store撤退は将来計画への警戒感が原因と報じられている</div>
+      <div class="ja-summary">シラー氏は、App Storeからより多くの経常収益をもたらすという新CEOのジョン・ターナス氏の目標について懸念を抱いていたと伝えられている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/06/phil-schillers-app-store-exit-reportedly-driven-by-wariness-over-future-plans/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 05:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/990918/amazon-cargo-plane-crashed-miami" target="_blank" rel="noopener">An Amazon cargo plane crashed at Miami International Airport</a></div>
+    <div class="card-summary">A plane bearing an Amazon logo overran the runway at Miami International Airport on Sunday during landing, crashing into vehicles and resulting in multiple injuries. The extent of the damage or the seriousness of the injuries was not clear at the time of publication. In the aftermath of the incident, the FAA released a statement […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">アマゾンの貨物機がマイアミ国際空港に墜落</div>
+      <div class="ja-summary">アマゾンのロゴを掲げた飛行機が日曜日、着陸中にマイアミ国際空港の滑走路をオーバーランし、車両に衝突し、複数の負傷者を出した。被害の程度や負傷の重篤さは、記事掲載時点では明らかではなかった。この事件を受けて、FAAは声明を発表した […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/990918/amazon-cargo-plane-crashed-miami" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 05:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/" target="_blank" rel="noopener">Authors push back as publishers and agents make claims on Anthropic settlement</a></div>
+    <div class="card-summary">Authors say publishers seem to be claiming more than their fair share of settlement payments.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">出版社や代理店が人類の和解について主張する中、著者らは反発</div>
+      <div class="ja-summary">著者らは、出版社は相当額以上の和解金を請求しているようだと述べている。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/06/authors-push-back-as-publishers-and-agents-seek-share-of-anthropic-settlement/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 05:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://github.com/marsbos/mador" target="_blank" rel="noopener">Show HN: Mador – Make any DOM reactive with a tiny 80-line Proxy state tuple</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Show HN: Mador – 小さな 80 行のプロキシ状態タプルを使用して任意の DOM をリアクティブにします</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://github.com/marsbos/mador" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 05:24 JST</span>
+    </div>
+    <div class="card-title"><a href="https://grapheneos.social/@GrapheneOS/117225539756835649" target="_blank" rel="noopener">GrapheneOS Overhauled Default Apps and Secure Clipboard</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">GrapheneOS のオーバーホールされたデフォルト アプリと安全なクリップボード</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://grapheneos.social/@GrapheneOS/117225539756835649" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 04:04 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/science/990906/isar-aerospace-europe-orbital-rocket-launch" target="_blank" rel="noopener">Europe has its first commercial orbital rocket</a></div>
+    <div class="card-summary">German company Isar Aerospace has successfully launched Europe&#x27;s first entirely commercial orbital rocket. It attempted to achieve the feat last March, but that lasted all of 30 seconds before the vehicle crashed into the sea and exploded. This time the company managed to get the two-stage Spectrum into low Earth orbit from a Norwegian spaceport. […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ヨーロッパ初の商用軌道ロケットが誕生</div>
+      <div class="ja-summary">ドイツのイザール・エアロスペース社は、ヨーロッパ初の完全に商業的な軌道ロケットの打ち上げに成功した。昨年3月にもこの偉業を達成しようとしたが、それは30秒間続き、その後車両は海に衝突して爆発した。今回同社は、ノルウェーの宇宙港から2段構成のスペクトラムを地球低軌道に投入することに成功した。 […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/science/990906/isar-aerospace-europe-orbital-rocket-launch" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 01:45 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/06/travis-kalanicks-atoms-might-be-getting-into-the-robotaxi-business/" target="_blank" rel="noopener">Travis Kalanick’s Atoms might be getting into the robotaxi business</a></div>
+    <div class="card-summary">The Uber founder has said that Atoms will allow him to complete &quot;unfinished business.&quot;</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">トラヴィス・カラニックのアトムズがロボタクシー事業に参入するかもしれない</div>
+      <div class="ja-summary">ウーバー創設者はアトムズによって「未完の仕事」を完了できると述べた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/06/travis-kalanicks-atoms-might-be-getting-into-the-robotaxi-business/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 01:28 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/990895/boox-picco-tiny-e-reader-november-ifa" target="_blank" rel="noopener">Boox’s tiny Picco e-reader should land in November</a></div>
+    <div class="card-summary">Boox teased the Picco, its take on the buzzy Xteink X4 e-reader, back in July, but provided almost no details. Now, thanks to some reporting out of IFA, we&#x27;ve got a bit more info, though sadly still no price. Unlike the Xteink devices, the Picco will not have magnets on the back for attaching to […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Boox の小型電子書籍リーダー Picco は 11 月に発売される予定</div>
+      <div class="ja-summary">Boox は 7 月に、話題の電子書籍リーダー Xteink X4 をアレンジした Picco をからかいましたが、詳細はほとんど明らかにしませんでした。 IFA からのいくつかのレポートのおかげで、もう少し詳しい情報が得られましたが、残念ながら価格はまだわかっていません。 Xteink デバイスとは異なり、Picco には背面に取り付けられる磁石がありません […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/990895/boox-picco-tiny-e-reader-november-ifa" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-07 01:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/06/techcrunch-mobility-tesla-cybercab-hits-the-road-and-a-snag/" target="_blank" rel="noopener">TechCrunch Mobility: Tesla Cybercab hits the road — and a snag</a></div>
+    <div class="card-summary">Welcome back to TechCrunch Mobility, your hub for the future of transportation and now, more than ever, the role AI is playing in it.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">TechCrunch Mobility: Tesla Cyber​​cab が道路に登場 – そして障害に</div>
+      <div class="ja-summary">TechCrunch Mobility へようこそ。未来の交通機関のハブであり、その中で AI がこれまで以上に重要な役割を果たしています。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/06/techcrunch-mobility-tesla-cybercab-hits-the-road-and-a-snag/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 22:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/990436/fairphone-6-plus-review" target="_blank" rel="noopener">The Fairphone 6 Plus is the midrange phone we desperately needed</a></div>
+    <div class="card-summary">The Fairphone 6 Plus feels like an extremely average midrange Android phone and I couldn&#x27;t be more thrilled. The mission has always been admirable. Fairphone seeks out ethically sourced materials and offers a high degree of repairability for its devices. But the phones themselves required a lot of sacrifices, like putting up with underpowered processors […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Fairphone 6 Plus は、私たちが切実に必要としていたミッドレンジの携帯電話です</div>
+      <div class="ja-summary">Fairphone 6 Plus は、非常に平均的なミッドレンジの Android スマートフォンのように感じられ、これ以上に興奮することはありません。その使命は常に素晴らしいものでした。 Fairphone は倫理的に調達された材料を探し、デバイスに高度な修理可能性を提供します。しかし、携帯電話自体には、非力なプロセッサーを我慢するなど、多くの犠牲が必要でした […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/990436/fairphone-6-plus-review" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 22:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/games/990691/competitive-pokemon-champions-mobile-tournament-accessibility" target="_blank" rel="noopener">Competitive Pokémon is on phones now, but you still need a Switch to become a champion</a></div>
+    <div class="card-summary">To get started with competitive Pokémon battles, all you need is your phone. But to compete at the highest level, like at the Pokémon World Championships, you&#x27;re going to need a Switch. And there doesn&#x27;t seem to be a good reason why. Battle simulator Pokémon Champions originally launched on the Switch and Switch 2 in […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">対戦用のポケモンが携帯電話でプレイできるようになりましたが、チャンピオンになるには依然として Switch が必要です</div>
+      <div class="ja-summary">競争力のあるポケモンバトルを始めるのに必要なのは、携帯電話だけです。ただし、ポケモン ワールド チャンピオンシップなどの最高レベルで競争するには、Switch が必要になります。そして、それには十分な理由がないようです。バトルシミュレーター Pokémon Champions はもともと Switch と Switch 2 で発売されました […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/games/990691/competitive-pokemon-champions-mobile-tournament-accessibility" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 20:56 JST</span>
+    </div>
+    <div class="card-title"><a href="https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/" target="_blank" rel="noopener">Your intellectual fly is open (2025)</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">あなたの知的ハエは開かれています (2025)</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 20:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-laptop-backpacks/" target="_blank" rel="noopener">The Best Laptop Backpacks for Work, Travel, and Everything Between (2026)</a></div>
+    <div class="card-summary">The wrong bag can aggravate you every single day. These WIRED-tested picks get comfort, capacity, and organization just right.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">仕事、旅行、その他あらゆる用途に最適なラップトップ バックパック (2026)</div>
+      <div class="ja-summary">間違ったバッグを使用すると、毎日イライラする可能性があります。 WIRED でテストされたこれらのアイテムは、快適さ、容量、整理整頓に最適です。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-laptop-backpacks/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/create-custom-windows-11-notifications-to-remind-yourself-of-anything/" target="_blank" rel="noopener">Create Custom Windows 11 Notifications to Remind Yourself of Anything</a></div>
+    <div class="card-summary">Take full control of your desktop alerts by sending yourself recurring reminders and custom notifications triggered by specific events.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">カスタム Windows 11 通知を作成して何かを思い出させる</div>
+      <div class="ja-summary">特定のイベントによってトリガーされる定期的なリマインダーやカスタム通知を自分に送信することで、デスクトップ アラートを完全に制御できます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/create-custom-windows-11-notifications-to-remind-yourself-of-anything/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/cyborg-cockroaches-disaster-response/" target="_blank" rel="noopener">These Cyborg Cockroaches Could Save Your Life</a></div>
+    <div class="card-summary">The team embedded electrodes into live cockroaches, then outfitted them with cameras and injection devices to deliver medication via remote control.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">これらのサイボーグゴキブリはあなたの命を救う可能性があります</div>
+      <div class="ja-summary">研究チームは生きたゴキブリに電極を埋め込み、遠隔操作で薬剤を投与するためのカメラと注射装置を装着した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/cyborg-cockroaches-disaster-response/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/my-brief-summer-fling-with-siri-ai/" target="_blank" rel="noopener">My Brief Summer Fling With Siri AI</a></div>
+    <div class="card-summary">I was initially enamored with the beta version of Apple’s revamped smartphone assistant. As the full release approaches, I’ve forgotten Siri AI even exists.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Siri AI と過ごす短い夏</div>
+      <div class="ja-summary">私は最初、Apple の改良されたスマートフォン アシスタントのベータ版に夢中でした。完全リリースが近づくにつれ、Siri AI の存在すら忘れてしまいました。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/my-brief-summer-fling-with-siri-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 19:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/gallery/best-water-leak-detector/" target="_blank" rel="noopener">Best Water Leak Detectors (2026): Moen, Phyn, TP-Link</a></div>
+    <div class="card-summary">Don’t let busted pipes or an overflowing washing machine dampen your day. These smart water sensors can help you catch problems quicker.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ベスト漏水検知器 (2026): Moen、Phyn、TP-Link</div>
+      <div class="ja-summary">水道管の破損や洗濯機の水漏れで一日が台無しにならないようにしましょう。これらのスマート水センサーは、問題をより迅速に発見するのに役立ちます。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/gallery/best-water-leak-detector/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-06 16:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight" target="_blank" rel="noopener">Isar Aerospace reaches orbit and deploys payloads on second flight</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">イザール・エアロスペースが軌道に到達し、2回目の飛行でペイロードを展開</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://isaraerospace.com/press/history-for-european-spaceflight-isar-aerospace-reaches-orbit-and-deploys-payloads-on-second-flight" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
