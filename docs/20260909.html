@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年09月10日 08:50 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年09月10日 08:50 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>37</strong> 件</div>
+  <div class="stat-pill">AI News: <strong>2</strong></div> <div class="stat-pill">Ars Technica: <strong>1</strong></div> <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">MIT Technology Review: <strong>4</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>5</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('AI', this)">AI (2)</span> <span class="filter-tab" onclick="filterCards('AI / Tech', this)">AI / Tech (4)</span> <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (21)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (10)</span>
+  <span class="filter-tab" onclick="filterCards('AI News', this)">AI News (2)</span> <span class="filter-tab" onclick="filterCards('Ars Technica', this)">Ars Technica (1)</span> <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('MIT Technology Review', this)">MIT Technology Review (4)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (5)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">10</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-10 02:47 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/songchong/items/252947681e7914cd9e2c?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AIエージェントにファイルを消される・課金が止まらない・秘密鍵が漏れる｜暴走の原理と4層の対策を調べてみた</a></div>
+    <div class="card-summary">「ChatGPTは社内で慣れたので、自律型AIエージェントも入れてくれない？」 最近、Claude Code、Cursor、Devin など、AIが自律的にコマンドを実行し、ファイルを書き換える「エージェント型AI」を検討し始めている企業も少なくないと思います。 しかし同時...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/songchong/items/252947681e7914cd9e2c?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/socialplus/articles/f5d9e28470eb99" target="_blank" rel="noopener">Agent Skillは振る舞いとナレッジを分けて設計する</a></div>
+    <div class="card-summary">どうもこんにちは、たくびーです。 弊社ではClaudeのチームプランに契約しており、開発者全員がClaude Codeを使うことができます。 希望者はChatGPTのチームプランも使えてCodexを併用することも可能です。 私はAI開発環境整備の一環でルールやスキルの作成やメンテナンスをすることが多いです。 そこで最近はエージェントスキルの設計方針について考えることが多く、現時点でどういう観点でスキルを作成しているかということをご紹介したいと思います。 ! 記事の内容は人間が書いていますが、調査などにAIを使用しています。 TL;DR スキルを書くときは振る舞いとナレッジを分ける...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/socialplus/articles/f5d9e28470eb99" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 18:36 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/ivry/articles/a3f5cce6b9a7e0" target="_blank" rel="noopener">YANSでスポンサーしてきた</a></div>
+    <div class="card-summary">こんにちは。ラーメンハゲです。最近は牡蠣のラーメンをスープから作りました。IVRyで対話システムのAIエンジニアをやっています。学生の時はNAISTで対話の研究をしていました。YANSには学生時代に数回参加しつつ、今年は初めてスポンサー側として参加したのでその報告をします。 ちなみにYANS自体は今年で4回目ぐらいの参加ですが、自分が最初に参加した時はコロナ下だったのでzoom+gatherでの参加だった記憶です。懐かしい。 YANSとは YANSとは、Young Researcher Association for NLP Studiesの頭文字に由来する名称です。 特徴として、他...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/ivry/articles/a3f5cce6b9a7e0" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 14:24 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/tan_go238/books/project-management-textbook" target="_blank" rel="noopener">プロジェクトマネジメントの教科書（内製チーム向け）</a></div>
+    <div class="card-summary">内製・プロダクト組織のための実践ガイド。計画は外れる前提で立て、要件を軽く扱わず、言われていないことを扱う。立ち上げから要件定義、計画、チーム、実行、運用、そして終わらせ方までを全42章で扱う。</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/tan_go238/books/project-management-textbook" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 13:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/suwa_nobu/items/cec37ce5a6141bb3eefc?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">3万スターの Claude Code スキルを入れたら、出力が43%短くなった</a></div>
+    <div class="card-summary">ayghri/i-have-adhd が Hacker News で269ポイントを集めていました。GitHub 30,233スター（2026-09-09 時点、API取得）。エージェントの回答から前置きを取り、行動を先頭に置かせるスキルです。 日本語の紹介記事は3本ありま...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/suwa_nobu/items/cec37ce5a6141bb3eefc?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 11:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/m__ikeda/items/bfd4639b3278a3f1c9ea?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【採用担当の本音】入社1ヶ月目で「この人を採用して本当に良かった」と思われる人の特徴</a></div>
+    <div class="card-summary">自己紹介 こんにちは。株式会社PRUMで採用広報を担当している池田です。 未経験からIT業界を目指している方と話していると、かなりよく聞く共通した悩みがあります。そういった内容を皆さんにシェアしていくので、役立てていただけたらと思います😊 もしIT業界に興味があるけど、...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/m__ikeda/items/bfd4639b3278a3f1c9ea?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 11:32 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/kitagawa_sapeet/items/f8f00a1330b249830a3d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">AI時代にコードの理解を「習慣にする」ために1日5問の学習アプリを作った話</a></div>
+    <div class="card-summary">1. AI駆動開発とコードレビューの変化 昨今、AIによって実装速度は大きく向上しました。AIの作業量が増えることで、自分でコードを書くよりも確認の工数が増えていっているのは、多くの人に共通する流れだと思います。私のチームでも、人によるレビューに加えてAIにも別の観点から...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/kitagawa_sapeet/items/f8f00a1330b249830a3d?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 11:31 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ryoheiiwamoto/items/0134c989bb86519eec2e?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元ヤフーエンジニア社長が考える、AIに仕事が奪われないと思う理由</a></div>
+    <div class="card-summary">対象者 ・AIの進化を見ていて、正直この仕事を選んで大丈夫なのか不安な方 ・「AI時代、エンジニアってオワコンなのかな」と将来に迷っている方 に読んでいただけると嬉しいです！ こんにちは、元Yahooエンジニアで、株式会社PRUMの代表をしている岩本です。 https:...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ryoheiiwamoto/items/0134c989bb86519eec2e?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 10:09 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/socialplus/articles/dc1ceeb1e42edc" target="_blank" rel="noopener">Cluster Autoscaler から Karpenter へ移行して分かったこと</a></div>
+    <div class="card-summary">概要 弊社ではノードオートスケーラーとして Cluster Autoscaler を使っていましたが、AZ 分割 Node Group の運用負債や EKS Auto Mode への移行検討などをきっかけに、Karpenter への全面移行を行いました。 移行によって、AZ ごとに Node Group を分割する必要がなくなり運用がシンプルになったほか、consolidation によるノードの最適化（余ったノードの削減や、過剰スペックなノードをより適切なインスタンスタイプに詰め替える動き）で狙い通りコスト最適化の効果も得られました。 一方で、期待していたスケールアウト速度の向上は...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/socialplus/articles/dc1ceeb1e42edc" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-09 09:31 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/ml_bear/articles/e5cc1047cba176" target="_blank" rel="noopener">LLMのトークン効率化で気をつけたいことまとめ</a></div>
+    <div class="card-summary">! この記事は2026年9月時点の情報で書いています。状況はすぐに変化するので適宜調べ直していただけると幸いです。Claude Code や Codex をサブスクで使ってる人は、「コスト」を「利用枠 (リミット) の消費」として読んでいただけるとわかりやすいかと思います これはなに？ 端的に言うとこの友人に送ったメモを清書したものです。基礎的な内容が多いですが、トークン効率化で気をつけたいことをざっと書いてみました。間違いと思われるところがあれば教えてください🙏 ちなみに Uber の例がよく出てきますが、僕が最近この記事を読んだからです笑。皆様もぜひ。 記事の構成 以下...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/ml_bear/articles/e5cc1047cba176" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">27</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 08:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/09/automattics-board-forces-ceo-matt-mullenweg-into-leave-of-absence/" target="_blank" rel="noopener">Automattic’s board forces CEO Matt Mullenweg into leave of absence</a></div>
+    <div class="card-summary">Mullenweg said in a company Slack message that it was against his will.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Automattic取締役会、CEOのMatt Mullenweg氏を休職に追い込む</div>
+      <div class="ja-summary">マレンウェグ氏は社内のSlackメッセージで、それは自分の意志に反するものだと述べた。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/09/automattics-board-forces-ceo-matt-mullenweg-into-leave-of-absence/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 08:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/993064/no-airpods-with-cameras-apple-event" target="_blank" rel="noopener">There aren’t AirPods with cameras yet and I hope it stays that way</a></div>
+    <div class="card-summary">September Apple events are always a swirl of information and new, exciting products, and today&#x27;s was no different. Apple announced its first foldable, the iPhone Duo, alongside the iPhone 18 Pro and Pro Max; active noise cancellation (ANC) is now on the cheapest AirPods model, the AirPods 5; and a Siri Recap feature comes to […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">カメラ付きの AirPods はまだありませんが、このままでいてほしいと願っています</div>
+      <div class="ja-summary">9月のAppleイベントはいつも情報やエキサイティングな新製品が渦巻いているが、今日も例外ではなかった。 Apple は、iPhone 18 Pro および Pro Max とともに、初の折りたたみ式 iPhone Duo を発表しました。アクティブ ノイズ キャンセリング (ANC) は現在、AirPods の最も安価なモデルである AirPods 5 に搭載されています。そしてSiri Recap機能が登場[…]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/993064/no-airpods-with-cameras-apple-event" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 07:37 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/993048/iphone-18-pro-black-color" target="_blank" rel="noopener">The black iPhone Pro returns</a></div>
+    <div class="card-summary">Apple has seen reason: It has a black model in the iPhone Pro lineup again. Last year, Apple went bold with its colors for the iPhone 17 Pro, offering a flashy orange, a shiny silver, and a dark blue. Don&#x27;t get me wrong, they looked nice. But there was no black (or dark gray) for […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">黒のiPhone Proが帰ってくる</div>
+      <div class="ja-summary">Apple はその理由を理解しました。iPhone Pro のラインナップに再びブラック モデルが追加されたからです。昨年、AppleはiPhone 17 Proのカラーを大胆に変え、派手なオレンジ、光沢のあるシルバー、ダークブルーを提供しました。誤解しないでください、彼らは素敵に見えました。しかし、[…]には黒（またはダークグレー）がありませんでした。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/993048/iphone-18-pro-black-color" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 07:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/" target="_blank" rel="noopener">OpenAI adds a prominent AI doomer to its board of directors</a></div>
+    <div class="card-summary">Paul Christiano, an influential AI researcher focused on alignment, is joining the OpenAI Foundation as a member of its board.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI、著名な AI の破滅者を取締役会に追加</div>
+      <div class="ja-summary">アライメントを専門とする影響力のある AI 研究者である Paul Christiano が、OpenAI Foundation の理事に加わります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/09/openai-adds-a-prominent-ai-doomer-to-its-board-of-directors/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 07:23 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/992755/apple-iphone-duo-history-of-devices" target="_blank" rel="noopener">The incomplete history of Duo devices</a></div>
+    <div class="card-summary">Apple announced the company&#x27;s first device with a folding screen today, the iPhone Duo, but that&#x27;s where the firsts end. The Duo is not only far from the first foldable on the market thanks to the efforts of Samsung and Google, but it&#x27;s also not the first product to be called the Duo. Former Apple […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Duo デバイスの不完全な歴史</div>
+      <div class="ja-summary">Apple は本日、同社初の折りたたみ式スクリーンを搭載したデバイスである iPhone Duo を発表しましたが、最初のものはこれで終わりです。 Duo は、Samsung と Google の努力のおかげで市場初の折りたたみ式には程遠いだけでなく、Duo と呼ばれる最初の製品でもありません。元アップル […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/992755/apple-iphone-duo-history-of-devices" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 07:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/tech/993022/wordpress-automattic-ceo-matt-mullenweg-leave-of-absence" target="_blank" rel="noopener">Automattic CEO Matt Mullenweg placed on leave</a></div>
+    <div class="card-summary">Matt Mullenweg, the CEO of WordPress.com owner Automattic, has been placed on a paid leave of absence, as reported earlier by 404 Media. In an internal message by the outlet, Mullenweg claims Automattic chief financial officer Mark Davies &quot;conspired&quot; with board members to place him on leave. &quot;They voted to put me on a paid […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Automattic CEO Matt Mullenweg が休暇に</div>
+      <div class="ja-summary">404 Media が先に報じたように、WordPress.com のオーナー Automattic の CEO である Matt Mullenweg 氏は有給休暇を取得した。マレンウェグ氏は同メディアの内部メッセージで、オートマティック社の最高財務責任者マーク・デイビス氏が取締役会メンバーと「共謀」して同氏を休暇にさせたと主張している。 「彼らは私を有給雇用にすることに投票した […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/tech/993022/wordpress-automattic-ceo-matt-mullenweg-leave-of-absence" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 07:11 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/anthropic-researcher-quits-jacob-coxon-ai-fears-humanity/" target="_blank" rel="noopener">The AI Researcher Who Just Quit Anthropic Says It’s ‘Crunch Time for Humanity’</a></div>
+    <div class="card-summary">Jacob Coxon talks to WIRED about the “mini Manhattan project” inside Anthropic, the problem with alignment, and why AI labs have just a few years left to make their systems safe.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">人類学を辞めたばかりのAI研究者が語る「人類にとっての危機の時」</div>
+      <div class="ja-summary">ジェイコブ・コクソン氏が『WIRED』に、アンスロピック内の「ミニ・マンハッタン・プロジェクト」、調整の問題、そしてなぜAI研究所がシステムを安全にするのに数年しか残っていないのかについて語った。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/anthropic-researcher-quits-jacob-coxon-ai-fears-humanity/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 06:52 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/993005/smartphone-price-hikes-apple-iphone-18-pro" target="_blank" rel="noopener">It’s the year of smartphone price hikes</a></div>
+    <div class="card-summary">Paying more for a new phone seems almost unavoidable after Apple&#x27;s event today. The new iPhone 18 Pro and Pro Max start at $1,199 and $1,299, respectively - a $100 price hike over their predecessors. You can&#x27;t dodge the price hike by opting for an older iPhone, either, because Apple raised prices on those by […]</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">今年はスマホ値上げの年です</div>
+      <div class="ja-summary">今日の Apple のイベントの後、新しい携帯電話に追加料金を支払うことはほぼ避けられないようです。新しいiPhone 18 ProとPro Maxの価格はそれぞれ1,199ドルと1,299ドルからで、前モデルよりも100ドル値上がりしている。 Apple が古い iPhone の価格を値上げしたため、古い iPhone を選んでも価格上昇を回避することはできません […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/993005/smartphone-price-hikes-apple-iphone-18-pro" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 06:43 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/09/massachusetts-hits-data-centers-with-new-clean-power-rules/" target="_blank" rel="noopener">Massachusetts hits data centers with new clean power rules</a></div>
+    <div class="card-summary">Massachusetts has become the third state in as many months to slap new restrictions on data center development.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">マサチューセッツ州がデータセンターに新しいクリーン電力ルールを導入</div>
+      <div class="ja-summary">マサチューセッツ州はここ数カ月でデータセンター開発に新たな制限を課した３番目の州となった。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/09/massachusetts-hits-data-centers-with-new-clean-power-rules/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 06:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/san-francisco-orders-meta-to-stop-allowing-ai-child-abuse-ads/" target="_blank" rel="noopener">San Francisco Orders Meta to Stop ‘Allowing’ AI Child Abuse Ads</a></div>
+    <div class="card-summary">The City Attorney’s Office has asked Meta to explain how the harmful ads repeatedly ran on Facebook and Instagram. The company claims the ads are not under the city’s jurisdiction.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サンフランシスコ、メタ社にAI児童虐待広告の「許可」を停止するよう命令</div>
+      <div class="ja-summary">市検察局はメタに対し、FacebookとInstagram上で有害な広告がどのように繰り返し掲載されたのか説明するよう求めた。同社は、広告は市の管轄下にないと主張している。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/san-francisco-orders-meta-to-stop-allowing-ai-child-abuse-ads/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 06:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/a-year-after-charlie-kirks-death-turning-point-plans-to-spend-big-on-the-midterms/" target="_blank" rel="noopener">A Year After Charlie Kirk’s Death, Turning Point Plans to Spend Big on the Midterms</a></div>
+    <div class="card-summary">Turning Point will spend tens of millions on ads and turnout, sources say, with a focus on New Hampshire, Arizona, and Nevada.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">チャーリー・カークの死から1年、ターニング・ポイントは中間選挙に大金を投じる計画</div>
+      <div class="ja-summary">関係者によると、ターニング・ポイントはニューハンプシャー州、アリゾナ州、ネバダ州を中心に、広告と投票率に数千万ドルを投じる予定だという。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/a-year-after-charlie-kirks-death-turning-point-plans-to-spend-big-on-the-midterms/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 05:58 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/09/apples-new-ceo-is-reviving-a-steve-jobs-strategy-from-25-years-ago/" target="_blank" rel="noopener">Apple’s new CEO is reviving a Steve Jobs strategy from 25 years ago</a></div>
+    <div class="card-summary">John Ternus made the case in his first keynote as Apple CEO that the iPhone isn&#x27;t going anywhere.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Appleの新CEOは25年前のスティーブ・ジョブズ戦略を復活させている</div>
+      <div class="ja-summary">ジョン・ターナス氏は、Apple CEOとしての最初の基調講演で、iPhoneはどこにも行かないと主張した。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/09/apples-new-ceo-is-reviving-a-steve-jobs-strategy-from-25-years-ago/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Ars Technica">
+    <div class="card-header">
+      <span class="badge badge-source">Ars Technica</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 05:55 JST</span>
+    </div>
+    <div class="card-title"><a href="https://arstechnica.com/information-technology/2026/09/4-groups-caught-using-the-same-chrome-and-windows-exploit-kit/" target="_blank" rel="noopener">4 groups caught using the same Chrome and Windows exploit kit</a></div>
+    <div class="card-summary">A patch gap and the hastened pace of AI-based vulnerability discovery are likely contributors.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">同じ Chrome と Windows エクスプロイト キットを使用している 4 つのグループを発見</div>
+      <div class="ja-summary">パッチのギャップと AI ベースの脆弱性発見のペースの速さが原因である可能性があります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://arstechnica.com/information-technology/2026/09/4-groups-caught-using-the-same-chrome-and-windows-exploit-kit/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 05:24 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/09/apple-watchs-new-ai-features-are-normalizing-the-idea-that-technology-is-always-listening/" target="_blank" rel="noopener">Apple Watch’s new AI features are normalizing the idea that technology is always listening</a></div>
+    <div class="card-summary">Apple says its new watches won’t save raw audio, but features that can transcribe recent speech and summarize ambient conversations raise new questions about consent, privacy, and how people behave when they know they could always be recorded.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple Watchの新しいAI機能は、テクノロジーが常に耳を傾けているという考えを常態化させている</div>
+      <div class="ja-summary">Appleは、新しい時計は生の音声を保存しないと述べているが、最近の会話を文字に起こし、周囲の会話を要約できる機能は、同意、プライバシー、そして常に録音される可能性があるとわかっているときに人々がどのように行動するかについて新たな疑問を引き起こす。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/09/apple-watchs-new-ai-features-are-normalizing-the-idea-that-technology-is-always-listening/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 04:21 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/everything-apple-announced-september-2026/" target="_blank" rel="noopener">Everything Apple Announced: iPhone Duo, iPhone 18 Pro, Apple Watch, AirPods 5</a></div>
+    <div class="card-summary">The company’s September event introduced Apple’s first ever foldable iPhone, along with new iPhone 18 Pro models, updates to the Apple Watch, some AirPods, and more advances to Siri AI.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Apple が発表したすべて: iPhone Duo、iPhone 18 Pro、Apple Watch、AirPods 5</div>
+      <div class="ja-summary">同社の9月のイベントでは、Apple初の折りたたみ式iPhoneのほか、新しいiPhone 18 Proモデル、Apple Watchのアップデート、一部のAirPods、およびSiri AIのさらなる進歩が紹介された。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/everything-apple-announced-september-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 04:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/apple-doesnt-want-you-to-worry-about-the-new-apple-watchs-listening-features/" target="_blank" rel="noopener">Apple Doesn’t Want You to Worry About the New Apple Watch’s Listening Features</a></div>
+    <div class="card-summary">The new Apple Watch includes several “intelligent” listening features that have privacy and security baked in. But the protections can’t change the facts of what the tools do.</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">Appleは、新しいApple Watchのリスニング機能について心配してほしくない</div>
+      <div class="ja-summary">新しい Apple Watch には、プライバシーとセキュリティが組み込まれたいくつかの「インテリジェントな」リスニング機能が含まれています。しかし、保護機能がツールの動作の事実を変えることはできません。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/apple-doesnt-want-you-to-worry-about-the-new-apple-watchs-listening-features/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 03:15 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.apple.com/iphone-duo/" target="_blank" rel="noopener">iPhone Duo</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">iPhoneデュオ</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.apple.com/iphone-duo/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 02:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.apple.com/newsroom/2026/09/apple-introduces-airpods-5-with-best-in-class-open-ear-active-noise-cancellation/" target="_blank" rel="noopener">AirPods 5</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">エアポッズ5</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.apple.com/newsroom/2026/09/apple-introduces-airpods-5-with-best-in-class-open-ear-active-noise-cancellation/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 02:33 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.apple.com/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/" target="_blank" rel="noopener">iPhone 18 Pro and iPhone 18 Pro Max</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">iPhone 18 Pro および iPhone 18 Pro Max</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.apple.com/newsroom/2026/09/apple-debuts-iphone-18-pro-and-iphone-18-pro-max/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-10 02:14 JST</span>
+    </div>
+    <div class="card-title"><a href="https://spectrum.ieee.org/are-self-driving-cars-safe" target="_blank" rel="noopener">Growing proof that autonomous cars save lives</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">自動運転車が命を救うという証拠が増えつつある</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://spectrum.ieee.org/are-self-driving-cars-safe" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-09 22:27 JST</span>
+    </div>
+    <div class="card-title"><a href="https://tailwindcss.com/blog/tailwind-is-joining-shopify" target="_blank" rel="noopener">Shopify acquires Tailwind</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ShopifyがTailwindを買収</div>
+      <div class="ja-summary">コメント</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://tailwindcss.com/blog/tailwind-is-joining-shopify" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-09-09 21:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/09/09/1143767/the-download-openai-math-future-battery-record/" target="_blank" rel="noopener">The Download: OpenAI’s turning point for math and a battery record</a></div>
+    <div class="card-summary">This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. What OpenAI’s latest controversy tells us about the future of math OpenAI says its agents have solved one of the most important open problems in mathematics. Under normal circumstances, that would…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ダウンロード: OpenAI の数学とバッテリー記録のターニングポイント</div>
+      <div class="ja-summary">これは、テクノロジーの世界で何が起こっているかを毎日提供する平日のニュースレター、The Download の今日版です。 OpenAI の最新の論争が数学の未来について語ること OpenAI は、エージェントが数学における最も重要な未解決の問題の 1 つを解決したと述べています。通常の状況では、それは…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/09/09/1143767/the-download-openai-math-future-battery-record/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-09-09 19:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/cloudnc-aims-to-accelerate-ai-supply-chain-machining/" target="_blank" rel="noopener">CloudNC aims to accelerate AI supply chain machining</a></div>
+    <div class="card-summary">CloudNC has secured $20 million in new capital to scale its AI precision machining technology across global supply chain networks. The investment round was led by US venture investor Nimble Ventures, with participation from Calculus Venture Capital, Entrepreneur First, and LM Ventures, the venture capital fund of Lockheed Martin. Founded in 2015, CloudNC operates from […] The post CloudNC aims to…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">CloudNC は AI サプライチェーン機械加工の加速を目指す</div>
+      <div class="ja-summary">CloudNC は、自社の AI 精密加工技術を世界のサプライチェーン ネットワーク全体に拡張するために、新たな資本 2,000 万ドルを確保しました。この投資ラウンドは米国のベンチャー投資家Nimble Venturesが主導し、Calculus Venture Capital、Entrepreneur First、ロッキード・マーティンのベンチャーキャピタルファンドであるLM Venturesが参加した。 2015 年に設立された CloudNC は、[…] ポスト CloudNC が目指すもの</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/cloudnc-aims-to-accelerate-ai-supply-chain-machining/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-09-09 18:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/09/09/1143680/batteries-us-record/" target="_blank" rel="noopener">Batteries just broke another record in the US</a></div>
+    <div class="card-summary">Battery installations hit a new record in the US in the second quarter of 2026. In total, 20.2 gigawatt-hours of new capacity came online, according to a new report. That’s enough to supply the daily electricity needs of about 700,000 homes. The surge is putting the country on a trajectory to see 71 gigawatt-hours of…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">バッテリーは米国で新たな記録を更新しました</div>
+      <div class="ja-summary">2026 年の第 2 四半期に米国で蓄電池の設置数は新記録を達成しました。新しい報告書によると、合計 20.2 ギガワット時の新たな容量が稼働しました。これは約70万世帯が毎日必要とする電力を供給するのに十分な量だ。この急増により、国は 71 ギガワット時の発電量を達成する軌道に乗りつつあります。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/09/09/1143680/batteries-us-record/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI" data-source="AI News">
+    <div class="card-header">
+      <span class="badge badge-source">AI News</span>
+      <span class="badge badge-category" style="background:#6366f1">AI</span>
+      <span class="card-date">2026-09-09 17:52 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.artificialintelligence-news.com/news/samsung-mistral-ai-models-for-semiconductor-manufacturing/" target="_blank" rel="noopener">Samsung taps Mistral AI models for semiconductor manufacturing</a></div>
+    <div class="card-summary">Samsung has partnered with Mistral AI to deploy on-premises models across its semiconductor manufacturing and engineering operations. The agreement was announced during the bilateral state summit held in Paris between South Korea and France. Samsung will integrate Mistral’s software suite – including its flagship Mistral Large model – into internal semiconductor facilities to build customised […]…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">サムスン、半導体製造にMistral AIモデルを活用</div>
+      <div class="ja-summary">Samsung は、Mistral AI と提携して、半導体製造およびエンジニアリング業務全体にオンプレミス モデルを展開しています。この合意は、パリで開催された韓国とフランスの二国間国家首脳会議中に発表された。サムスンは、主力モデルであるミストラル ラージ モデルを含むミストラルのソフトウェア スイートを社内の半導体施設に統合し、カスタマイズされたものを構築する予定です […]</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.artificialintelligence-news.com/news/samsung-mistral-ai-models-for-semiconductor-manufacturing/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-09-09 17:18 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/09/09/1143279/understanding-the-thermal-ceiling-in-portable-power/" target="_blank" rel="noopener">Understanding the thermal ceiling in portable power</a></div>
+    <div class="card-summary">Plug a phone into a modern charger and the first 10 minutes are impressive. The next 20 are not. This is not a defect. It’s the connected device protecting itself. As temperature rises during charging, a smartphone’s battery management system reduces the current it will accept, because heat accelerates the chemical degradation that permanently reduces…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">ポータブル電源の熱上限を理解する</div>
+      <div class="ja-summary">携帯電話を最新の充電器に接続すると、最初の 10 分間は感動的です。次の 20 はそうではありません。これは欠陥ではありません。接続されたデバイス自体が保護されます。充電中に温度が上昇すると、スマートフォンのバッテリー管理システムは受け入れる電流を減らします。これは、熱によって化学的劣化が促進され、永久的に電流が減少するためです。</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/09/09/1143279/understanding-the-thermal-ceiling-in-portable-power/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="AI / Tech" data-source="MIT Technology Review">
+    <div class="card-header">
+      <span class="badge badge-source">MIT Technology Review</span>
+      <span class="badge badge-category" style="background:#8b5cf6">AI / Tech</span>
+      <span class="card-date">2026-09-09 12:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/" target="_blank" rel="noopener">What OpenAI’s latest controversy tells us about the future of math</a></div>
+    <div class="card-summary">OpenAI’s latest mathematical milestone has quickly become mired in controversy. Today, the company announced that its agents have solved one of the Millennium Prize Problems, some of the most important open problems in mathematics. Under normal circumstances, that solution would be a huge feather in OpenAI’s cap. But the announcement has been overshadowed by accusations…</div>
+    <div class="ja-block">
+      <div class="ja-block-label">🇯🇵 日本語訳</div>
+      <div class="ja-title">OpenAI の最新の論争が数学の未来について語ること</div>
+      <div class="ja-summary">OpenAI の最新の数学的マイルストーンは、すぐに論争に巻き込まれました。本日、同社は、数学における最も重要な未解決問題の一部であるミレニアム賞問題の 1 つをエージェントが解決したと発表しました。通常の状況では、そのソリューションは OpenAI の上限に大きな影響を与えるでしょう。しかし、この発表は非難によって影が薄くなっている…</div>
+    </div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.technologyreview.com/2026/09/08/1143747/what-openais-latest-controversy-tells-us-about-the-future-of-math/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
