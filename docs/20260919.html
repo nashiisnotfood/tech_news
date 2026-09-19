@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI・テクノロジーニュース — 2026年09月20日 08:54 JST</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --surface2:  #273449;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --accent:    #38bdf8;
+      --ai-color:  #818cf8;
+      --tech-color:#38bdf8;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 0 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ai-color), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    header p.meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 0.4rem;
+    }
+
+    /* ── Stats bar ── */
+    .stats-bar {
+      max-width: 1100px;
+      margin: 1.5rem auto;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .stat-pill strong { color: var(--text); }
+
+    /* ── Filter tabs ── */
+    .filter-tabs {
+      max-width: 1100px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .filter-tab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--muted);
+      transition: all 0.15s;
+      user-select: none;
+    }
+    .filter-tab:hover, .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+    }
+
+    /* ── Sections ── */
+    .news-section {
+      max-width: 1100px;
+      margin: 0 auto 2.5rem;
+    }
+    .section-header {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-count {
+      font-size: 0.75rem;
+      color: var(--muted);
+      font-weight: 400;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.1rem 0.6rem;
+    }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-source {
+      background: var(--surface2);
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .badge-category {
+      color: #fff;
+    }
+    .card-date {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .card-title a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .card-title a:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .card-summary {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .ai-summary-box {
+      background: var(--surface2);
+      border-left: 3px solid var(--ai-color);
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      font-size: 0.82rem;
+      color: #c7d2fe;
+      line-height: 1.55;
+    }
+    .ai-summary-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--ai-color);
+      margin-bottom: 0.3rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: flex-end;
+    }
+    .read-more {
+      font-size: 0.78rem;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-more:hover { text-decoration: underline; }
+
+    /* ── Japanese translation block ── */
+    .ja-block {
+      background: rgba(52, 211, 153, 0.07);
+      border-left: 3px solid #34d399;
+      border-radius: 0 8px 8px 0;
+      padding: 0.6rem 0.9rem;
+      line-height: 1.55;
+    }
+    .ja-block-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #34d399;
+      margin-bottom: 0.3rem;
+    }
+    .ja-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #d1fae5;
+      margin-bottom: 0.25rem;
+    }
+    .ja-summary {
+      font-size: 0.82rem;
+      color: #a7f3d0;
+    }
+
+    /* ── No results ── */
+    .no-results {
+      max-width: 1100px;
+      margin: 3rem auto;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+      header h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚡ AI・テクノロジーニュース</h1>
+  <p class="meta">生成日時: 2026年09月20日 08:54 JST &nbsp;|&nbsp; 取得期間: 過去 1 日間</p>
+</header>
+
+<div class="stats-bar">
+  <div class="stat-pill">合計 <strong>26</strong> 件</div>
+  <div class="stat-pill">Hacker News: <strong>5</strong></div> <div class="stat-pill">Qiita: <strong>5</strong></div> <div class="stat-pill">TechCrunch: <strong>5</strong></div> <div class="stat-pill">The Verge: <strong>5</strong></div> <div class="stat-pill">Wired: <strong>5</strong></div> <div class="stat-pill">Zenn: <strong>1</strong></div>
+</div>
+
+<div class="filter-tabs" id="filterTabs">
+  <span class="filter-tab active" onclick="filterCards('all', this)">すべて</span>
+  <span class="filter-tab" onclick="filterCards('Tech', this)">Tech (20)</span> <span class="filter-tab" onclick="filterCards('日本語', this)">日本語 (6)</span>
+  <span class="filter-tab" onclick="filterCards('Hacker News', this)">Hacker News (5)</span> <span class="filter-tab" onclick="filterCards('Qiita', this)">Qiita (5)</span> <span class="filter-tab" onclick="filterCards('TechCrunch', this)">TechCrunch (5)</span> <span class="filter-tab" onclick="filterCards('The Verge', this)">The Verge (5)</span> <span class="filter-tab" onclick="filterCards('Wired', this)">Wired (5)</span> <span class="filter-tab" onclick="filterCards('Zenn', this)">Zenn (1)</span>
+</div>
+
+<section class="news-section">
+  <h2 class="section-header">📰 日本語記事 <span class="section-count">6</span></h2>
+  <div class="grid">
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 18:01 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/kamo-shika/items/99b9a1e6213857126c66?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">ｽﾀｯｸﾁｬﾝの会話の判断を Jev に任せてみた</a></div>
+    <div class="card-summary">はじめに 最近ｽﾀｯｸﾁｬﾝと Fitbit Air を買いました。Databricks も合わせて、自分の健康データをいろいろ収集・集計して遊んでいます。 いま実装しているのは、以下の機能です。 朝・昼・晩に、健康データをもとにｽﾀｯｸﾁｬﾝから報告させる 本体を軽く...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/kamo-shika/items/99b9a1e6213857126c66?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 12:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ktdatascience/items/666a82fcdf3dc4af00d7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">なぜSMS認証は弱いと言われるのか</a></div>
+    <div class="card-summary">はじめに 海外で現地のSIMに差し替えた初日、銀行アプリにログインしようとして「SMSで確認コードを送信しました」の画面で止まりました。日本の番号のSIMは机の上。コードは日本の番号に飛んでいく。届くわけがない。結局その旅の間、銀行には一度も入れませんでした。 一方で、同...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ktdatascience/items/666a82fcdf3dc4af00d7?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 12:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/ktdatascience/items/6aec726eac024e83651b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">「Googleでログイン」を押したあと、Googleはサービスにパスワードを渡していない。じゃあ何を渡しているのか？</a></div>
+    <div class="card-summary">はじめに 「Googleでログイン」は毎日押しているのに、押したあとに何が飛んでいるかを説明できる人は意外と少ない。この記事では、あの1クリックの裏側を、Googleのパスワードがサービスに渡らない理由から、サービスが受け取る「2種類の券」の違いまで順に整理します。 ...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/ktdatascience/items/6aec726eac024e83651b?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 10:51 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/suwa_nobu/items/c795cf89d0fd4091c9cb?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">Claude Code が AGENTS.md を読むようになった。ただし1回目のセッションでは読まれない</a></div>
+    <div class="card-summary">Claude Code 2.1.277（2026-09-18）の changelog に、こう書かれています。 Added AGENTS.md support: in a project with no CLAUDE.md, Claude Code reads AGENT...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/suwa_nobu/items/c795cf89d0fd4091c9cb?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Qiita">
+    <div class="card-header">
+      <span class="badge badge-source">Qiita</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 10:38 JST</span>
+    </div>
+    <div class="card-title"><a href="https://qiita.com/J-T_ky2g/items/ad0cc4cf8502d2260fb8?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">【SQL】テーブル作成、テストデータ投入(bulk)、データクエリ、テーブルドロップのメモ</a></div>
+    <div class="card-summary">はじめに SQLはほぼselectしか打たないし、selectも簡単なleft join、inner join、like、limit、whereしかわからない。 問題 select以外のSQL全然文法知らないので以下を調べたり実行して確認した int4にする方法...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://qiita.com/J-T_ky2g/items/ad0cc4cf8502d2260fb8?utm_campaign=popular_items&amp;utm_medium=feed&amp;utm_source=popular_items" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="日本語" data-source="Zenn">
+    <div class="card-header">
+      <span class="badge badge-source">Zenn</span>
+      <span class="badge badge-category" style="background:#10b981">日本語</span>
+      <span class="card-date">2026-09-19 09:34 JST</span>
+    </div>
+    <div class="card-title"><a href="https://zenn.dev/seisei89628/articles/b505300dc8eaac" target="_blank" rel="noopener">就活用DirectX12アクションゲーム作成 第三十二回</a></div>
+    <div class="card-summary">※筆者は初学者なので、間違ったことを書いていれば教えてくれると助かります。 はじめに 前回までで、DirectX12による3D描画、TextureとMaterial、FBX、Animation、PhysX、Particle、Morph Target、Debug UI、2D画像と文字、2D / 3D音声まで動くようになりました。 ここまでの制作では、描画、物理、音声、入力などの機能をC++側へ順番に追加してきました。 ただ、実際にゲームを作り始めると、低レベルのEngine処理とPlayerやBossのようなゲーム固有処理を同じ場所へ増やし続けるのは扱いづらくなります。 そこで今回は、...</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://zenn.dev/seisei89628/articles/b505300dc8eaac" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<section class="news-section">
+  <h2 class="section-header">🔥 人気記事 <span class="section-count">20</span></h2>
+  <div class="grid">
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 06:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html" target="_blank" rel="noopener">How Hacker News ranking works: scoring, controversy, and penalties (2013)</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.righto.com/2013/11/how-hacker-news-ranking-really-works.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 05:44 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/997833/meta-muse-creepy" target="_blank" rel="noopener">Meta’s Muse is creepy, but maybe not for the reasons you think</a></div>
+    <div class="card-summary">Meta&#x27;s Muse is apparently an effective AI assistant, but one that&#x27;s a little creepy. Part of that is because of its new Mac app, which can access Messages, Calendar, and Notes. But for all its smarts, Muse doesn&#x27;t actually know how to describe itself. Jason Aten, a contributing editor at Inc Magazine, posted on Threads […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/997833/meta-muse-creepy" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 05:39 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/19/flock-reportedly-tries-to-shrink-workforce-with-employee-buyouts/" target="_blank" rel="noopener">Flock reportedly tries to shrink workforce with employee buyouts</a></div>
+    <div class="card-summary">Without buyouts, Flock would &quot;almost certainly&quot; need to lay off staff.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/19/flock-reportedly-tries-to-shrink-workforce-with-employee-buyouts/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 05:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://ooni.org/install" target="_blank" rel="noopener">Measure internet censorship. Contribute to the largest open dataset</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://ooni.org/install" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 04:57 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/19/trump-suggests-rebranding-ai-with-a-new-name-says-hes-also-creating-an-ai-force/" target="_blank" rel="noopener">Trump says it’s time to rebrand AI with a new name — and he’s also creating an AI Force</a></div>
+    <div class="card-summary">Trump claimed, without evidence, that the AI backlash is a Democratic hoax.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/19/trump-suggests-rebranding-ai-with-a-new-name-says-hes-also-creating-an-ai-force/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 02:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/" target="_blank" rel="noopener">Google’s Gemini is the latest AI model to hack other companies</a></div>
+    <div class="card-summary">Google said Gemini had &quot;acted appropriately&quot; by ending each hack immediately.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/19/googles-gemini-is-the-latest-ai-model-to-hack-other-companies/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 02:10 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/policy/997805/trump-cnn-msnow-politico-ban" target="_blank" rel="noopener">Trump treads further on free speech with new journalist bans</a></div>
+    <div class="card-summary">On Friday, the president threatened to ban CNN, MS Now, and Politico from the White House. It could have just been another one of his Truth Social fever dreams, but it turns out it&#x27;s very real. All three publications were turned away from the White House this morning, NPR reports, marking an escalation in the […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/policy/997805/trump-cnn-msnow-politico-ban" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 02:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/19/even-mid-sprint-to-a-secret-flight-the-navys-tech-chief-had-a-pitch-for-investors/" target="_blank" rel="noopener">The US Navy just told us what’s on its tech wish list for the next several years</a></div>
+    <div class="card-summary">Navy CTO Justin Fanelli talks co-investing alongside VCs instead of funding early research himself, recent buys like a $562 million autonomous refueling deal, and the Navy&#x27;s updated wish list — from AI to quantum — for where founders should be building next.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/19/even-mid-sprint-to-a-secret-flight-the-navys-tech-chief-had-a-pitch-for-investors/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 00:25 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/ai-artificial-intelligence/997795/google-gemini-rogue-ai-hack" target="_blank" rel="noopener">Gemini went rogue, hacked three companies, and Google hid it</a></div>
+    <div class="card-summary">In May, Gemini broke containment and hacked three different companies, but Google didn&#x27;t disclose the incident until the Wall Street Journal approached the company. The hacks happened during a test of the model&#x27;s cybersecurity capabilities run by third-party Irregular, which was also involved in similar incidents involving Meta and OpenAI. According to WSJ, Google didn&#x27;t […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/ai-artificial-intelligence/997795/google-gemini-rogue-ai-hack" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="TechCrunch">
+    <div class="card-header">
+      <span class="badge badge-source">TechCrunch</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/" target="_blank" rel="noopener">Petlibro’s new AI-powered feeder is a game changer for multi-cat homes</a></div>
+    <div class="card-summary">Petlibro&#x27;s new Granary 2 smart feeders use a built-in scale and (on pricier models) an AI camera to track exactly how much your cat is eating and when — though the fanciest health-monitoring features will cost you an extra subscription.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://techcrunch.com/2026/09/19/petlibros-new-ai-powered-feeder-is-a-game-changer-for-multi-cat-homes/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/entertainment/996855/anamanaguchi-anyway-yeah-i-guess-interview-music" target="_blank" rel="noopener">Anamanaguchi has ‘too goddamn many’ browser tabs open right now</a></div>
+    <div class="card-summary">Anamanaguchi, the band consisting of Peter Berkman, James DeVito, Luke Silas, and Ary Warnaar, are most known for their chiptune music. Like me, you might have first heard them in game soundtracks like 2010&#x27;s Scott Pilgrim vs. the World: The Game or know of their collaboration with Hatsune Miku (which even made its way into […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/entertainment/996855/anamanaguchi-anyway-yeah-i-guess-interview-music" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="The Verge">
+    <div class="card-header">
+      <span class="badge badge-source">The Verge</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-20 00:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.theverge.com/gadgets/997467/hyte-x50-pc-case-deal-sale" target="_blank" rel="noopener">The colorful, unique Hyte X50 PC case is $50 off</a></div>
+    <div class="card-summary">The Hyte X50 is a PC case that really stands out from the typical black box design, and it’s $50 off at the company’s site until September 21st, 2026, bringing the price down to $99.99. This attractive case supports motherboards from ITX all the way up to the E-ATX form factors, and GPUs that are […]</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.theverge.com/gadgets/997467/hyte-x50-pc-case-deal-sale" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 23:44 JST</span>
+    </div>
+    <div class="card-title"><a href="https://bw.swerdlow.dev/report" target="_blank" rel="noopener">Brood War Bench</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://bw.swerdlow.dev/report" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 20:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/kernel-panic-ai-vulnerability-explosion/" target="_blank" rel="noopener">Forget the AI Slowdown—the Vulnerability Explosion Is Already Happening</a></div>
+    <div class="card-summary">AI labs are toying with an industry-wide pact to slow development. Meanwhile, widely available AI chatbots are already helping uncover a tidal wave of security flaws.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/kernel-panic-ai-vulnerability-explosion/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 19:46 JST</span>
+    </div>
+    <div class="card-title"><a href="https://laya.convaiinnovations.com/" target="_blank" rel="noopener">I built non-autoregressive decision models with RL a year ago</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://laya.convaiinnovations.com/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 19:30 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/productivity-app-tasks-txt-is-just-a-text-document/" target="_blank" rel="noopener">Tired of Cluttered Productivity Apps? This One’s Just a Text Document</a></div>
+    <div class="card-summary">The totally free macOS app Tasks.txt makes up for missing features with sheer elegance.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/productivity-app-tasks-txt-is-just-a-text-document/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 19:08 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/review/samsung-galaxy-watch9/" target="_blank" rel="noopener">Samsung Galaxy Watch9 Review: I Don’t Need Another Health Score</a></div>
+    <div class="card-summary">Samsung’s latest smartwatch offers useful health tracking alongside a growing pile of metrics you may never use.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/review/samsung-galaxy-watch9/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/best-gifts-for-bird-lovers-2026/" target="_blank" rel="noopener">An Editor’s Picks: The Best Gifts for Bird Lovers</a></div>
+    <div class="card-summary">Whether they’re into feeders, field guides, or games, these tried-and-tested picks are sure to land perfectly.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/best-gifts-for-bird-lovers-2026/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Wired">
+    <div class="card-header">
+      <span class="badge badge-source">Wired</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 19:00 JST</span>
+    </div>
+    <div class="card-title"><a href="https://www.wired.com/story/mathematicians-cant-quit-ai/" target="_blank" rel="noopener">Mathematicians Hate AI. They Can’t Quit It</a></div>
+    <div class="card-summary">Powerful AI models have created an existential risk to the field, but researchers can’t stop relying on them because they’re too useful.</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://www.wired.com/story/mathematicians-cant-quit-ai/" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  <article class="card" data-category="Tech" data-source="Hacker News">
+    <div class="card-header">
+      <span class="badge badge-source">Hacker News</span>
+      <span class="badge badge-category" style="background:#0ea5e9">Tech</span>
+      <span class="card-date">2026-09-19 18:20 JST</span>
+    </div>
+    <div class="card-title"><a href="https://john.hartnup.uk/2026/06/07/ai-event-posters.html" target="_blank" rel="noopener">AI-generated posters don’t have to be horrible</a></div>
+    <div class="card-summary">Comments</div>
+    <div class="card-footer">
+      <a class="read-more" href="https://john.hartnup.uk/2026/06/07/ai-event-posters.html" target="_blank" rel="noopener">元記事を読む →</a>
+    </div>
+  </article>
+  </div>
+</section>
+
+<footer>
+  このレポートは RSS フィードから自動生成されました。AI 要約なし（--ai-summary フラグと OPENAI_API_KEY で有効化できます）。
+</footer>
+
+<script>
+  function filterCards(value, el) {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (value === 'all') {
+        card.style.display = '';
+      } else {
+        const match = card.dataset.category === value || card.dataset.source === value;
+        card.style.display = match ? '' : 'none';
+      }
+    });
+    document.querySelectorAll('.news-section').forEach(section => {
+      const hasVisible = [...section.querySelectorAll('.card')].some(c => c.style.display !== 'none');
+      section.style.display = hasVisible ? '' : 'none';
+    });
+  }
+</script>
+</body>
+</html>
